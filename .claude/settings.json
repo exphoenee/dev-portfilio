@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xargs wc -l)"
+      "Bash(xargs wc -l)",
+      "Bash(grep -n \"^export const\\\\|^const \\\\|^/\\\\* =\" data/portfolio-data.js)",
+      "Bash(grep -n \"^/\\\\* =\\\\|^   [A-Z]\" styles/portfolio.css)"
     ]
   }
 }
