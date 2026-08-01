@@ -414,12 +414,12 @@ export const TIMELINE = [
     company: 'CobotX Technologies',
     current: false,
     desc: {
-      en: 'Engineering manager for a 4-person team in industrial automation — PLC and robot programming, LabVIEW data acquisition.',
-      de: 'Engineering-Manager eines 4-köpfigen Teams in der Industrieautomation — SPS- und Roboterprogrammierung, LabVIEW-Datenerfassung.',
-      hu: '4 fős mérnökcsapat vezetése ipari automatizálásban — PLC és robotprogramozás, LabVIEW adatgyűjtés.',
-      fr: 'Responsable ingénierie d\u2019une équipe de 4 personnes en automatisation industrielle — programmation PLC et robotique, acquisition de données LabVIEW.',
-      it: 'Engineering manager di un team di 4 persone nell\u2019automazione industriale — programmazione PLC e robot, acquisizione dati LabVIEW.',
-      es: 'Engineering manager de un equipo de 4 personas en automatización industrial — programación PLC y robótica, adquisición de datos LabVIEW.'
+      en: 'Leading a 4-person engineering team in industrial automation and robot integration projects.',
+      de: 'Leitung eines 4-köpfigen Engineering-Teams in der Industrieautomation und in Roboterintegrationsprojekten.',
+      hu: '4 fős mérnökcsapat vezetése ipari automatizálásban és robotintegrációs projektekben.',
+      fr: 'Direction d\u2019une équipe d’ingénierie de 4 personnes en automatisation industrielle et sur des projets d’intégration robotique.',
+      it: 'Guida di un team di ingegneria di 4 persone nell\u2019automazione industriale e in progetti di integrazione robotica.',
+      es: 'Dirección de un equipo de ingeniería de 4 personas en automatización industrial y proyectos de integración robótica.'
     }
   },
   {
@@ -442,12 +442,12 @@ export const TIMELINE = [
     company: 'Hauni Hungary',
     current: false,
     desc: {
-      en: 'Mechanical engineering — systems thinking, testing and precision that later became the foundation of my career.',
-      de: 'Maschinenbau — Systemdenken, Testen und Präzision, die später zur Grundlage meiner Karriere wurden.',
-      hu: 'Gépészmérnöki munka — rendszerszemlélet, tesztelés és precizitás, ami később a karrierem alapja lett.',
-      fr: 'Ingénierie mécanique — pensée système, tests et précision, qui devinrent plus tard la base de ma carrière.',
-      it: 'Ingegneria meccanica — pensiero sistemico, test e precisione, che divennero poi la base della mia carriera.',
-      es: 'Ingeniería mecánica — pensamiento sistémico, pruebas y precisión, que luego se convirtieron en la base de mi carrera.'
+      en: 'Mechanical engineering — measurement, data acquisition, automation and LabVIEW application development.',
+      de: 'Maschinenbau — Messtechnik, Datenerfassung, Automatisierung und Entwicklung von LabVIEW-Anwendungen.',
+      hu: 'Gépészmérnöki munka — mérés, adatgyűjtés, automatizálás és LabVIEW-alkalmazások fejlesztése.',
+      fr: 'Ingénierie mécanique — mesure, acquisition de données, automatisation et développement d’applications LabVIEW.',
+      it: 'Ingegneria meccanica — misurazione, acquisizione dati, automazione e sviluppo di applicazioni LabVIEW.',
+      es: 'Ingeniería mecánica — medición, adquisición de datos, automatización y desarrollo de aplicaciones LabVIEW.'
     }
   }
 ];
@@ -465,7 +465,7 @@ export const SKILLS = [
       { label: 'HTML', icon: 'assets/images/tech/html.svg' },
       { label: 'JavaScript', icon: 'assets/images/tech/javascript.svg' },
       { label: 'KRL', icon: 'assets/images/tech/kuka.png' },
-      { label: 'LabVIEW', icon: 'assets/images/tech/LabVIEW.svg' },
+      { label: 'LabVIEW', icon: 'assets/images/tech/labview.png' },
       { label: 'PHP', icon: 'assets/images/tech/php.svg' },
       { label: 'Python', icon: 'assets/images/tech/python.svg' },
       { label: 'SCSS', icon: 'assets/images/tech/scss.svg' },
@@ -556,7 +556,7 @@ export const SKILLS = [
    ------------------------------------------------------------ */
 export const CONTACT = [
   { icon: '<img src="assets/images/email.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.email', value: 'bozzay.viktor@gmail.com', href: 'mailto:bozzay.viktor@gmail.com', openHire: true },
-  { icon: '<img src="assets/images/calenda.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.booking', value: 'viktor.bozzay.online', href: 'https://viktor.bozzay.online', openBooking: true },
+  { icon: '<img src="assets/images/calendar.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.booking', value: 'viktor.bozzay.online', href: 'https://viktor.bozzay.online', openBooking: true },
   { icon: '<img src="assets/images/github.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.github', value: 'github.com/exphoenee', href: 'https://github.com/exphoenee' },
   { icon: '<img src="assets/images/linkedin.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.linkedin', value: 'in/viktorbozzay', href: 'https://www.linkedin.com/in/viktorbozzay/' },
   { icon: '<img src="assets/images/resume.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.website', value: 'viktor.bozzay.online', href: 'https://viktor.bozzay.online' }

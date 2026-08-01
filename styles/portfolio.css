@@ -772,9 +772,11 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    Contact
    ============================================================ */
+/* Fluid like .projects-grid: the track count follows the available width,
+   so the cards wrap instead of overflowing to the right on narrow screens. */
 .contact-cards {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 .contact-card {
@@ -801,20 +803,28 @@ a { color: inherit; text-decoration: none; }
   transition: transform 0.35s var(--ease);
 }
 .contact-icon svg {
-  width: 6rem;
-  height: 6rem;
+  width: clamp(4.5rem, 16vw, 6rem);
+  height: clamp(4.5rem, 16vw, 6rem);
   display: block;
 }
 .contact-icon .contact-img {
-  width: 7.2rem;
-  height: 7.2rem;
+  width: clamp(5rem, 19vw, 7.2rem);
+  height: clamp(5rem, 19vw, 7.2rem);
+  max-width: 100%;
   object-fit: cover;
   border-radius: 16px;
   display: block;
 }
 .contact-card:hover .contact-icon { transform: scale(1.2) rotate(-6deg); }
 .contact-name { font-weight: 700; font-size: 1.05rem; }
-.contact-value { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); }
+/* Long mono values (e.g. the email address) must wrap, not widen the track. */
+.contact-value {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
 
 /* ============================================================
    Timeline
@@ -1308,7 +1318,6 @@ body.modal-open {
   .hero { padding-top: 130px; }
   .hero-terminal { max-width: 520px; }
   .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
-  .contact-cards { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -1333,7 +1342,6 @@ body.modal-open {
   .lang-switcher .lang-btn { padding: 5px 6px; font-size: 0.85rem; }
   .btn-cv { display: none; } /* below 768px the mobile menu is the only CV source */
   .stats-row { gap: 26px; }
-  .contact-cards { grid-template-columns: repeat(2, 1fr); }
   .timeline-list::before { left: 8px; transform: none; }
   .timeline-item,
   .timeline-item:nth-child(even) {
