@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="meta.title">Viktor Bozzay — Frontend Tech Lead & Developer Portfolio</title>
+  <meta name="description" data-i18n="meta.description" content="Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.">
+  <link rel="canonical" href="https://exphoenee.github.io/dev-portfilio/">
+
+  <!-- ===== Open Graph (Facebook, LinkedIn, WhatsApp…) ===== -->
+  <meta property="og:title" data-i18n="meta.ogTitle" content="Viktor Bozzay — Developer Portfolio">
+  <meta property="og:description" data-i18n="meta.ogDescription" content="Libraries, games, tools and APIs built with clean, modern code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://exphoenee.github.io/dev-portfilio/">
+  <meta property="og:site_name" data-i18n="meta.siteName" content="Viktor Bozzay — Developer Portfolio">
+  <meta property="og:image" content="https://exphoenee.github.io/dev-portfilio/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay — Frontend Tech Lead">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="de_DE">
+  <meta property="og:locale:alternate" content="hu_HU">
+  <meta property="og:locale:alternate" content="fr_FR">
+  <meta property="og:locale:alternate" content="it_IT">
+  <meta property="og:locale:alternate" content="es_ES">
+
+  <!-- ===== Twitter / X Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" data-i18n="meta.ogTitle" content="Viktor Bozzay — Developer Portfolio">
+  <meta name="twitter:description" data-i18n="meta.ogDescription" content="Libraries, games, tools and APIs built with clean, modern code.">
+  <meta name="twitter:image" content="https://exphoenee.github.io/dev-portfilio/assets/og.jpg">
+  <meta name="twitter:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay — Frontend Tech Lead">
+
+  <!-- ===== JSON-LD structured data (Google rich results) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://exphoenee.github.io/dev-portfilio/#person",
+        "name": "Viktor Bozzay",
+        "url": "https://exphoenee.github.io/dev-portfilio/",
+        "image": "https://exphoenee.github.io/dev-portfilio/assets/og.jpg",
+        "email": "mailto:bozzay.viktor@gmail.com",
+        "jobTitle": "Frontend Tech Lead",
+        "description": "Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Pécs",
+          "addressCountry": "HU"
+        },
+        "sameAs": [
+          "https://github.com/exphoenee",
+          "https://www.linkedin.com/in/viktorbozzay/",
+          "https://viktor.bozzay.online"
+        ],
+        "knowsAbout": [
+          "TypeScript", "JavaScript", "React", "Svelte", "Node.js",
+          "Frontend Architecture", "CI/CD", "Legacy Modernization"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://exphoenee.github.io/dev-portfilio/#website",
+        "url": "https://exphoenee.github.io/dev-portfilio/",
+        "name": "Viktor Bozzay — Developer Portfolio",
+        "description": "Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
+        "inLanguage": ["en", "de", "hu", "fr", "it", "es"],
+        "publisher": {
+          "@id": "https://exphoenee.github.io/dev-portfilio/#person"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <!-- Browser chrome / address bar color, matched to the active theme (dark/light) -->
+  <meta name="theme-color" content="#0b0d1a" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script>
+    /* Apply saved/system theme before first paint to avoid a flash.
+       Wrapped in an IIFE so no globals leak (scripts/main.js is an ES module).
+       NOTE: the 'portfolio-theme' key mirrors THEME_KEY in scripts/config.js. */
+    (function () {
+      var themePref = localStorage.getItem('portfolio-theme');
+      if (themePref !== 'light' && themePref !== 'dark') {
+        themePref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = themePref;
+      // Keep the browser chrome color in sync with the resolved theme (overrides the media-query defaults).
+      var themeColor = themePref === 'light' ? '#f6f7fb' : '#0b0d1a';
+      document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+        m.setAttribute('content', themeColor);
+      });
+    })();
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/portfolio.css">
+</head>
+<body>
+
+  <!-- Animated background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo" data-i18n="logo">&lt;VB/&gt;</a>
+
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="#home" data-i18n="nav.home">Home</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#timeline" data-i18n="nav.timeline">Timeline</a>
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+        <a class="nav-cv-link" href="https://viktor.bozzay.online" target="_blank" rel="noopener" data-i18n="nav.cv">CV</a>
+      </nav>
+
+      <div class="nav-controls">
+        <div class="lang-switcher" role="group" aria-label="Language">
+          <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
+          <button class="lang-btn" data-lang="de" title="Deutsch">🇩🇪</button>
+          <button class="lang-btn" data-lang="hu" title="Magyar">🇭🇺</button>
+          <button class="lang-btn" data-lang="fr" title="Français">🇫🇷</button>
+          <button class="lang-btn" data-lang="it" title="Italiano">🇮🇹</button>
+          <button class="lang-btn" data-lang="es" title="Español">🇪🇸</button>
+        </div>
+
+        <a class="btn-cv" href="https://viktor.bozzay.online" target="_blank" rel="noopener" data-i18n="nav.cv">CV</a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <span class="hero-badge"><span class="pulse-dot"></span><span data-i18n="hero.badge">Available for new opportunities</span></span>
+          <h1 class="hero-title"><span data-i18n="hero.greeting">Hi, I'm</span> <span class="gradient-text" data-i18n="name">Viktor Bozzay</span><span data-i18n="hero.greetingEnd"></span></h1>
+          <div class="hero-role"><span id="typed"></span><span class="type-cursor"></span></div>
+          <p class="hero-desc" data-i18n="hero.desc">I design and build interactive web experiences — developer libraries, browser games, tools and documentation sites, all crafted with clean, modern code.</p>
+          <p class="hero-meta" data-i18n="hero.location">📍 Pécs, Hungary · HU — native · DE — B2 · EN — B2</p>
+          <p class="hero-story" data-i18n="hero.story">Frontend Tech Lead with 5+ years of frontend and full-stack experience, specializing in frontend architecture, system design, and large-scale legacy modernization with TypeScript, Svelte, React, and Node.js. I've led full rewrites and migrations of enterprise systems to modern stacks, improving maintainability and scalability of core platforms. I've introduced AI-assisted development workflows and built CI pipelines with automated quality gates, significantly increasing delivery speed, engineering consistency, and release reliability. I lead and mentor engineers, focusing on evidence-driven refactoring, CI-quality standards, and sustainable, system-level frontend foundations.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaProjects">View Projects</a>
+            <button type="button" class="btn btn-ghost" data-open-hire data-i18n="hero.ctaContact">Contact Me</button>
+            <button type="button" class="btn btn-ghost" data-open-booking data-i18n="hero.ctaBook">Book a Meeting</button>
+          </div>
+        </div>
+
+        <div class="hero-terminal" aria-hidden="true">
+          <div class="terminal">
+            <div class="terminal-bar">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="terminal-title">portfolio — zsh</span>
+            </div>
+            <div class="terminal-body">
+              <p><span class="t-prompt">➜</span> <span class="t-cmd">whoami</span></p>
+              <p class="t-out" data-i18n="terminal.whoami">Viktor Bozzay — Frontend Tech Lead</p>
+              <p><span class="t-prompt">➜</span> <span class="t-cmd">ls ./projects</span></p>
+              <p class="t-out" id="terminal-ls1"></p>
+              <p class="t-out" id="terminal-ls2"></p>
+              <p><span class="t-prompt">➜</span> <span class="t-cmd">open demo --live</span></p>
+              <p class="t-out success" id="terminal-stats"></p>
+              <p><span class="t-prompt">➜</span> <span class="t-cursor">▊</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS ===================== -->
+    <section class="section projects" id="projects">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="projects.kicker">Selected Work</span>
+        <h2 class="section-title" data-i18n="projects.title">Projects</h2>
+        <p class="section-sub" data-i18n="projects.subtitle">Libraries, games, tools and APIs — click the tabs to explore what each one does and how it is built.</p>
+        <div class="stats-row">
+          <div class="stat"><span class="stat-num" data-stat="projects">0</span><span class="stat-label" data-i18n="stats.projects">Projects</span></div>
+          <div class="stat"><span class="stat-num" data-stat="languages">0</span><span class="stat-label" data-i18n="stats.languages">UI Languages</span></div>
+          <div class="stat"><span class="stat-num" data-stat="npm">0</span><span class="stat-label" data-i18n="stats.npm">npm Packages</span></div>
+          <div class="stat"><span class="stat-num" data-stat="demos">0</span><span class="stat-label" data-i18n="stats.demos">Live Demos</span></div>
+        </div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="filter-chip active" data-filter="all" aria-pressed="true" data-i18n="filters.all">All</button>
+        <button class="filter-chip" data-filter="library" aria-pressed="false" data-i18n="filters.library">Libraries</button>
+        <button class="filter-chip" data-filter="game" aria-pressed="false" data-i18n="filters.game">Games</button>
+        <button class="filter-chip" data-filter="app" aria-pressed="false" data-i18n="filters.app">Apps & Tools</button>
+        <button class="filter-chip" data-filter="api" aria-pressed="false" data-i18n="filters.api">APIs</button>
+        <button class="filter-chip" data-filter="website" aria-pressed="false" data-i18n="filters.website">Websites</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid"><!-- rendered by JS --></div>
+    </section>
+
+    <!-- ===================== TIMELINE ===================== -->
+    <section class="section timeline" id="timeline">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="timeline.kicker">Career Path</span>
+        <h2 class="section-title" data-i18n="timeline.title">My Journey</h2>
+        <p class="section-sub" data-i18n="timeline.subtitle">From mechanical engineering to leading frontend teams.</p>
+        <a class="btn btn-primary section-cta" href="https://viktor.bozzay.online" target="_blank" rel="noopener" data-i18n="timeline.cvBtn">View Full CV</a>
+      </div>
+      <div class="timeline-list" id="timeline-list"><!-- rendered by JS --></div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="section skills" id="skills">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="skills.kicker">Toolbox</span>
+        <h2 class="section-title" data-i18n="skills.title">Skills & Technologies</h2>
+        <p class="section-sub" data-i18n="skills.subtitle">The tools I reach for when building for the web.</p>
+      </div>
+      <div class="skills-groups" id="skills-groups"><!-- rendered by JS from data/portfolio-data.js --></div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="section contact" id="contact">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="contact.kicker">Get in touch</span>
+        <h2 class="section-title" data-i18n="contact.title">Let's Work Together</h2>
+        <p class="section-sub" data-i18n="contact.subtitle">Have a project in mind or just want to say hello? Reach out anytime.</p>
+      </div>
+      <div class="contact-cards" id="contact-cards"><!-- rendered by JS from data/portfolio-data.js --></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© <span id="year">2026</span> <span data-i18n="name">Viktor Bozzay</span> · <span data-i18n="footer.rights">All rights reserved.</span></p>
+      <p class="footer-built" data-i18n="footer.built">Built with HTML, CSS & JavaScript — no frameworks, just the web.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m-7 7 7-7 7 7"/></svg>
+  </button>
+
+  <!-- ===================== HIRE MODAL (email form, ported from the CV repo) ===================== -->
+  <div class="modal" id="hire-modal" role="dialog" aria-modal="true" aria-labelledby="hire-modal-title" hidden>
+    <div class="modal-backdrop" id="hire-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-head">
+        <h3 id="hire-modal-title" data-i18n="hire.title">Contact Viktor</h3>
+        <button class="modal-close" id="hire-close" type="button" aria-label="Close contact form" data-i18n-aria="hire.closeAria">&#x2715;</button>
+      </div>
+
+      <!-- Success state -->
+      <div class="hire-state" id="hire-success" hidden>
+        <div class="hire-state-icon" aria-hidden="true">&#10003;</div>
+        <p class="hire-state-title" data-i18n="hire.thanks">Thanks for reaching out!</p>
+        <p class="hire-state-note" data-i18n="hire.sentNote">Your message was sent successfully. I'll get back to you soon.</p>
+      </div>
+
+      <!-- Cooldown state -->
+      <div class="hire-state" id="hire-cooldown" hidden>
+        <div class="hire-state-icon cooldown" aria-hidden="true">&#9203;</div>
+        <p class="hire-state-title" data-i18n="hire.cooldownTitle">Message already sent!</p>
+        <p class="hire-state-note" data-i18n="hire.cooldownNote">You've already sent a message today. Come back tomorrow to get in touch again.</p>
+      </div>
+
+      <!-- Inline form error -->
+      <p class="hire-error" id="hire-error" role="alert" hidden></p>
+
+      <form id="hire-form" novalidate aria-label="Contact form">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="hire-field">
+          <label for="hire-name" data-i18n="hire.name">Your name</label>
+          <input id="hire-name" type="text" name="name" required autocomplete="name"
+                 data-i18n-placeholder="hire.namePlaceholder" aria-required="true" aria-describedby="hire-name-err">
+          <span class="hire-field-error" id="hire-name-err" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="hire-field">
+          <label for="hire-email" data-i18n="hire.email">Your email</label>
+          <input id="hire-email" type="email" name="email" required autocomplete="email"
+                 data-i18n-placeholder="hire.emailPlaceholder" aria-required="true" aria-describedby="hire-email-err">
+          <span class="hire-field-error" id="hire-email-err" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div class="hire-field">
+          <label for="hire-message" data-i18n="hire.message">Message</label>
+          <textarea id="hire-message" name="message" required maxlength="2000" rows="5"
+                    data-i18n-placeholder="hire.messagePlaceholder" aria-required="true" aria-describedby="hire-msg-err"></textarea>
+          <span class="hire-field-error" id="hire-msg-err" role="alert" aria-live="polite"></span>
+        </div>
+
+        <div id="hire-turnstile" class="hire-turnstile"></div>
+
+        <button type="submit" class="btn btn-primary hire-submit" id="hire-submit"
+                data-i18n="hire.send" data-i18n-aria="hire.sendAria" disabled>Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== BOOKING MODAL (appointment scheduling, ported from the CV repo) ===================== -->
+  <div class="modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title" hidden>
+    <div class="modal-backdrop" id="booking-backdrop"></div>
+    <div class="modal-dialog booking-dialog">
+      <div class="modal-head">
+        <h3 id="booking-modal-title" data-i18n="book.title">Book a Meeting</h3>
+        <button class="modal-close" id="booking-close" type="button" aria-label="Close booking dialog" data-i18n-aria="book.ariaClose">&#x2715;</button>
+      </div>
+
+      <!-- Loading -->
+      <div class="bk-state" id="bk-loading" role="status" aria-live="polite">
+        <div class="bk-spinner" aria-hidden="true"></div>
+        <p data-i18n="book.loading">Loading available slots…</p>
+      </div>
+
+      <!-- Load error -->
+      <div class="bk-state" id="bk-error" role="alert" aria-live="assertive" hidden>
+        <div class="bk-state-icon" aria-hidden="true">!</div>
+        <p data-i18n="book.error">Failed to load available slots.</p>
+        <button type="button" class="btn btn-ghost bk-btn-secondary" id="bk-retry" data-i18n="book.retry">Retry</button>
+      </div>
+
+      <!-- No slots -->
+      <div class="bk-state" id="bk-empty" role="status" hidden>
+        <div class="bk-state-icon" aria-hidden="true">&#128197;</div>
+        <p data-i18n="book.empty">No available slots in the next 21 days.</p>
+      </div>
+
+      <!-- Step 1: choose a date -->
+      <div class="bk-step" id="bk-step-date" role="region" aria-label="Choose a day" hidden>
+        <p class="bk-step-label" data-i18n="book.step1">1 / 3 — Choose a day</p>
+        <div class="bk-dates-grid" id="bk-dates" role="list" aria-label="Available dates"></div>
+      </div>
+
+      <!-- Step 2: choose a time -->
+      <div class="bk-step" id="bk-step-time" role="region" aria-label="Choose a time" hidden>
+        <button type="button" class="bk-back-btn" id="bk-back-date">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+          <span data-i18n="book.back">Back</span>
+        </button>
+        <p class="bk-step-label" data-i18n="book.step2">2 / 3 — Choose a time</p>
+        <div class="bk-badge" id="bk-date-badge" aria-live="polite"></div>
+        <div class="bk-slots-grid" id="bk-slots" role="list" aria-label="Available time slots"></div>
+      </div>
+
+      <!-- Step 3: your details -->
+      <div class="bk-step" id="bk-step-form" role="region" aria-label="Your details" hidden>
+        <button type="button" class="bk-back-btn" id="bk-back-time">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+          <span data-i18n="book.back">Back</span>
+        </button>
+        <p class="bk-step-label" data-i18n="book.step3">3 / 3 — Your details</p>
+        <div class="bk-badge" id="bk-slot-badge" aria-live="polite"></div>
+        <form id="bk-form" novalidate aria-label="Meeting booking form">
+          <input type="text" id="bk-hp" name="bk-hp" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="hire-field">
+            <label for="bk-name"><span data-i18n="book.yourName">Your name</span> <span class="bk-required" aria-hidden="true">*</span></label>
+            <input type="text" id="bk-name" name="bk-name" required placeholder="Jane Smith" aria-required="true" autocomplete="name">
+          </div>
+          <div class="hire-field">
+            <label for="bk-email"><span data-i18n="book.yourEmail">Email address</span> <span class="bk-required" aria-hidden="true">*</span></label>
+            <input type="email" id="bk-email" name="bk-email" required placeholder="your@email.com" aria-required="true" aria-describedby="bk-email-err" autocomplete="email">
+            <span class="hire-field-error" id="bk-email-err" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="hire-field">
+            <label for="bk-topic"><span data-i18n="book.topic">Topic / Note</span> <span class="bk-required" aria-hidden="true">*</span></label>
+            <textarea id="bk-topic" name="bk-topic" rows="4" required maxlength="2000"
+                      data-i18n-placeholder="book.topicPlaceholder" aria-required="true" aria-describedby="bk-topic-err"></textarea>
+            <span class="hire-field-error" id="bk-topic-err" role="alert" aria-live="polite"></span>
+          </div>
+          <div id="bk-turnstile" class="hire-turnstile"></div>
+          <button type="submit" class="btn btn-primary hire-submit" id="bk-submit"
+                  data-i18n="book.submit" data-i18n-aria="book.submitAria" disabled>Book Meeting</button>
+        </form>
+      </div>
+
+      <!-- Confirm -->
+      <div class="bk-state" id="bk-step-confirm" role="status" aria-live="polite" hidden>
+        <div class="bk-state-icon ok" aria-hidden="true">&#10003;</div>
+        <p class="bk-state-title" data-i18n="book.confirmTitle">Booking confirmed!</p>
+        <p class="bk-state-detail" id="bk-confirm-detail"></p>
+        <p class="bk-state-note" data-i18n="book.confirmNote">A confirmation has been sent to your email.</p>
+        <button type="button" class="btn btn-ghost bk-btn-secondary" id="bk-new" data-i18n="book.newBooking">New booking</button>
+      </div>
+
+      <!-- Submit error -->
+      <div class="bk-state" id="bk-step-error" role="alert" aria-live="assertive" hidden>
+        <div class="bk-state-icon err" aria-hidden="true">&#10007;</div>
+        <p class="bk-state-title" id="bk-error-msg"></p>
+        <p class="bk-state-note" data-i18n="book.errRetryHint">Please check your details and try again.</p>
+        <button type="button" class="btn btn-primary" id="bk-error-back" data-i18n="book.retry">Retry</button>
+      </div>
+
+      <!-- Cooldown -->
+      <div class="bk-state" id="bk-cooldown" role="status" aria-live="polite" hidden>
+        <div class="bk-state-icon cooldown" aria-hidden="true">&#9203;</div>
+        <p class="bk-state-title" data-i18n="book.cooldownTitle">Meeting already booked!</p>
+        <p class="bk-state-note" data-i18n="book.cooldownNote">You've already booked a meeting in the last 48 hours. Come back later to book again.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== IMAGE MODAL (lightbox, ported from the CV repo modal pattern) ===================== -->
+  <div class="modal" id="image-modal" role="dialog" aria-modal="true" aria-labelledby="image-modal-title" hidden>
+    <div class="modal-backdrop" id="image-backdrop"></div>
+    <div class="modal-dialog image-dialog">
+      <div class="modal-head">
+        <h3 id="image-modal-title" data-i18n="image.title">Project preview</h3>
+        <button class="modal-close" id="image-close" type="button" aria-label="Close image preview" data-i18n-aria="image.closeAria">&#x2715;</button>
+      </div>
+      <figure class="image-preview">
+        <img id="image-modal-img" src="" alt="">
+        <figcaption id="image-modal-caption"></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
