@@ -14,7 +14,7 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 |---|---|
 | Réteghatárok, adatmodell | ✅ Erős |
 | Lokalizáció | ✅ Erős (125 kulcs, teljes paritás 6 nyelven) |
-| Deploy / CI | ❌ Nem működik (branch-eltérés) |
+| Deploy / CI | ✅ Rendezve (lásd K1) |
 | Repo-higiénia, asset-súly | ❌ Kritikus (129 MB assets, 119 MB `.git`) |
 | Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
 | Állapotkezelés | ✅ Rendezve (lásd M3/M4) |
@@ -58,7 +58,10 @@ graph TD
 
 ### 🔴 Kritikus
 
-#### K1 — A deploy workflow soha nem fut le
+#### K1 — A deploy workflow soha nem fut le ✅ **elvégezve**
+
+> **Státusz:** a workflow a `master` branchre van kötve, a README lépései és a fejléc-komment is ezt írja. A branch marad `master`.
+
 
 [.github/workflows/deploy.yml:13](.github/workflows/deploy.yml#L13) a `main` branchre van kötve, a repo default branche viszont `master` (`origin/HEAD -> origin/master`). Automatikus deploy nincs; a site csak kézi `workflow_dispatch`-csel frissül — és a README lépésről lépésre `main`-t ír, tehát a dokumentáció is a nem létező állapotot írja le.
 

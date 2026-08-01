@@ -60,7 +60,7 @@ dev-portfilio/
 
 ## 🚀 Hosting on GitHub Pages (GitHub Actions)
 
-The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that **validates the JavaScript sources and publishes the site to GitHub Pages** on every push to `main` (or on demand via *Actions → Deploy to GitHub Pages → Run workflow*).
+The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that **validates the JavaScript sources and publishes the site to GitHub Pages** on every push to `master` (or on demand via *Actions → Deploy to GitHub Pages → Run workflow*).
 
 1. Create a repository on GitHub (e.g. `dev-portfilio`) and push this folder:
 
@@ -68,14 +68,16 @@ The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) t
    git init
    git add .
    git commit -m "Initial portfolio"
-   git branch -M main
    git remote add origin https://github.com/YOUR_USERNAME/dev-portfilio.git
-   git push -u origin main
+   git push -u origin master
    ```
+
+   > If your `git init` created a `main` branch instead, either rename it
+   > (`git branch -M master`) or change `branches:` in `deploy.yml` to match.
 
 2. Go to **Settings → Pages** in the repository.
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push (or run the workflow manually via *Actions → Deploy to GitHub Pages → Run workflow*) — the site will be live at `https://YOUR_USERNAME.github.io/dev-portfilio/`. Every subsequent push to `main` redeploys automatically.
+4. Push (or run the workflow manually via *Actions → Deploy to GitHub Pages → Run workflow*) — the site will be live at `https://YOUR_USERNAME.github.io/dev-portfilio/`. Every subsequent push to `master` redeploys automatically.
 
    > ⚠️ The first workflow run may show a *failed* deploy step if it ran before the Pages source was set to GitHub Actions — that's expected; the next push redeploys successfully.
 
