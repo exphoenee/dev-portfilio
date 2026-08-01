@@ -263,8 +263,7 @@ function renderSkills() {
       <div class="skill-chips">
         ${group.chips.map((chip) => `<span class="chip">${chip.icon ? `<img src="${chip.icon}" alt="" loading="lazy">` : ''}${chip.label}</span>`).join('')}
       </div>
-    </div>`).join('') + `
-    <p class="skill-note">${t('skills.noteKey')} ${t('skills.noteValue')} ${t('skills.noteComment')}</p>`;
+    </div>`).join('');
   $$('.skill-group', wrap).forEach((el, i) => {
     el.classList.add('reveal');
     el.style.transitionDelay = (i % 2 === 0 ? 0 : 60) + 'ms';
@@ -310,13 +309,14 @@ function renderTerminal() {
   const line2 = $('#terminal-ls2');
   const statsLine = $('#terminal-stats');
   // Keep the decorative `ls` compact: show a data-driven subset, '… +N' hints at the rest.
-  const folders = PROJECTS.map((p) => p.id).slice(0, 9);
+  // Wrap each name so hyphenated ids ("ba-team") never break mid-word.
+  const folders = PROJECTS.map((p) => `<span class="t-dir">${p.id}</span>`).slice(0, 9);
   if (line1) {
     line1.innerHTML = folders.slice(0, 4).join('&nbsp;&nbsp;');
   }
   if (line2) {
     const hidden = PROJECTS.length - 9;
-    line2.innerHTML = folders.slice(4, 9).join('&nbsp;&nbsp;') + (hidden > 0 ? `&nbsp;&nbsp;… +${hidden}` : '');
+    line2.innerHTML = folders.slice(4, 9).join('&nbsp;&nbsp;') + (hidden > 0 ? `&nbsp;&nbsp;<span class="t-dir">… +${hidden}</span>` : '');
   }
   if (statsLine) {
     const s = computeStats();

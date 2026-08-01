@@ -1,0 +1,47 @@
+# ============================================================
+# .gitignore — Developer Portfolio (static site)
+# ============================================================
+
+# ---- Operating system ----
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ---- Editors / IDEs ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# ---- Node / npm (only if a build step is ever added) ----
+# Note: lock files (package-lock.json / yarn.lock / pnpm-lock.yaml)
+# are intentionally NOT ignored — commit them for reproducible installs.
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Secrets / local env ----
+.env
+.env.*
+*.local
+
+# ---- Logs & temp ----
+*.log
+logs/
+tmp/
+.tmp/
+.cache/
+
+# ---- Original large uploads ----
+# The live site uses the optimized 300x300 versions in assets/images/;
+# the full-resolution originals (calenda/email/github/linkedin.png,
+# ~1.3 MB each) are kept only in the backup folder and stay out of git.
+assets/images/backup/
+
+# ---- Local-only notes ----
+notes.md

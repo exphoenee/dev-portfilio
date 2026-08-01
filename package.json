@@ -1,0 +1,27 @@
+{
+  "name": "dev-portfilio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A clean, interactive developer portfolio built with vanilla HTML, CSS and JavaScript — no frameworks, no build tools.",
+  "type": "module",
+  "homepage": "https://exphoenee.github.io/dev-portfilio/",
+  "keywords": [
+    "portfolio",
+    "vanilla-js",
+    "es-modules",
+    "html",
+    "css",
+    "javascript",
+    "github-pages"
+  ],
+  "author": "Bozzay Viktor",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "npx serve .",
+    "serve": "npx serve .",
+    "check": "node --check scripts/main.js && node --check scripts/locale.js && node --check scripts/config.js && node --check data/portfolio-data.js && node --check data/locales/en-page.js && node --check data/locales/de-page.js && node --check data/locales/hu-page.js && node --check data/locales/fr-page.js && node --check data/locales/it-page.js && node --check data/locales/es-page.js"
+  }
+}

@@ -46,7 +46,7 @@ export const PROJECTS = [
     category: 'library',
     image: 'assets/images/projects/large/arrganizer_og.jpg',
     tech: ['TypeScript', 'tsup', 'Jest', 'Mocha'],
-    links: { repo: 'https://github.com/ViktorBozzay/Arrganizer', demo: 'https://viktorbozzay.github.io/ArrganizerDocs/' },
+    links: { repo: 'https://github.com/ViktorBozzay/Arrganizer', demo: 'https://viktorbozzay.github.io/ArrganizerDocs/', npm: 'https://www.npmjs.com/package/arrganizer' },
     desc: {
       en: { functional: 'A chainable data-transformation library that makes working with arrays of objects feel like using a spreadsheet — group, sort, filter and format in readable chains.', technical: 'Zero-dependency TypeScript library with a fluent API, full operation history with undo/redo, locale-aware formatting via Intl, and end-to-end type safety with generics.' },
       de: { functional: 'Eine verkettbare Daten-Transformationsbibliothek, die das Arbeiten mit Objekt-Arrays wie mit einer Tabellenkalkulation wirken lässt — gruppieren, sortieren, filtern und formatieren in lesbaren Ketten.', technical: 'Zero-Dependency-TypeScript-Bibliothek mit fluider API, vollständiger Operations-Historie mit Undo/Redo, locale-basierter Formatierung via Intl und durchgängiger Typsicherheit mit Generics.' },
@@ -207,7 +207,7 @@ export const PROJECTS = [
     category: 'library',
     image: 'assets/images/projects/large/pageonmobile.jpg',
     tech: ['TypeScript', 'Canvas 2D', 'ESM', 'WebP'],
-    links: { repo: 'https://github.com/exphoenee/pageonmobile', demo: 'https://exphoenee.github.io/pageonmobile/' },
+    links: { repo: 'https://github.com/exphoenee/pageonmobile', demo: 'https://exphoenee.github.io/pageonmobile/', npm: 'https://www.npmjs.com/package/pageonmobile' },
     desc: {
       en: { functional: 'A dependency-free widget that renders website screenshots into device mockups — desktop, notebook, tablet, phone — on a canvas, with an auto-scroll preview animation.', technical: 'TypeScript ESM package with zero runtime dependencies, Canvas 2D rendering, WebP device frames, ~7 kB JS payload and full type declarations.' },
       de: { functional: 'Ein abhängigkeitsfreies Widget, das Website-Screenshots in Geräte-Mockups rendert — Desktop, Notebook, Tablet, Handy — auf einem Canvas, mit Auto-Scroll-Vorschau-Animation.', technical: 'TypeScript-ESM-Paket ohne Laufzeitabhängigkeiten, Canvas-2D-Rendering, WebP-Geräterahmen, ~7-kB-JS-Payload und vollständige Typdeklarationen.' },
@@ -461,26 +461,41 @@ export const SKILLS = [
   {
     titleKey: 'skills.primary',
     chips: [
-      { label: 'TypeScript', icon: 'assets/images/tech/typescript.svg' },
-      { label: 'JavaScript', icon: 'assets/images/tech/javascript.svg' },
-      { label: 'Svelte', icon: 'assets/images/tech/svelte.svg' },
-      { label: 'React', icon: 'assets/images/tech/react.svg' },
-      { label: 'Node.js', icon: 'assets/images/tech/nodejs.svg' },
-      { label: 'SCSS', icon: 'assets/images/tech/scss.svg' },
+      { label: 'CSS', icon: 'assets/images/tech/css.svg' },
       { label: 'HTML', icon: 'assets/images/tech/html.svg' },
-      { label: 'CSS', icon: 'assets/images/tech/css.svg' }
+      { label: 'JavaScript', icon: 'assets/images/tech/javascript.svg' },
+      { label: 'KRL', icon: 'assets/images/tech/kuka.png' },
+      { label: 'LabVIEW', icon: 'assets/images/tech/LabVIEW.svg' },
+      { label: 'PHP', icon: 'assets/images/tech/php.svg' },
+      { label: 'Python', icon: 'assets/images/tech/python.svg' },
+      { label: 'SCSS', icon: 'assets/images/tech/scss.svg' },
+      { label: 'TPL', icon: 'assets/images/tech/fanuc.png' },
+      { label: 'TypeScript', icon: 'assets/images/tech/typescript.svg' }
+    ]
+  },
+  {
+    titleKey: 'skills.frontend',
+    chips: [
+      { label: 'Bootstrap', icon: 'assets/images/tech/bootstrap.svg' },
+      { label: 'Next.js', icon: 'assets/images/tech/nextjs.svg' },
+      { label: 'React', icon: 'assets/images/tech/react.svg' },
+      { label: 'Redux', icon: 'assets/images/tech/Redux.svg' },
+      { label: 'styled-components', icon: 'assets/images/tech/styled_components.svg' },
+      { label: 'Svelte', icon: 'assets/images/tech/svelte.svg' },
+      { label: 'Zustand', icon: 'assets/images/tech/zustand.png' }
     ]
   },
   {
     titleKey: 'skills.backend',
     chips: [
       { label: 'Express.js', icon: 'assets/images/tech/express.svg' },
-      { label: 'NestJS', icon: 'assets/images/tech/NestJS.svg' },
-      { label: 'Python', icon: 'assets/images/tech/python.svg' },
-      { label: 'PHP', icon: 'assets/images/tech/php.svg' },
-      { label: 'MySQL', icon: 'assets/images/tech/mysql.svg' },
+      { label: 'Firebase', icon: 'assets/images/tech/firebase.svg' },
       { label: 'MongoDB', icon: 'assets/images/tech/mongodb.svg' },
+      { label: 'MySQL', icon: 'assets/images/tech/mysql.svg' },
+      { label: 'NestJS', icon: 'assets/images/tech/NestJS.svg' },
+      { label: 'Node.js', icon: 'assets/images/tech/nodejs.svg' },
       { label: 'REST API', icon: 'assets/images/tech/rest-api.svg' },
+      { label: 'Swagger', icon: 'assets/images/tech/swagger.svg' },
       { label: 'WebSocket', icon: 'assets/images/tech/websocket.svg' }
     ]
   },
@@ -488,34 +503,42 @@ export const SKILLS = [
     titleKey: 'skills.testing',
     chips: [
       { label: 'Jest', icon: 'assets/images/tech/jest.svg' },
-      { label: 'Vitest', icon: 'assets/images/tech/vitest.svg' },
-      { label: 'Playwright', icon: 'assets/images/tech/playwright.svg' }
+      { label: 'Playwright', icon: 'assets/images/tech/playwright.svg' },
+      { label: 'Vitest', icon: 'assets/images/tech/vitest.svg' }
     ]
   },
   {
     titleKey: 'skills.tooling',
     chips: [
-      { label: 'Vite', icon: 'assets/images/tech/vite.svg' },
-      { label: 'Webpack', icon: 'assets/images/tech/webpack.svg' },
+      { label: 'CI/CD' },
+      { label: 'npm', icon: 'assets/images/tech/npm.svg' },
       { label: 'PNPM', icon: 'assets/images/tech/pnpm.svg' },
-      { label: 'Next.js', icon: 'assets/images/tech/nextjs.svg' },
-      { label: 'CI/CD' }
+      { label: 'Vite', icon: 'assets/images/tech/vite.svg' },
+      { label: 'Webpack', icon: 'assets/images/tech/webpack.svg' }
     ]
   },
   {
     titleKey: 'skills.ai',
     chips: [
-      { label: 'Claude', icon: 'assets/images/tech/claude.svg' },
-      { label: 'Codex', icon: 'assets/images/tech/codex.svg' }
+      { label: 'Antigravity', icon: 'assets/images/tech/antigravity.png' },
+      { label: 'Claude Code', icon: 'assets/images/tech/claude.svg' },
+      { label: 'Codex', icon: 'assets/images/tech/codex.svg' },
+      { label: 'Cursor', icon: 'assets/images/tech/cursor.svg' },
+      { label: 'Freebuff', icon: 'assets/images/tech/freebuff.png' },
+      { label: 'KiloCode', icon: 'assets/images/tech/kilocode.png' },
+      { label: 'Ollama', icon: 'assets/images/tech/ollama.svg' },
+      { label: 'OpenCode', icon: 'assets/images/tech/opencode.svg' },
+      { label: 'Suno', icon: 'assets/images/tech/suno.svg' }
     ]
   },
   {
     titleKey: 'skills.robotics',
     chips: [
-      { label: 'Universal Robot', icon: 'assets/images/tech/universal_robot.svg' },
-      { label: 'OnRobot', icon: 'assets/images/tech/OnRobot.svg' },
+      { label: 'FANUC', icon: 'assets/images/tech/fanuc.png' },
+      { label: 'KUKA', icon: 'assets/images/tech/kuka.png' },
       { label: 'Machine Vision', icon: 'assets/images/tech/machine_vision.svg' },
-      { label: 'PLC', icon: 'assets/images/tech/plc_systems.svg' }
+      { label: 'OnRobot', icon: 'assets/images/tech/OnRobot.svg' },
+      { label: 'Universal Robot', icon: 'assets/images/tech/universal-robot.png' }
     ]
   },
   {
@@ -527,14 +550,6 @@ export const SKILLS = [
     ]
   }
 ];
-
-/* Fun skill note, mirrored from the CV repo's cv-data.js `skillNote`.
-   Rendered by main.js renderSkills() under the skill groups. */
-export const SKILL_NOTE = {
-  key: 'willRefactorYourEntireCodebaseIf',
-  value: 'evidence justifies it',
-  comment: '(often)'
-};
 
 /* ------------------------------------------------------------
    CONTACT — contact cards
