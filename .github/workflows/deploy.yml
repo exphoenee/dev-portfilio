@@ -32,12 +32,9 @@ jobs:
 
       # Everything is data-driven, so a syntax error in any module
       # would break the whole page — catch it before deploying.
+      # Same entry point as `npm run check` so the two cannot drift.
       - name: Validate JavaScript syntax
-        run: |
-          for f in scripts/*.js data/*.js data/locales/*.js; do
-            echo "checking $f"
-            node --check "$f"
-          done
+        run: npm run check
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -22,6 +22,6 @@
   "scripts": {
     "start": "npx serve .",
     "serve": "npx serve .",
-    "check": "node --check scripts/main.js && node --check scripts/locale.js && node --check scripts/config.js && node --check data/portfolio-data.js && node --check data/locales/en-page.js && node --check data/locales/de-page.js && node --check data/locales/hu-page.js && node --check data/locales/fr-page.js && node --check data/locales/it-page.js && node --check data/locales/es-page.js"
+    "check": "node tools/check-syntax.mjs"
   }
 }

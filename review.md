@@ -16,7 +16,7 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 | Lokalizáció | ✅ Erős (125 kulcs, teljes paritás 6 nyelven) |
 | Deploy / CI | ❌ Nem működik (branch-eltérés) |
 | Repo-higiénia, asset-súly | ❌ Kritikus (129 MB assets, 119 MB `.git`) |
-| Kódszervezés (`main.js`) | ⚠️ Adósság |
+| Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
 | Állapotkezelés | ⚠️ Kettős igazságforrás (nyelv, téma) |
 | Akadálymentesség | ⚠️ Részleges (modal fókusz, tab pattern) |
 | Tesztelés / minőségi kapuk | ⚠️ Csak szintaxis-ellenőrzés |
@@ -88,7 +88,10 @@ A history-ból való eltávolítás (`git filter-repo`) opcionális, de a `.git`
 
 ### 🟠 Magas
 
-#### M1 — `scripts/main.js`: 1 097 sor, öt felelősség
+#### M1 — `scripts/main.js`: 1 097 sor, öt felelősség ✅ **elvégezve**
+
+> **Státusz:** a szétbontás megtörtént — `main.js` 92 sor (init + wiring), a többi 16 modulban. Az M2 duplikációja is feloldódott a közös `modals/modal.js`, `modals/turnstile.js` és `modals/form-guards.js` modulokban. Az A6 (hiányzó null-check) és A7 (TDZ-kockázat) mellékhatásként megszűnt. A leírás alább az eredeti állapotot dokumentálja.
+
 
 Egyetlen modul tartalmazza: kategória/ikon metaadatokat, téma-kezelést, a typed-effektet, öt render-függvényt, a hire modal teljes logikáját, a booking modal teljes logikáját (3 lépéses wizard, dátum/slot renderelés, Intl formázás), a lightboxot, az i18n-alkalmazást és a teljes init-wiringot.
 
@@ -116,7 +119,8 @@ scripts/
 
 Nem sürgős hibajavítás, de minden további funkció ára ebben a fájlban nő.
 
-#### M2 — ~150 sor duplikáció a két modal között
+#### M2 — ~150 sor duplikáció a két modal között ✅ **elvégezve** (az M1 bontás részeként)
+
 
 | Duplikált egység | Hire | Booking |
 |---|---|---|
@@ -171,9 +175,11 @@ A kártya-tabok is részlegesek: mindkét gomb ugyanarra az `aria-controls`-ra m
 
 #### C5 — Nincs teszt, nincs lint; a minőségi kapu duplikált
 
-Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer, két különböző módon** van leírva: [package.json:25](package.json#L25) felsorolja a fájlokat egyenként, [deploy.yml:36](.github/workflows/deploy.yml#L36) glob-ol. Új nyelvi fájl esetén a workflow észreveszi, a `npm run check` nem — biztos drift.
+Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer, két különböző módon** volt leírva: a `package.json` felsorolta a fájlokat egyenként, a `deploy.yml` glob-olt. Új nyelvi fájl esetén a workflow észrevette, a `npm run check` nem — biztos drift.
 
-**Javítás:** a `check` script glob-oljon, a workflow pedig `npm run check`-et hívjon. Ezután érdemes: ESLint + Prettier, egy locale-paritás teszt (a 6 fájl kulcshalmaza egyezik-e), egy asset-létezés teszt (minden `image`/`icon` útvonal létezik-e), és egy Playwright smoke-teszt (betöltés, nyelvváltás, szűrő, modal nyitás).
+> **Részben javítva:** a drift megszűnt — `tools/check-syntax.mjs` bejárja a `scripts/` és `data/` fát, a `npm run check` és a workflow is ezt hívja. Lint és tesztek továbbra sincsenek.
+
+**Hátralévő:** ESLint + Prettier, egy locale-paritás teszt (a 6 fájl kulcshalmaza egyezik-e), egy asset-létezés teszt (minden `image`/`icon` útvonal létezik-e), és egy Playwright smoke-teszt (betöltés, nyelvváltás, szűrő, modal nyitás).
 
 #### C6 — Runtime-függőségek fallback nélkül; adatvédelmi megjegyzés
 

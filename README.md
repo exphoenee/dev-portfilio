@@ -37,9 +37,16 @@ dev-portfilio/
 │       ├── it-page.js
 │       └── es-page.js
 ├── scripts/
-│   ├── config.js           ← shared constants (theme/lang keys)
+│   ├── main.js             ← entry point: wiring only
+│   ├── config.js           ← shared constants (theme/lang keys, endpoints)
 │   ├── locale.js           ← LocaleManager: language detection, storage, t()
-│   └── main.js             ← view script: renders everything from data + locales
+│   ├── dom.js              ← $, $$, t helpers
+│   ├── state.js            ← shared view state (lang, theme, filter, card tabs)
+│   ├── ui/                 ← theme, typed effect, scroll reveal, stat counters
+│   ├── render/             ← one module per data-driven section + translate.js
+│   └── modals/             ← modal/turnstile/form-guard primitives + hire, booking, image
+├── tools/
+│   └── check-syntax.mjs    ← `npm run check`: parses every JS source (also used by CI)
 ├── styles/
 │   └── portfolio.css       ← all styles
 ├── index.html              ← thin shell; skills & contact are rendered by JS
