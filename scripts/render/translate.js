@@ -4,7 +4,7 @@
    ============================================================ */
 
 import { $, $$, t } from '../dom.js';
-import { state } from '../state.js';
+import { locale } from '../locale.js';
 import { renderProjects } from './projects.js';
 import { renderTimeline } from './timeline.js';
 import { renderSkills } from './skills.js';
@@ -24,9 +24,9 @@ const OG_LOCALES = {
 };
 
 export function applyTranslations() {
-  document.documentElement.lang = state.lang;
+  document.documentElement.lang = locale.lang;
   const ogLocale = $('meta[property="og:locale"]');
-  if (ogLocale) ogLocale.setAttribute('content', OG_LOCALES[state.lang] || OG_LOCALES.en);
+  if (ogLocale) ogLocale.setAttribute('content', OG_LOCALES[locale.lang] || OG_LOCALES.en);
   $$('[data-i18n]').forEach((el) => {
     const key = el.dataset.i18n;
     if (el.tagName === 'META') {
@@ -37,7 +37,7 @@ export function applyTranslations() {
       el.innerHTML = t(key);
     }
   });
-  $$('.lang-btn').forEach((btn) => btn.classList.toggle('active', btn.dataset.lang === state.lang));
+  $$('.lang-btn').forEach((btn) => btn.classList.toggle('active', btn.dataset.lang === locale.lang));
   $$('[data-i18n-placeholder]').forEach((el) => {
     el.placeholder = t(el.dataset.i18nPlaceholder);
   });

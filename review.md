@@ -17,7 +17,7 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 | Deploy / CI | ❌ Nem működik (branch-eltérés) |
 | Repo-higiénia, asset-súly | ❌ Kritikus (129 MB assets, 119 MB `.git`) |
 | Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
-| Állapotkezelés | ⚠️ Kettős igazságforrás (nyelv, téma) |
+| Állapotkezelés | ✅ Rendezve (lásd M3/M4) |
 | Akadálymentesség | ⚠️ Részleges (modal fókusz, tab pattern) |
 | Tesztelés / minőségi kapuk | ⚠️ Csak szintaxis-ellenőrzés |
 
@@ -131,13 +131,19 @@ Nem sürgős hibajavítás, de minden további funkció ára ebben a fájlban n�
 
 Az email-blur handler gyakorlatilag karakterre azonos, csak a szelektorok különböznek. Kiemelendő factory-k: `createTurnstile(containerSel, submitSel)`, `createCooldown(key, ms)`, `attachEmailDomainCheck(inputSel, errSel)`, `createModal({ id, onOpen, onClose })`.
 
-#### M3 — Kettős igazságforrás a nyelvre
+#### M3 — Kettős igazságforrás a nyelvre ✅ **elvégezve**
+
+> **Státusz:** a `state.lang` megszűnt, minden render-modul a `locale.lang`-ot olvassa; a nyelvváltó csak `locale.setLang()`-ot hív.
+
 
 `state.lang` ([main.js:73-78](scripts/main.js#L73-L78)) és `locale.lang` külön él, kézzel szinkronizálva ([main.js:968-969](scripts/main.js#L968-L969)). A render-függvények a `state.lang`-ot olvassák, a `t()` a `locale`-ét. Ha bárhol csak az egyik frissül, a felirat és a projektleírások különböző nyelven jelennek meg.
 
 **Javítás:** `state.lang` törlése, mindenhol `locale.lang` — a `LocaleManager` már perzisztál és a `documentElement.dataset.lang`-ot is állítja.
 
-#### M4 — A téma-logika három helyen él
+#### M4 — A téma-logika három helyen él ✅ **elvégezve**
+
+> **Státusz:** a döntés egy helyen maradt (az `index.html` pre-paint bootstrapje); az `initTheme()` már csak beolvassa az eredményt. A hex-értékek eltűntek a JS-ből: a `theme-color` meta futásidőben a `--bg` custom property-ből frissül, a bootstrap pedig a media-scoped meta tagek közül veszi a feloldott témáét. Így a színek két helyen élnek — a stíluslap `[data-theme]` blokkjaiban és a két meta tagben —, egymást tükrözve.
+
 
 - inline IIFE ([index.html:88-99](index.html#L88-L99)),
 - `detectTheme()` ([main.js:91-95](scripts/main.js#L91-L95)) — ugyanaz a döntés újra, közvetlenül azután, hogy az inline script már eldöntötte,

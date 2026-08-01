@@ -3,14 +3,14 @@
    ============================================================ */
 
 import { $, $$, t } from '../dom.js';
-import { state } from '../state.js';
+import { locale } from '../locale.js';
 import { TIMELINE } from '../../data/portfolio-data.js';
 import { observeReveal } from '../ui/reveal.js';
 
 function timelineItem(item) {
-  const period = item.period[state.lang] || item.period.en;
-  const title = item.title[state.lang] || item.title.en;
-  const desc = item.desc[state.lang] || item.desc.en;
+  const period = item.period[locale.lang] || item.period.en;
+  const title = item.title[locale.lang] || item.title.en;
+  const desc = item.desc[locale.lang] || item.desc.en;
   const badge = item.current ? `<span class="timeline-badge">${t('timeline.current')}</span>` : '';
   return `
     <div class="timeline-item">

@@ -4,6 +4,7 @@
    ============================================================ */
 
 import { $, $$, t } from '../dom.js';
+import { locale } from '../locale.js';
 import { state, tabFor } from '../state.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
 import { openImageModal } from '../modals/image.js';
@@ -45,8 +46,8 @@ const LINK_ICONS = {
 };
 
 function projectCard(p, index) {
-  const d = p.desc[state.lang];
-  const title = (p.nameL10n && p.nameL10n[state.lang]) || p.name;
+  const d = p.desc[locale.lang];
+  const title = (p.nameL10n && p.nameL10n[locale.lang]) || p.name;
   const icons = CATEGORY_ICONS[p.category] || '📁';
   const links = Object.entries(p.links).map(([type, url]) => {
     if (!url) return '';
@@ -125,7 +126,7 @@ export function initProjectCards() {
       b.setAttribute('aria-selected', b === tab);
     });
     const desc = $('.card-desc', card);
-    desc.textContent = project.desc[state.lang][tab.dataset.tab];
+    desc.textContent = project.desc[locale.lang][tab.dataset.tab];
     desc.classList.remove('fade-in');
     void desc.offsetWidth; // restart animation
     desc.classList.add('fade-in');

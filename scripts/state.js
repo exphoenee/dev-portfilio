@@ -1,12 +1,12 @@
 /* ============================================================
    VIEW STATE — the little mutable state the render modules share.
+   The active language is NOT here: `locale` owns it (it detects,
+   persists and falls back), so the render modules read locale.lang.
    ============================================================ */
 
-import { locale } from './locale.js';
 import { THEME_DARK } from './config.js';
 
 export const state = {
-  lang: locale.lang,
   theme: THEME_DARK,
   filter: 'all',
   tabs: {} // per-card tab memory: { [projectId]: 'functional' | 'technical' }

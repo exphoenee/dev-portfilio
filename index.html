@@ -76,13 +76,17 @@
   </script>
 
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
-  <!-- Browser chrome / address bar color, matched to the active theme (dark/light) -->
+  <!-- Browser chrome / address bar color. These two values are the only place
+       the theme colours are written outside the stylesheet — keep them equal to
+       --bg in the [data-theme] blocks of styles/portfolio.css. -->
   <meta name="theme-color" content="#0b0d1a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script>
-    /* Apply saved/system theme before first paint to avoid a flash.
+    /* Theme bootstrap — resolves the theme before first paint to avoid a flash.
+       This is the single place the theme is decided; scripts/ui/theme.js reads
+       the result instead of deciding again.
        Wrapped in an IIFE so no globals leak (scripts/main.js is an ES module).
        NOTE: the 'portfolio-theme' key mirrors THEME_KEY in scripts/config.js. */
     (function () {
@@ -91,11 +95,15 @@
         themePref = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       }
       document.documentElement.dataset.theme = themePref;
-      // Keep the browser chrome color in sync with the resolved theme (overrides the media-query defaults).
-      var themeColor = themePref === 'light' ? '#f6f7fb' : '#0b0d1a';
-      document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
-        m.setAttribute('content', themeColor);
-      });
+      /* A stored preference can contradict the system one, so collapse the
+         media-scoped theme-color pair onto the resolved theme — taking the
+         colour from the matching meta tag rather than repeating it here. */
+      var metas = document.querySelectorAll('meta[name="theme-color"]');
+      var match = document.querySelector('meta[name="theme-color"][media*="' + themePref + '"]');
+      if (match) {
+        var resolvedColor = match.getAttribute('content');
+        metas.forEach(function (m) { m.setAttribute('content', resolvedColor); });
+      }
     })();
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">

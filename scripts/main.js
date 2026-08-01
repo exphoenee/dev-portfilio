@@ -6,7 +6,6 @@
    ============================================================ */
 
 import { $, $$ } from './dom.js';
-import { state } from './state.js';
 import { locale } from './locale.js';
 
 import { initTheme, toggleTheme } from './ui/theme.js';
@@ -47,8 +46,7 @@ function initBackToTop() {
 function initLangSwitcher() {
   $$('.lang-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      state.lang = btn.dataset.lang;
-      locale.setLang(state.lang);
+      locale.setLang(btn.dataset.lang);
       applyTranslations();
     });
   });
