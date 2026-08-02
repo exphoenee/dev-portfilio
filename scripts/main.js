@@ -9,7 +9,7 @@ import { $, $$ } from './dom.js';
 import { locale } from './locale.js';
 
 import { initTheme, toggleTheme } from './ui/theme.js';
-import { setupReveal } from './ui/reveal.js';
+import { revealIn } from './ui/reveal.js';
 import { initStats } from './ui/stats.js';
 import { initScrollSpy } from './ui/scrollspy.js';
 
@@ -79,7 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAll();
 
   initStats();
-  setupReveal();
+  // After renderAll: the section markup declares data-reveal, the rendered
+  // cards add their own, and this one pass picks up both.
+  revealIn();
   initFooterYear();
 
   $('#theme-toggle').addEventListener('click', toggleTheme);

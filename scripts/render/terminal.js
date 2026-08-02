@@ -22,6 +22,6 @@ export function renderTerminal() {
   }
   if (statsLine) {
     const s = computeStats();
-    statsLine.textContent = `✓ ${s.projects} projects · ${s.languages} languages · ${s.npm} npm packages · ${s.demos} demos`;
+    statsLine.textContent = `✓ ${s.projects} projects · ${s.npm} npm packages · ${s.demos} demos`;
   }
 }

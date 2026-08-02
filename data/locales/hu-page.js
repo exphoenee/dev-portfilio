@@ -23,7 +23,6 @@ export const HU_PAGE = {
   "hero.ctaProjects": "Projektek megtekintése",
   "hero.ctaContact": "Írj nekem",
   "stats.projects": "Projekt",
-  "stats.languages": "UI nyelv",
   "stats.npm": "npm csomag",
   "stats.demos": "Élő demo",
   "projects.kicker": "Válogatott munkák",

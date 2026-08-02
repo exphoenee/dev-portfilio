@@ -23,7 +23,6 @@ export const FR_PAGE = {
   "hero.ctaProjects": "Voir les projets",
   "hero.ctaContact": "Contactez-moi",
   "stats.projects": "Projets",
-  "stats.languages": "Langues UI",
   "stats.npm": "Paquets npm",
   "stats.demos": "Démos live",
   "projects.kicker": "Travaux sélectionnés",

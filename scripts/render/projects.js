@@ -8,6 +8,7 @@ import { locale } from '../locale.js';
 import { state, tabFor } from '../state.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
 import { openImageModal } from '../modals/image.js';
+import { revealIn } from '../ui/reveal.js';
 
 const CATEGORY_ICONS = {
   library: '📦',
@@ -76,8 +77,12 @@ function projectCard(p, index) {
   const activeTab = tabFor(p.id);
   // Cards render the small/ thumbnail; the lightbox opens the large/ original.
   const smallImg = p.image.replace('/large/', '/small/');
+  /* Stagger across a row rather than the whole grid: with 21 cards a plain
+     index would put the last one a second behind, and a card scrolled into
+     view on its own would just sit there waiting. */
+  const delay = (index % 3) * 60;
   return `
-    <article class="project-card" data-category="${p.category}" data-id="${p.id}" style="animation-delay:${index * 60}ms">
+    <article class="project-card" data-category="${p.category}" data-id="${p.id}" data-reveal="fade-up" data-reveal-delay="${delay}">
       <div class="card-media">
         <button type="button" class="card-media-btn" data-img-src="${esc(p.image)}" data-img-alt="${esc(title)}" aria-label="${esc(title)}, ${esc(t('image.zoomAria'))}">
           <img src="${esc(smallImg)}" alt="${esc(title)}" loading="lazy">
@@ -110,6 +115,7 @@ export function renderProjects() {
     : PROJECTS.filter((p) => p.category === state.filter);
 
   grid.innerHTML = filtered.map(projectCard).join('');
+  revealIn(grid);
 }
 
 /* Language switch: patch the text in place instead of rebuilding 21 cards.

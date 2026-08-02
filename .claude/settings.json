@@ -20,7 +20,13 @@
       "Bash(curl -s -o /dev/null -w \"portfolio.css %{http_code}\\\\n\" http://localhost:4173/styles/portfolio.css)",
       "Bash(curl -s -o /dev/null -w \"index %{http_code}\\\\n\" http://localhost:4173/)",
       "Bash(node tabcheck.mjs)",
-      "Bash(node spycheck.mjs)"
+      "Bash(node spycheck.mjs)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(gh run *)",
+      "PowerShell(gh run list --limit 3)",
+      "Bash(npm view *)",
+      "Bash(echo \"--- exit $? \\(1 = no leftovers\\) ---\")"
     ]
   }
 }

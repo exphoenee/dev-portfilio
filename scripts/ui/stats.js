@@ -5,12 +5,10 @@
 
 import { $$ } from '../dom.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
-import { AVAILABLE_LANGS } from '../locale.js';
 
 export function computeStats() {
   return {
     projects: PROJECTS.length,
-    languages: AVAILABLE_LANGS.length,
     npm: PROJECTS.filter((p) => p.links.npm).length,
     demos: PROJECTS.filter((p) => p.links.demo).length
   };
