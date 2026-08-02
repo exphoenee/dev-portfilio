@@ -16,6 +16,7 @@ import {
   createCooldown,
   attachEmailDomainCheck,
   verifyEmailDomain,
+  findForbiddenWord,
 } from './form-guards.js';
 
 const MODAL_ID = 'booking-modal';
@@ -189,10 +190,13 @@ async function submitBookingForm(e) {
   const emailOk = EMAIL_RE.test(emailVal);
   const topicWordCount = topicVal.split(/\s+/).filter(Boolean).length;
   const topicOk = topicVal.length >= 20 && topicWordCount >= 4;
+  const forbidden = findForbiddenWord(topicVal);
 
   $('#bk-email-err').textContent = emailOk ? '' : t('hire.errEmail');
-  $('#bk-topic-err').textContent = topicOk ? '' : t('hire.errTooShort');
-  if (!nameVal || !emailOk || !topicOk) return;
+  $('#bk-topic-err').textContent = forbidden
+    ? t('hire.errOffensive')
+    : topicOk ? '' : t('hire.errTooShort');
+  if (!nameVal || !emailOk || forbidden || !topicOk) return;
 
   const submitBtn = $('#bk-submit');
   const emailErr = $('#bk-email-err');

@@ -5,11 +5,33 @@
 
 import { $, t } from '../dom.js';
 import { CHECK_EMAIL_DOMAIN } from '../config.js';
+import { FORBIDDEN_WORDS } from '../../data/forbidden-words.js';
 
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /* Bots submit faster than a human can fill a form. */
 export const MIN_FILL_MS = 2500;
+
+/* ------------------------------------------------------------
+   Forbidden-word filter, shared by the hire and booking forms.
+   Screens free-text fields against all six languages' lists with a
+   Unicode-aware word-boundary regex, so accented characters and
+   compounds stay matched while innocent neighbours ("class",
+   "szarvas") do not. Returns the matched word, or null.
+   ------------------------------------------------------------ */
+
+const _escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const _forbiddenWords = Object.values(FORBIDDEN_WORDS).flat();
+const _forbiddenRe = new RegExp(
+  '(?<![\\p{L}\\p{N}])(' + _forbiddenWords.map(_escapeRe).join('|') + ')(?![\\p{L}\\p{N}])',
+  'iu'
+);
+
+export function findForbiddenWord(text) {
+  const m = String(text ?? '').match(_forbiddenRe);
+  return m ? m[1] : null;
+}
 
 export function createCooldown(storageKey, windowMs) {
   return {

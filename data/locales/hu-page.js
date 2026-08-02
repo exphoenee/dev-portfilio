@@ -82,6 +82,7 @@ export const HU_PAGE = {
   "hire.errNoMx": "Ez a domain nem fogad e-mailt.",
   "hire.privacyNote": "Az e-mail domainjét nyilvános DNS-en (Cloudflare) ellenőrzöm, hogy kiszűrjem az elgépelést. Más nem kerül továbbításra.",
   "hire.errTooShort": "Az üzenet legalább 20 karakter és 4 szó legyen.",
+  "hire.errOffensive": "Kérlek, távolítsd el a nem odavaló kifejezéseket az üzenetedből.",
   "hire.errSend": "Küldés sikertelen. Kérlek, próbáld újra.",
   "hire.errCaptcha": "Kérlek fejezd be a captcha-ellenőrzést.",
   "hire.closeAria": "Kapcsolatfelvételi űrlap bezárása",

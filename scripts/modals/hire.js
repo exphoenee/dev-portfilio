@@ -13,6 +13,7 @@ import {
   createCooldown,
   attachEmailDomainCheck,
   verifyEmailDomain,
+  findForbiddenWord,
 } from './form-guards.js';
 
 const MODAL_ID = 'hire-modal';
@@ -80,13 +81,15 @@ async function submitHireForm(e) {
   const msgVal = $('#hire-message').value.trim();
   const emailOk = EMAIL_RE.test(emailVal);
   const wordCount = msgVal.split(/\s+/).filter(Boolean).length;
+  const forbidden = findForbiddenWord(msgVal);
 
   $('#hire-name-err').textContent = nameVal ? '' : t('hire.errRequired');
   $('#hire-email-err').textContent = emailOk ? '' : t('hire.errEmail');
-  $('#hire-msg-err').textContent =
-    msgVal.length >= 20 && wordCount >= 4 ? '' : t('hire.errTooShort');
+  $('#hire-msg-err').textContent = forbidden
+    ? t('hire.errOffensive')
+    : msgVal.length >= 20 && wordCount >= 4 ? '' : t('hire.errTooShort');
 
-  if (!nameVal || !emailOk || msgVal.length < 20 || wordCount < 4) return;
+  if (!nameVal || !emailOk || forbidden || msgVal.length < 20 || wordCount < 4) return;
 
   const submitBtn = $('#hire-submit');
   const emailErr = $('#hire-email-err');

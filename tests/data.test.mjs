@@ -13,6 +13,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 
 import { PROJECTS, TIMELINE, SKILLS, CONTACT } from '../data/portfolio-data.js';
+import { FORBIDDEN_WORDS } from '../data/forbidden-words.js';
+import { findForbiddenWord } from '../scripts/modals/form-guards.js';
 import { AVAILABLE_LANGS } from '../scripts/locale.js';
 
 import { EN_PAGE } from '../data/locales/en-page.js';
@@ -112,6 +114,51 @@ test('contact cards resolve to a locale key and have a target', () => {
   for (const c of CONTACT) {
     assert.ok(EN_PAGE.labels[c.nameKey], `no label for ${c.nameKey}`);
     assert.ok(c.href || c.openHire || c.openBooking, `${c.nameKey} goes nowhere`);
+  }
+});
+
+/* ---------- forbidden words ---------- */
+
+test('every language has a non-empty forbidden-words list', () => {
+  for (const lang of AVAILABLE_LANGS) {
+    assert.ok(Array.isArray(FORBIDDEN_WORDS[lang]) && FORBIDDEN_WORDS[lang].length > 0,
+      `${lang} has no forbidden words`);
+  }
+});
+
+test('forbidden-word matcher flags a sample from every language', () => {
+  const samples = {
+    en: 'This is a fucking disaster',
+    de: 'Das ist scheiße und arschloch',
+    hu: 'Ez egy kibaszott kurva szar nap',
+    fr: 'Quel putain de merde',
+    it: 'Che cazzo di merda',
+    es: 'Que puta mierda de coño'
+  };
+  for (const [lang, text] of Object.entries(samples)) {
+    assert.ok(findForbiddenWord(text), `${lang} sample not flagged`);
+  }
+});
+
+test('forbidden-word matcher is case- and accent-insensitive', () => {
+  // Upper-case and accented forms must hit the same entries as lowercase.
+  for (const text of ['KURVA SZAR', 'KURVÁRA', 'SCHEISSE', 'PUTAIN', 'COÑO']) {
+    assert.ok(findForbiddenWord(text), `not flagged: "${text}"`);
+  }
+});
+
+test('forbidden-word matcher ignores innocent words (no false positives)', () => {
+  const safe = [
+    'I would like to discuss a project',           // en: no match for "ass" inside class/assignment
+    'class and assignment are due today',
+    'Die Besichtigung des Gebäudes',               // de
+    'Szeretnék időpontot kérni, szarvas ügyben',   // hu: "szarvas" (deer) must not match "szar"
+    'Je voudrais discuter du projet',              // fr
+    'Vorrei discutere del progetto',               // it
+    'Me gustaría hablar del proyecto'              // es
+  ];
+  for (const text of safe) {
+    assert.equal(findForbiddenWord(text), null, `false positive on "${text}"`);
   }
 });
 

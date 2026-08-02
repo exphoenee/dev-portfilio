@@ -82,6 +82,7 @@ export const FR_PAGE = {
   "hire.errNoMx": "Ce domaine n'accepte pas les e-mails.",
   "hire.privacyNote": "Le domaine de l’e-mail est vérifié via le DNS public (Cloudflare) pour détecter les fautes de frappe. Rien d’autre n’est transmis.",
   "hire.errTooShort": "Le message doit contenir au moins 20 caractères et 4 mots.",
+  "hire.errOffensive": "Veuillez retirer tout langage inapproprié de votre message.",
   "hire.errSend": "Échec de l'envoi. Veuillez réessayer.",
   "hire.errCaptcha": "Veuillez terminer la vérification captcha.",
   "hire.closeAria": "Fermer le formulaire de contact",
