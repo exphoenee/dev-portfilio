@@ -12,7 +12,8 @@
       "Read(//e/Projects/CV/**)",
       "Bash(echo \"exit: $?\")",
       "Bash(node \"C:/Users/bozza/AppData/Local/Temp/claude/e--Projects-dev-portfilio/a4f32b49-2b12-456f-9c15-99a5d83d01d4/scratchpad/rep.mjs\")",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(git count-objects *)"
     ]
   }
 }

@@ -92,6 +92,7 @@ export const ES_PAGE = {
   "image.zoomAria": "Abrir vista previa de la imagen",
   "hero.ctaBook": "Reservar reunión",
   "contact.booking": "Reserva",
+  "contact.bookingValue": "Elige una hora",
   "book.title": "Reservar reunión",
   "book.step1": "1 / 3 — Elige un día",
   "book.step2": "2 / 3 — Elige una hora",

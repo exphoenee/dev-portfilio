@@ -557,7 +557,9 @@ export const SKILLS = [
    ------------------------------------------------------------ */
 export const CONTACT = [
   { icon: '<img src="assets/images/email.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.email', value: 'bozzay.viktor@gmail.com', href: 'mailto:bozzay.viktor@gmail.com', openHire: true },
-  { icon: '<img src="assets/images/calendar.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.booking', value: 'viktor.bozzay.online', href: 'https://viktor.bozzay.online', openBooking: true },
+  /* The only card whose value is prose rather than an identifier, so it is the
+     only one that needs translating — hence valueKey instead of value. */
+  { icon: '<img src="assets/images/calendar.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.booking', valueKey: 'contact.bookingValue', href: 'https://viktor.bozzay.online', openBooking: true },
   { icon: '<img src="assets/images/github.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.github', value: 'github.com/exphoenee', href: 'https://github.com/exphoenee' },
   { icon: '<img src="assets/images/linkedin.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.linkedin', value: 'in/viktorbozzay', href: 'https://www.linkedin.com/in/viktorbozzay/' },
   { icon: '<img src="assets/images/resume.png" alt="" class="contact-img" loading="lazy">', nameKey: 'contact.website', value: 'viktor.bozzay.online', href: 'https://viktor.bozzay.online' }

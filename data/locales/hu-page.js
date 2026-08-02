@@ -92,6 +92,7 @@ export const HU_PAGE = {
   "image.zoomAria": "Kép előnézet megnyitása",
   "hero.ctaBook": "Időpontfoglalás",
   "contact.booking": "Időpontfoglalás",
+  "contact.bookingValue": "Foglalj időpontot",
   "book.title": "Időpontfoglalás",
   "book.step1": "1 / 3 — Válassz napot",
   "book.step2": "2 / 3 — Válassz időpontot",

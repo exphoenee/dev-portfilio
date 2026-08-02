@@ -92,6 +92,7 @@ export const FR_PAGE = {
   "image.zoomAria": "Ouvrir l'aperçu de l'image",
   "hero.ctaBook": "Prendre rendez-vous",
   "contact.booking": "Rendez-vous",
+  "contact.bookingValue": "Choisir un créneau",
   "book.title": "Prendre rendez-vous",
   "book.step1": "1 / 3 — Choisissez un jour",
   "book.step2": "2 / 3 — Choisissez une heure",

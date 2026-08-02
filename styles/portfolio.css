@@ -777,15 +777,19 @@ a { color: inherit; text-decoration: none; }
 .contact-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 12px;
 }
+/* The horizontal padding is load-bearing: with the 12px gap it leaves ~197px
+   of content width, and the longest value (the 23-char email in 0.85rem
+   JetBrains Mono) needs ~188px to stay on one line. Widening either the gap
+   or this padding breaks the email onto a second line. */
 .contact-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 6px;
-  padding: 32px 20px;
+  padding: 26px 12px;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -798,18 +802,18 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow-lg);
 }
 .contact-icon {
-  font-size: 6rem;
+  font-size: 4.8rem;
   margin-bottom: 8px;
   transition: transform 0.35s var(--ease);
 }
 .contact-icon svg {
-  width: clamp(4.5rem, 16vw, 6rem);
-  height: clamp(4.5rem, 16vw, 6rem);
+  width: clamp(3.6rem, 12.8vw, 4.8rem);
+  height: clamp(3.6rem, 12.8vw, 4.8rem);
   display: block;
 }
 .contact-icon .contact-img {
-  width: clamp(5rem, 19vw, 7.2rem);
-  height: clamp(5rem, 19vw, 7.2rem);
+  width: clamp(4rem, 15.2vw, 5.76rem);
+  height: clamp(4rem, 15.2vw, 5.76rem);
   max-width: 100%;
   object-fit: cover;
   border-radius: 16px;
