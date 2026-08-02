@@ -29,7 +29,7 @@ export const PROJECTS = [
     name: 'AI4Test',
     category: 'app',
     image: 'assets/images/projects/large/ai4test.jpg',
-    tech: ['React', 'TypeScript', 'AI', 'Test Automation'],
+    tech: ['React', 'TypeScript', 'Jest', 'i18next'],
     links: { demo: 'https://mobiledevice.cloud/order/ai4test?lang=en' },
     desc: {
       en: { functional: 'Automates manual testing with the help of AI — AI-driven web analysis, automatic screenshot and element identification, and dynamic test script generation to accelerate QA workflows.', technical: 'A modern React + TypeScript web application; I worked on it as a frontend developer in an international team.' },
@@ -158,7 +158,7 @@ export const PROJECTS = [
     name: 'FACTS',
     category: 'app',
     image: 'assets/images/projects/large/facts.jpg',
-    tech: ['React', 'Web Portal', 'Secure Login'],
+    tech: ['React', 'TypeScript', 'Monorepo', 'Vitest', 'PNPM'],
     links: { demo: 'https://www.factslogin.com' },
     desc: {
       en: { functional: 'The secure login portal of FACTS — a compliance platform for the renewable fuels industry that tracks every feedstock transaction from collection to refinery with full traceability and chain-of-custody control.', technical: 'A production web portal with enterprise authentication options (including Microsoft login), role-based secure access and confidential, audit-ready record keeping for EPA-compliant feedstock tracking.' },
@@ -174,7 +174,7 @@ export const PROJECTS = [
     name: 'FACTS Driver App',
     category: 'app',
     image: 'assets/images/projects/large/driver.jpg',
-    tech: ['React', 'TypeScript', 'HERE Maps', 'Monorepo'],
+    tech: ['React', 'TypeScript', 'HERE Maps', 'Monorepo', 'Vitest', 'PNPM'],
     links: { demo: 'https://routes.factslogin.com' },
     desc: {
       en: { functional: 'A driver application for the FACTS logistics platform that organises and tracks biodiesel feedstock (used cooking oil) collections and monitors CO₂ emissions — route management and daily driver operations on a modern, data-driven frontend.', technical: 'Because of the second sibling application, the codebase was migrated into a monorepo and the shared logic moved into a single package; to support the developers I also built a CLI that speeds up and assists their work.' },
@@ -206,7 +206,7 @@ export const PROJECTS = [
     name: 'Page on Mobile',
     category: 'library',
     image: 'assets/images/projects/large/pageonmobile.jpg',
-    tech: ['TypeScript', 'Canvas 2D', 'ESM', 'WebP'],
+    tech: ['TypeScript', 'Canvas 2D', 'ESM'],
     links: { repo: 'https://github.com/exphoenee/pageonmobile', demo: 'https://exphoenee.github.io/pageonmobile/', npm: 'https://www.npmjs.com/package/pageonmobile' },
     desc: {
       en: { functional: 'A dependency-free widget that renders website screenshots into device mockups — desktop, notebook, tablet, phone — on a canvas, with an auto-scroll preview animation.', technical: 'TypeScript ESM package with zero runtime dependencies, Canvas 2D rendering, WebP device frames, ~7 kB JS payload and full type declarations.' },
@@ -222,7 +222,7 @@ export const PROJECTS = [
     name: 'Pécs Coach',
     category: 'website',
     image: 'assets/images/projects/large/pecscoach.jpg',
-    tech: ['Bootstrap', 'Glide.js', 'AOS', 'Responsive'],
+    tech: ['Bootstrap', 'Glide.js', 'AOS'],
     links: { repo: 'https://github.com/exphoenee/pecscoach', demo: 'https://pecscoach.hu' },
     desc: {
       en: { functional: 'A professional coaching website for a Pécs-based coach: services, about section, blog and contact — fully responsive and search-engine friendly.', technical: 'Built with Bootstrap 5, Glide.js carousels, AOS scroll animations and custom CSS, with semantic HTML and lazy-loaded images for performance.' },
@@ -238,7 +238,7 @@ export const PROJECTS = [
     name: 'Realtime Space Travel',
     category: 'game',
     image: 'assets/images/projects/large/space-travel.jpg',
-    tech: ['React', 'TypeScript', 'Firebase', 'TensorFlow.js'],
+    tech: ['React', 'TypeScript', 'Firebase', 'TensorFlow.js', 'Stripe'],
     links: { repo: 'https://github.com/exphoenee/realtime_space_travel', demo: 'https://realtimespacetravel-e74e3.web.app' },
     desc: {
       en: { functional: 'A real-time space travel simulator game: stay attentive as your starship crosses the galaxy in real time — the ultimate test of focus, deployed on Firebase Hosting.', technical: 'React + TypeScript + Vite, TensorFlow.js face-detection, Stripe payments, Zustand state management, i18next localization and Vitest testing.' },
@@ -286,7 +286,7 @@ export const PROJECTS = [
     name: 'Scolia Darts',
     category: 'game',
     image: 'assets/images/projects/large/scolia.jpg',
-    tech: ['Web Client', 'Real-time', 'Responsive'],
+    tech: ['JavaScript', 'Redux', 'Jest', 'i18next', 'Real-time'],
     links: { demo: 'https://game.scoliadarts.com' },
     desc: {
       en: { functional: 'The web client of the Scolia automatic darts scoring system: X01, Cricket, Around the Clock and more game modes, an online lobby, tournaments, bot opponents and detailed statistics — on any device.', technical: 'A browser-based real-time interface that connects to Scolia hardware, displaying scores and running games on smartphones, tablets, PCs and smart TVs with millimeter-accurate throw tracking.' },
@@ -334,7 +334,7 @@ export const PROJECTS = [
     name: 'Szela Coaching',
     category: 'website',
     image: 'assets/images/projects/large/szelacoaching.jpg',
-    tech: ['PHP', 'MySQL', 'MVC', 'Bootstrap', 'Session auth'],
+    tech: ['PHP', 'MySQL', 'MVC', 'Bootstrap'],
     links: { demo: 'https://szelacoaching.hu' },
     desc: {
       en: { functional: 'The web app is a coaching website: a showcase landing page, services, about section, references/testimonials, a contact section and a blog. It includes an admin interface for editing content and managing blog posts, plus login/logout functionality. It also handles the GDPR/cookie notice, the imprint and social links in the footer.', technical: 'A custom, PHP-based server-side web application with a MySQL database and session-based login. The architecture is close to MVC: split into controller/, model/, view/ and system/ layers, with index.php as the central entry point that selects the page. The frontend is built on Bootstrap, custom CSS and media files, extended with blog management, image upload and admin features.' },
