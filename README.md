@@ -14,7 +14,7 @@ A clean, interactive developer portfolio built with **vanilla HTML, CSS and Java
 - 🖼️ **Project illustrations** — logos and screenshots from each project, with an image lightbox
 - 🔀 **Functional / Technical tabs** — every project card switches between a functional and a technical description
 - 🗂️ **Category filters** — Libraries, Games, Apps & Tools, APIs, Websites
-- 🧩 **Template-driven architecture** — all content is rendered from a central data file (`data.js`) plus per-language locale files (`locales/*.js`), mirroring the CV project
+- 🧩 **Template-driven architecture** — all content is rendered from a central data file (`data/portfolio-data.js`) plus per-language locale files (`data/locales/*-page.js`), mirroring the CV project
 - 🖼️ **Custom pixel-art contact icons** — hand-made icons for the contact cards (email, booking, GitHub, LinkedIn, resume)
 - 🤖 **Robotics skills** — synced from the CV repo (Universal Robot, KUKA, FANUC, OnRobot, Machine Vision)
 - ⌨️ **Typing effect, animated counters, scroll reveals, terminal hero**
@@ -52,11 +52,15 @@ dev-portfilio/
 ├── index.html              ← thin shell; skills & contact are rendered by JS
 ├── .gitignore              ← OS/editor junk, node_modules, backup images
 └── assets/images/
-    ├── projects/        ← project images (21)
+    ├── projects/        ← project images (21) in small/, large/ and og/ sizes
     ├── tech/            ← tech icons
-    ├── backup/          ← original large uploads (git-ignored)
+    ├── **/backup/       ← full-resolution originals: on disk, git-ignored
     └── favicon.svg
 ```
+
+> Only the optimized images are committed. The originals under any
+> `backup/` folder stay local — they are ~99 MB and would otherwise ride
+> along in every Pages deployment.
 
 ## 🚀 Hosting on GitHub Pages (GitHub Actions)
 
@@ -92,7 +96,7 @@ The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) t
 - **Contact cards** — edit the `CONTACT` array in `data/portfolio-data.js`; each card's `icon` can be an emoji, an inline SVG or an `<img>` pointing to a custom image in `assets/images/`.
 - **Career timeline** — edit the `TIMELINE` array in `data/portfolio-data.js`.
 - **UI labels** (nav, hero, buttons, footer…) — edit the matching key in each `data/locales/*-page.js` file.
-- **Colors** — tweak the CSS variables in the `:root` / theme blocks of `style.css`.
+- **Colors** — tweak the CSS variables in the `:root` / `[data-theme]` blocks of `styles/portfolio.css`. The two `theme-color` meta tags in `index.html` mirror `--bg`; keep them in sync.
 
 > The portfolio uses ES modules (`<script type="module">`), so serve it over HTTP (e.g. `npx serve` or GitHub Pages) — opening `index.html` directly via `file://` blocks module loading.
 

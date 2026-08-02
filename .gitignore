@@ -38,10 +38,15 @@ tmp/
 .cache/
 
 # ---- Original large uploads ----
-# The live site uses the optimized 300x300 versions in assets/images/;
-# the full-resolution originals (calenda/email/github/linkedin.png,
-# ~1.3 MB each) are kept only in the backup folder and stay out of git.
-assets/images/backup/
+# The live site only ever ships the optimized versions; the
+# full-resolution originals stay on disk but out of git. They were
+# ~99 MB across the backup folders — every byte of that was also
+# re-uploaded to the Pages artifact on each deploy.
+# The trailing /**/ form matters: a plain `backup/` prefix would miss
+# assets/images/projects/{large,og}/backup/.
+assets/images/**/backup/
+assets/og.png
+/github.jpg
 
 # ---- Local-only notes ----
 notes.md

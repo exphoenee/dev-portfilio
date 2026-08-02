@@ -15,7 +15,7 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 | Réteghatárok, adatmodell | ✅ Erős |
 | Lokalizáció | ✅ Erős (125 kulcs, teljes paritás 6 nyelven) |
 | Deploy / CI | ✅ Rendezve (lásd K1) |
-| Repo-higiénia, asset-súly | ❌ Kritikus (129 MB assets, 119 MB `.git`) |
+| Repo-higiénia, asset-súly | ✅ Rendezve a munkafában (lásd K2); a history még nehéz |
 | Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
 | Állapotkezelés | ✅ Rendezve (lásd M3/M4) |
 | Akadálymentesség | ⚠️ Részleges (modal fókusz, tab pattern) |
@@ -67,7 +67,10 @@ graph TD
 
 **Javítás:** vagy `branches: [master]`, vagy a branch átnevezése `main`-re (`git branch -m master main` + push + a GitHub default branch átállítása) — utóbbi konzisztensebb a README-vel.
 
-#### K2 — ~95 MB backup PNG a verziókövetésben
+#### K2 — ~95 MB backup PNG a verziókövetésben ✅ **elvégezve** (a history kivételével)
+
+> **Státusz:** 42 fájl kikerült a követésből (a lemezen maradtak), a `.gitignore` mostantól `assets/images/**/backup/`-ot zár ki. A követett tartalom **~120 MB → 21 MB**, ennyi megy a Pages artifactbe is. A `.git` mérete változatlan: a blobok a history-ban maradtak — ezt csak `git filter-repo` + force-push hozná vissza, ami minden klónt érvénytelenít, ezért külön döntés.
+
 
 | Könyvtár | Méret | Verziókövetve |
 |---|---|---|
@@ -204,10 +207,10 @@ A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoi
 
 | # | Megállapítás | Hely |
 |---|---|---|
-| A1 | **README-drift:** `data.js`, `locales/*.js`, `style.css` néven hivatkozik a `data/portfolio-data.js`, `data/locales/*-page.js`, `styles/portfolio.css` fájlokra | README.md |
-| A2 | A README szerint a `backup/` git-ignored — 40 backup fájl viszont verziókövetett | README.md, .gitignore |
+| A1 | ~~**README-drift:** `data.js`, `locales/*.js`, `style.css` néven hivatkozik a `data/portfolio-data.js`, `data/locales/*-page.js`, `styles/portfolio.css` fájlokra~~ **javítva** | README.md |
+| A2 | ~~A README szerint a `backup/` git-ignored — 40 backup fájl viszont verziókövetett~~ **javítva** (a K2-vel együtt igazzá vált) | README.md, .gitignore |
 | A3 | ~~A README hero képe `assets/images/projects/cv.jpg`-re mutat, ami nem létezik → törött kép a GitHub-on~~ **javítva** (`projects/large/cv.jpg`) | README.md:7 |
-| A4 | Árva fájlok: `github.jpg` a repo gyökerében (verziókövetett, sehol nem hivatkozott), `assets/og.png` (5,8 MB, csak az `og.jpg` van használva) | repo root, assets/ |
+| A4 | ~~Árva fájlok: `github.jpg` a repo gyökerében (verziókövetett, sehol nem hivatkozott), `assets/og.png` (5,8 MB, csak az `og.jpg` van használva)~~ **javítva** (kikerültek a követésből) | repo root, assets/ |
 | A5 | `export var` a `config.js`-ben, miközben a kódbázis mindenütt `const` | [config.js:5-16](scripts/config.js#L5-L16) |
 | A6 | `renderProjects` nem null-ellenőrzi a gridet, a többi render igen | [main.js:211](scripts/main.js#L211) vs. 243, 258, 278 |
 | A7 | `revealObserver` a használati helyei **alatt** van deklarálva; ma működik (csak `DOMContentLoaded` után hívódik), de modul-szintű hívásnál TDZ-hiba | [main.js:918](scripts/main.js#L918) |
