@@ -1,0 +1,368 @@
+/* ============================================================
+   Modals — hire (email form), booking wizard and image lightbox.
+   Split out of portfolio.css: ~360 lines that only matter once a
+   dialog is opened. Loaded from index.html AFTER portfolio.css,
+   because it relies on the custom properties defined there.
+   ============================================================ */
+
+/* ============================================================
+   Hire modal (email form, ported from the CV repo)
+   ============================================================ */
+button.contact-card {
+  font-family: var(--font-body);
+  cursor: pointer;
+  color: inherit;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 13, 26, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.modal-dialog {
+  position: relative;
+  width: min(560px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 30px;
+  animation: modalIn 0.35s var(--ease);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.modal-head h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.modal-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.25s var(--ease);
+  flex-shrink: 0;
+}
+.modal-close:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.hire-state {
+  text-align: center;
+  padding: 30px 10px;
+  animation: fadeSlide 0.4s var(--ease);
+}
+.hire-state-icon {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+.hire-state-icon.cooldown {
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+.hire-state-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.hire-state-note {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.hire-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.hire-field {
+  margin-bottom: 16px;
+}
+.hire-field label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 7px;
+}
+.hire-field input,
+.hire-field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.hire-field input::placeholder,
+.hire-field textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.hire-field input:focus,
+.hire-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+}
+.hire-field textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+.hire-field-error {
+  display: block;
+  font-size: 0.8rem;
+  color: #ef4444;
+  margin-top: 5px;
+  min-height: 1em;
+}
+/* Discloses the DNS lookup the email field performs on blur. */
+.hire-field-note {
+  display: block;
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.hire-turnstile {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 16px;
+}
+.hire-submit {
+  width: 100%;
+  justify-content: center;
+  position: relative;
+}
+.hire-submit.is-loading {
+  opacity: 0.75;
+  pointer-events: none;
+}
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ============================================================
+   Image modal (lightbox, ported from the CV repo modal pattern)
+   ============================================================ */
+.image-dialog { width: min(1200px, 100%); padding: 18px; }
+.image-preview { margin: 0; }
+.image-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: var(--bg-soft);
+  transition: opacity 0.25s var(--ease);
+}
+.image-preview img.is-loading,
+.image-preview img.is-error { opacity: 0; }
+.image-preview figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   Booking modal (appointment scheduling, ported from the CV repo)
+   ============================================================ */
+.booking-dialog { width: min(600px, 100%); }
+
+.bk-state {
+  text-align: center;
+  padding: 30px 10px;
+  animation: fadeSlide 0.4s var(--ease);
+}
+.bk-state-icon {
+  width: 62px;
+  height: 62px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+.bk-state-icon.ok { color: #22c55e; background: rgba(34, 197, 94, 0.12); border-color: rgba(34, 197, 94, 0.35); }
+.bk-state-icon.err { color: #ef4444; background: rgba(239, 68, 68, 0.12); border-color: rgba(239, 68, 68, 0.35); }
+.bk-state-icon.cooldown { color: #f59e0b; background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); }
+.bk-state-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+.bk-state-note { color: var(--text-muted); font-size: 0.92rem; max-width: 400px; margin: 0 auto 18px; }
+.bk-state-detail {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.bk-btn-secondary { margin-top: 8px; }
+
+.bk-spinner {
+  width: 34px;
+  height: 34px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  border-top-color: var(--accent);
+  animation: bkSpin 0.8s linear infinite;
+}
+@keyframes bkSpin { to { transform: rotate(360deg); } }
+
+.bk-step { animation: fadeSlide 0.35s var(--ease); }
+.bk-step-label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 4px 0 14px;
+  text-align: center;
+}
+.bk-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: color 0.25s, background 0.25s;
+}
+.bk-back-btn:hover { color: var(--accent); background: var(--surface-2); }
+.bk-back-btn svg { width: 15px; height: 15px; }
+
+.bk-badge {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  margin-bottom: 14px;
+}
+
+.bk-dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+.bk-date-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 14px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.bk-date-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+.bk-date-day { font-size: 0.86rem; font-weight: 600; }
+.bk-date-date { font-size: 0.8rem; color: var(--text-muted); }
+.bk-date-count {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.bk-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+.bk-slot-btn {
+  padding: 11px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.bk-slot-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.bk-required { color: #ef4444; }

@@ -81,6 +81,7 @@ export const IT_PAGE = {
   "hire.errEmail": "Inserisci un indirizzo e-mail valido.",
   "hire.errVerifying": "Verifica del server mail…",
   "hire.errNoMx": "Questo dominio non accetta email.",
+  "hire.privacyNote": "Il dominio dell’email viene verificato tramite DNS pubblico (Cloudflare) per intercettare gli errori di battitura. Nient’altro viene inviato.",
   "hire.errTooShort": "Il messaggio deve contenere almeno 20 caratteri e 4 parole.",
   "hire.errSend": "Invio fallito. Per favore riprova.",
   "hire.errCaptcha": "Per favore completa la verifica captcha.",

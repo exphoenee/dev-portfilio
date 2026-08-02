@@ -33,11 +33,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Everything is data-driven, so a syntax error in any module
-      # would break the whole page — catch it before deploying.
-      # Same entry point as `npm run check` so the two cannot drift.
+      # Everything is data-driven, so a syntax error or a broken asset
+      # reference would only surface in the browser — catch both before
+      # deploying. Same entry points as local development, so the two
+      # cannot drift. No install step: the project has zero dependencies.
       - name: Validate JavaScript syntax
         run: npm run check
+
+      - name: Data and asset integrity tests
+        run: npm test
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

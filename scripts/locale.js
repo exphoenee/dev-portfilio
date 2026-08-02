@@ -21,9 +21,19 @@ const PAGE_LABELS = {
   es: ES_PAGE.labels,
 };
 
-export const AVAILABLE_LANGS = ['en', 'de', 'hu', 'fr', 'it', 'es'];
+export const AVAILABLE_LANGS = Object.keys(PAGE_LABELS);
+
+export const LANG_PARAM = 'lang';
 
 const STORAGE_KEY = LANG_KEY;
+
+/* A ?lang= in the URL wins over the stored preference, so a shared link
+   opens in the language it was shared in. */
+function _langFromUrl() {
+  if (typeof window === 'undefined') return null;
+  const value = new URLSearchParams(window.location.search).get(LANG_PARAM);
+  return value && PAGE_LABELS[value] ? value : null;
+}
 
 function _detectBrowserLang() {
   const list =
@@ -43,7 +53,7 @@ class LocaleManager {
   constructor() {
     const saved =
       typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null;
-    this._lang = saved && PAGE_LABELS[saved] ? saved : _detectBrowserLang();
+    this._lang = _langFromUrl() || (saved && PAGE_LABELS[saved] ? saved : _detectBrowserLang());
     if (typeof document !== 'undefined') document.documentElement.dataset.lang = this._lang;
   }
 
@@ -56,6 +66,18 @@ class LocaleManager {
     this._lang = lang;
     if (typeof localStorage !== 'undefined') localStorage.setItem(STORAGE_KEY, lang);
     if (typeof document !== 'undefined') document.documentElement.dataset.lang = lang;
+    this._syncUrl();
+  }
+
+  /* Keep ?lang= in the address bar so the current view is linkable.
+     replaceState, not pushState: a language switch is not a navigation
+     step the back button should have to walk through. */
+  _syncUrl() {
+    if (typeof window === 'undefined' || !window.history?.replaceState) return;
+    const url = new URL(window.location.href);
+    if (url.searchParams.get(LANG_PARAM) === this._lang) return;
+    url.searchParams.set(LANG_PARAM, this._lang);
+    window.history.replaceState(null, '', url);
   }
 
   t(key) {

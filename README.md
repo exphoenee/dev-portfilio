@@ -9,7 +9,7 @@ A clean, interactive developer portfolio built with **vanilla HTML, CSS and Java
 ## ✨ Features
 
 - 🌗 **Light / Dark mode** — respects your system preference, toggle saved in `localStorage`
-- 🌍 **6 languages** — English, Deutsch, Magyar, Français, Italiano, Español (auto-detected, switchable)
+- 🌍 **6 languages** — English, Deutsch, Magyar, Français, Italiano, Español (auto-detected, switchable, and linkable via `?lang=de`)
 - 📦 **21 real projects** — data collected from the actual repositories (e.g. AGX AI Translation Helper, FACTS Driver App, Szela Coaching)
 - 🖼️ **Project illustrations** — logos and screenshots from each project, with an image lightbox
 - 🔀 **Functional / Technical tabs** — every project card switches between a functional and a technical description
@@ -47,8 +47,11 @@ dev-portfilio/
 │   └── modals/             ← modal/turnstile/form-guard primitives + hire, booking, image
 ├── tools/
 │   └── check-syntax.mjs    ← `npm run check`: parses every JS source (also used by CI)
+├── tests/
+│   └── data.test.mjs       ← `npm test`: locale parity, asset and data integrity
 ├── styles/
-│   └── portfolio.css       ← all styles
+│   ├── portfolio.css       ← base, layout and section styles
+│   └── modals.css          ← hire / booking / lightbox (loaded after portfolio.css)
 ├── index.html              ← thin shell; skills & contact are rendered by JS
 ├── .gitignore              ← OS/editor junk, node_modules, backup images
 └── assets/images/
@@ -109,6 +112,18 @@ The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) t
 | Logic         | Vanilla JavaScript (ES6+)             |
 | Fonts         | Sora, Inter, JetBrains Mono (Google Fonts) |
 | Hosting       | GitHub Pages (GitHub Actions)         |
+
+## ✅ Checks
+
+No dependencies, so nothing to install — both commands run on plain Node:
+
+```bash
+npm run check   # node --check over every file in scripts/ and data/
+npm test        # locale key parity, asset existence, data integrity
+npm run verify  # both
+```
+
+The deploy workflow runs the same two commands before it publishes.
 
 ## 📄 License
 

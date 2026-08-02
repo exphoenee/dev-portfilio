@@ -3,7 +3,7 @@
    The icon maps below are view-only decoration for the cards.
    ============================================================ */
 
-import { $, $$, t } from '../dom.js';
+import { $, $$, t, esc } from '../dom.js';
 import { locale } from '../locale.js';
 import { state, tabFor } from '../state.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
@@ -39,7 +39,15 @@ const TECH_ICONS = {
   Redux: 'Redux.svg',
   PHP: 'php.svg',
   MySQL: 'mysql.svg',
-  'TensorFlow.js': 'Tensorflow.svg'
+  'TensorFlow.js': 'Tensorflow.svg',
+  AOS: 'AOS.png',
+  Bootstrap: 'bootstrap.svg',
+  Chai: 'chai.png',
+  Formspree: 'formspree.webp',
+  'HERE Maps': 'heremap.png',
+  'Gemini AI': 'gemini.png',
+  i18next: 'i18next.avif',
+  'GitHub Pages': 'github.svg'
 };
 
 const LINK_ICONS = {
@@ -60,8 +68,8 @@ function projectCard(p, index) {
   // without touching the inline SVG next to it.
   const links = Object.entries(p.links).map(([type, url]) => {
     if (!url) return '';
-    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" data-link-type="${type}" href="${url}" target="_blank" rel="noopener" aria-label="${title} — ${t('link.' + type)}">
-      ${LINK_ICONS[type] || ''}<span class="card-link-label">${t('link.' + type)}</span>
+    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" data-link-type="${type}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${esc(title)} — ${esc(t('link.' + type))}">
+      ${LINK_ICONS[type] || ''}<span class="card-link-label">${esc(t('link.' + type))}</span>
     </a>`;
   }).join('');
 
@@ -71,9 +79,9 @@ function projectCard(p, index) {
   return `
     <article class="project-card" data-category="${p.category}" data-id="${p.id}" style="animation-delay:${index * 60}ms">
       <div class="card-media">
-        <button type="button" class="card-media-btn" data-img-src="${p.image}" data-img-alt="${title}" aria-label="${title} — ${t('image.zoomAria')}">
-          <img src="${smallImg}" alt="${title}" loading="lazy">
-          <span class="card-category">${icons} <span class="card-category-label">${t('filters.' + p.category)}</span></span>
+        <button type="button" class="card-media-btn" data-img-src="${esc(p.image)}" data-img-alt="${esc(title)}" aria-label="${esc(title)} — ${esc(t('image.zoomAria'))}">
+          <img src="${esc(smallImg)}" alt="${esc(title)}" loading="lazy">
+          <span class="card-category">${icons} <span class="card-category-label">${esc(t('filters.' + p.category))}</span></span>
           <span class="card-zoom" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
           </span>
@@ -81,14 +89,14 @@ function projectCard(p, index) {
       </div>
       <div class="card-body">
         <div class="card-head">
-          <h3 class="card-title">${title}</h3>
+          <h3 class="card-title">${esc(title)}</h3>
         </div>
         <div class="card-tabs" role="tablist">
-          <button class="card-tab ${activeTab === 'functional' ? 'active' : ''}" data-tab="functional" role="tab" id="tab-func-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'functional'}">${t('tab.functional')}</button>
-          <button class="card-tab ${activeTab === 'technical' ? 'active' : ''}" data-tab="technical" role="tab" id="tab-tech-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'technical'}">${t('tab.technical')}</button>
+          <button class="card-tab ${activeTab === 'functional' ? 'active' : ''}" data-tab="functional" role="tab" id="tab-func-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'functional'}">${esc(t('tab.functional'))}</button>
+          <button class="card-tab ${activeTab === 'technical' ? 'active' : ''}" data-tab="technical" role="tab" id="tab-tech-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'technical'}">${esc(t('tab.technical'))}</button>
         </div>
-        <p class="card-desc" id="desc-${p.id}" role="tabpanel">${d[activeTab]}</p>
-        <div class="card-tech">${p.tech.map((x) => `<span class="tech-tag">${TECH_ICONS[x] ? `<img src="assets/images/tech/${TECH_ICONS[x]}" alt="" loading="lazy">` : ''}${x}</span>`).join('')}</div>
+        <p class="card-desc" id="desc-${p.id}" role="tabpanel">${esc(d[activeTab])}</p>
+        <div class="card-tech">${p.tech.map((x) => `<span class="tech-tag">${TECH_ICONS[x] ? `<img src="assets/images/tech/${TECH_ICONS[x]}" alt="" loading="lazy">` : ''}${esc(x)}</span>`).join('')}</div>
         <div class="card-links">${links}</div>
       </div>
     </article>`;
@@ -154,7 +162,7 @@ export function initProjectCards() {
   grid.addEventListener('click', (e) => {
     const zoom = e.target.closest('.card-media-btn');
     if (zoom) {
-      openImageModal(zoom.dataset.imgSrc, zoom.dataset.imgAlt, zoom);
+      openImageModal(zoom.dataset.imgSrc, zoom.dataset.imgAlt);
       return;
     }
     const tab = e.target.closest('.card-tab');

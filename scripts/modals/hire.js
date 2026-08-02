@@ -60,10 +60,9 @@ export function openHireModal() {
     turnstile.ensure();
   }
 
-  openModal(MODAL_ID);
-  setTimeout(() => {
-    if (!$('#hire-form').hidden && $('#hire-name')) $('#hire-name').focus();
-  }, 80);
+  // On the cooldown screen there is no form to focus; openModal then falls
+  // back to the first focusable element (the close button).
+  openModal(MODAL_ID, { focus: cooldown.isActive() ? null : '#hire-name' });
 }
 
 export function closeHireModal() {

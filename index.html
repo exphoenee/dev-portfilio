@@ -7,6 +7,15 @@
   <meta name="description" data-i18n="meta.description" content="Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.">
   <link rel="canonical" href="https://exphoenee.github.io/dev-portfilio/">
 
+  <!-- ===== Per-language URLs (?lang=) — scripts/locale.js reads and writes this param ===== -->
+  <link rel="alternate" hreflang="en" href="https://exphoenee.github.io/dev-portfilio/?lang=en">
+  <link rel="alternate" hreflang="de" href="https://exphoenee.github.io/dev-portfilio/?lang=de">
+  <link rel="alternate" hreflang="hu" href="https://exphoenee.github.io/dev-portfilio/?lang=hu">
+  <link rel="alternate" hreflang="fr" href="https://exphoenee.github.io/dev-portfilio/?lang=fr">
+  <link rel="alternate" hreflang="it" href="https://exphoenee.github.io/dev-portfilio/?lang=it">
+  <link rel="alternate" hreflang="es" href="https://exphoenee.github.io/dev-portfilio/?lang=es">
+  <link rel="alternate" hreflang="x-default" href="https://exphoenee.github.io/dev-portfilio/">
+
   <!-- ===== Open Graph (Facebook, LinkedIn, WhatsApp…) ===== -->
   <meta property="og:title" data-i18n="meta.ogTitle" content="Viktor Bozzay — Developer Portfolio">
   <meta property="og:description" data-i18n="meta.ogDescription" content="Libraries, games, tools and APIs built with clean, modern code.">
@@ -108,6 +117,9 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/portfolio.css">
+  <!-- Modal styles are a separate sheet; they depend on the custom properties
+       defined above, so the order of these two links matters. -->
+  <link rel="stylesheet" href="styles/modals.css">
 </head>
 <body>
 
@@ -303,8 +315,9 @@
         <div class="hire-field">
           <label for="hire-email" data-i18n="hire.email">Your email</label>
           <input id="hire-email" type="email" name="email" required autocomplete="email"
-                 data-i18n-placeholder="hire.emailPlaceholder" aria-required="true" aria-describedby="hire-email-err">
+                 data-i18n-placeholder="hire.emailPlaceholder" aria-required="true" aria-describedby="hire-email-err hire-email-note">
           <span class="hire-field-error" id="hire-email-err" role="alert" aria-live="polite"></span>
+          <span class="hire-field-note" id="hire-email-note" data-i18n="hire.privacyNote">The email domain is checked against public DNS (Cloudflare) to catch typos. Nothing else is sent.</span>
         </div>
 
         <div class="hire-field">
@@ -383,8 +396,9 @@
           </div>
           <div class="hire-field">
             <label for="bk-email"><span data-i18n="book.yourEmail">Email address</span> <span class="bk-required" aria-hidden="true">*</span></label>
-            <input type="email" id="bk-email" name="bk-email" required placeholder="your@email.com" aria-required="true" aria-describedby="bk-email-err" autocomplete="email">
+            <input type="email" id="bk-email" name="bk-email" required placeholder="your@email.com" aria-required="true" aria-describedby="bk-email-err bk-email-note" autocomplete="email">
             <span class="hire-field-error" id="bk-email-err" role="alert" aria-live="polite"></span>
+            <span class="hire-field-note" id="bk-email-note" data-i18n="hire.privacyNote">The email domain is checked against public DNS (Cloudflare) to catch typos. Nothing else is sent.</span>
           </div>
           <div class="hire-field">
             <label for="bk-topic"><span data-i18n="book.topic">Topic / Note</span> <span class="bk-required" aria-hidden="true">*</span></label>

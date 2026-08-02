@@ -18,8 +18,8 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 | Repo-higiénia, asset-súly | ✅ Rendezve a munkafában (lásd K2); a history még nehéz |
 | Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
 | Állapotkezelés | ✅ Rendezve (lásd M3/M4) |
-| Akadálymentesség | ⚠️ Részleges (modal fókusz, tab pattern) |
-| Tesztelés / minőségi kapuk | ⚠️ Csak szintaxis-ellenőrzés |
+| Akadálymentesség | ✅ Modal fókusz rendezve (C4); a tab pattern nyíl-navigációja nyitva |
+| Tesztelés / minőségi kapuk | ✅ Szintaxis + 12 adat/asset teszt CI-ban (lint nyitva) |
 
 ---
 
@@ -168,11 +168,17 @@ A `#0b0d1a` / `#f6f7fb` hex-pár **négy** helyen szerepel (a két `<meta name="
 
 `applyTranslations()` ([main.js:890-894](scripts/main.js#L890-L894)) négy szekció teljes `innerHTML`-jét cseréli. Következmény: a fókusz elveszik, a kártyák újra animálódnak, 21 `<img>` újra a DOM-ba kerül (a böngésző cache-eli, de a layout újraszámol). A `state.tabs` túléli, mert a render onnan olvas — ez jól megoldott. Ekkora oldalon elviselhető, de egy célzott "csak a szövegcsomópontokat cseréld" megközelítés olcsóbb és fókuszbarát lenne.
 
-#### C2 — `innerHTML` vs `textContent` inkonzisztencia a leírásoknál
+#### C2 — `innerHTML` vs `textContent` inkonzisztencia a leírásoknál ✅ **elvégezve**
+
+> **Státusz:** `esc()` került a `dom.js`-be, és minden adat-eredetű szöveg (és attribútumérték) escape-elve megy a sablonokba — a markup-út és a `textContent`-út mostantól azonos eredményt ad. Szándékos markup marad nyersen: `CONTACT[].icon`, `LINK_ICONS`, és a `[data-i18n]` (a `logo` címke `&lt;VB/&gt;`-t tartalmaz).
+
 
 A kártya-sablon HTML-ként rendereli a leírást ([main.js:203](scripts/main.js#L203)), a tabváltás viszont `textContent`-tel írja felül ([main.js:996](scripts/main.js#L996)). Ma egyik leírás sem tartalmaz `<` vagy `&` karaktert (ellenőriztem: 0 találat), tehát a hiba lappang — de az első `&` a szövegben eltérő megjelenítést fog adni az első renderelés és a tabváltás után. Válassz egy szemantikát; javaslat: escape-elés a sablonban, `textContent` mindenütt.
 
-#### C3 — A tartalom csak kliensoldalon létezik
+#### C3 — A tartalom csak kliensoldalon létezik ✅ **részben elvégezve**
+
+> **Státusz:** a nyelv bekerült az URL-be. `?lang=xx` felülírja a tárolt preferenciát, a váltás `replaceState`-tel visszaírja, és 7 `hreflang` link (6 nyelv + `x-default`) került az `index.html`-be. Ami **nyitva marad**: a tartalom továbbra is kliensoldalon renderelődik — ehhez előrenderelés (build-lépés) kellene, ami a projekt „no build tool” elvébe ütközik. Külön döntés.
+
 
 Az `index.html`-ben egyetlen projektleírás sincs. Az OG/JSON-LD statikus, tehát a link-preview rendben van, de:
 
@@ -182,13 +188,19 @@ Az `index.html`-ben egyetlen projektleírás sincs. Az OG/JSON-LD statikus, teh�
 
 Minimum-lépés: a nyelv olvasása/írása URL-paraméterből a `localStorage` mellett, plusz `hreflang` linkek.
 
-#### C4 — Modal-fókusz: nincs csapda, inkonzisztens visszaadás
+#### C4 — Modal-fókusz: nincs csapda, inkonzisztens visszaadás ✅ **elvégezve**
+
+> **Státusz:** a `modals/modal.js` mostantól mindhárom dialógusra egységesen biztosítja: nyitáskor a fókusz bemegy, a Tab körbejár a dialóguson belül (a `[hidden]` képernyők kimaradnak), záráskor a fókusz visszamegy a nyitó elemre. A kártya-tabok nyíl-navigációja továbbra is hiányzik.
+
 
 Az image modal elmenti a triggert és visszaadja neki a fókuszt ([main.js:846](scripts/main.js#L846), [main.js:863](scripts/main.js#L863)) — helyesen. A hire és booking modal nem: bezárás után a fókusz a `<body>`-ra esik. Egyik modal sem csapdázza a Tabot, tehát billentyűzettel ki lehet lépni a háttérbe egy `aria-modal="true"` dialógusból.
 
 A kártya-tabok is részlegesek: mindkét gomb ugyanarra az `aria-controls`-ra mutat, a panelnek nincs `aria-labelledby`, és nincs nyíl-billentyűs navigáció (a WAI Tabs pattern elvárja).
 
-#### C5 — Nincs teszt, nincs lint; a minőségi kapu duplikált
+#### C5 — Nincs teszt, nincs lint; a minőségi kapu duplikált ✅ **elvégezve** (lint kivételével)
+
+> **Státusz:** `tests/data.test.mjs` — 12 teszt `node:test`-tel, nullá függőséggel: locale-kulcsparitás, üres címkék, egyedi projekt-id-k, minden leírás minden nyelven, képek három méretben, ikonfájlok létezése. `npm test` / `npm run verify`, és a workflow is futtatja. **ESLint és Playwright kimaradt** — devDependency-t igényelnének, ami elvenné a projekt függőségmentességét; külön döntés.
+
 
 Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer, két különböző módon** volt leírva: a `package.json` felsorolta a fájlokat egyenként, a `deploy.yml` glob-olt. Új nyelvi fájl esetén a workflow észrevette, a `npm run check` nem — biztos drift.
 
@@ -196,7 +208,10 @@ Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer,
 
 **Hátralévő:** ESLint + Prettier, egy locale-paritás teszt (a 6 fájl kulcshalmaza egyezik-e), egy asset-létezés teszt (minden `image`/`icon` útvonal létezik-e), és egy Playwright smoke-teszt (betöltés, nyelvváltás, szűrő, modal nyitás).
 
-#### C6 — Runtime-függőségek fallback nélkül; adatvédelmi megjegyzés
+#### C6 — Runtime-függőségek fallback nélkül; adatvédelmi megjegyzés ✅ **részben elvégezve**
+
+> **Státusz:** a DoH-ellenőrzésről mostantól tájékoztatás van mindkét e-mail mező alatt, 6 nyelven (`hire.privacyNote`), `aria-describedby`-jal bekötve. A GAS szerveroldali szerepét a `config.js` komment rögzíti. A Google Fonts render-blokkolása és a többi külső szolgáltatás fallbackje nyitva marad.
+
 
 Öt külső szolgáltatás fut a kliensben: Google Fonts (render-blokkoló `<link>`, [index.html:101](index.html#L101)), Cloudflare Turnstile, Formspree, Google Apps Script, valamint a `1.1.1.1` DoH.
 
@@ -214,10 +229,10 @@ A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoi
 | A2 | ~~A README szerint a `backup/` git-ignored — 40 backup fájl viszont verziókövetett~~ **javítva** (a K2-vel együtt igazzá vált) | README.md, .gitignore |
 | A3 | ~~A README hero képe `assets/images/projects/cv.jpg`-re mutat, ami nem létezik → törött kép a GitHub-on~~ **javítva** (`projects/large/cv.jpg`) | README.md:7 |
 | A4 | ~~Árva fájlok: `github.jpg` a repo gyökerében (verziókövetett, sehol nem hivatkozott), `assets/og.png` (5,8 MB, csak az `og.jpg` van használva)~~ **javítva** (kikerültek a követésből) | repo root, assets/ |
-| A5 | `export var` a `config.js`-ben, miközben a kódbázis mindenütt `const` | [config.js:5-16](scripts/config.js#L5-L16) |
+| A5 | ~~`export var` a `config.js`-ben~~ **javítva** (`const`) | [config.js:5-16](scripts/config.js#L5-L16) |
 | A6 | `renderProjects` nem null-ellenőrzi a gridet, a többi render igen | [main.js:211](scripts/main.js#L211) vs. 243, 258, 278 |
 | A7 | `revealObserver` a használati helyei **alatt** van deklarálva; ma működik (csak `DOMContentLoaded` után hívódik), de modul-szintű hívásnál TDZ-hiba | [main.js:918](scripts/main.js#L918) |
-| A8 | A CSS 1 362 sor egy fájlban — jól szekcionálva, 256 custom property; ha tovább nő, a modal-blokk (943–1296, ~350 sor) külön fájlba kívánkozik | styles/portfolio.css |
+| A8 | ~~A CSS 1 362 sor egy fájlban — jól szekcionálva, 256 custom property; ha tovább nő, a modal-blokk (943–1296, ~350 sor) külön fájlba kívánkozik~~ **elvégezve**: `styles/modals.css` (368 sor) kivált, `portfolio.css` 1 017 sor | styles/ |
 
 ---
 

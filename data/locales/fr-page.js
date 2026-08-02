@@ -81,6 +81,7 @@ export const FR_PAGE = {
   "hire.errEmail": "Veuillez saisir une adresse e-mail valide.",
   "hire.errVerifying": "Vérification du serveur mail…",
   "hire.errNoMx": "Ce domaine n'accepte pas les e-mails.",
+  "hire.privacyNote": "Le domaine de l’e-mail est vérifié via le DNS public (Cloudflare) pour détecter les fautes de frappe. Rien d’autre n’est transmis.",
   "hire.errTooShort": "Le message doit contenir au moins 20 caractères et 4 mots.",
   "hire.errSend": "Échec de l'envoi. Veuillez réessayer.",
   "hire.errCaptcha": "Veuillez terminer la vérification captcha.",

@@ -22,6 +22,8 @@
   "scripts": {
     "start": "npx serve .",
     "serve": "npx serve .",
-    "check": "node tools/check-syntax.mjs"
+    "check": "node tools/check-syntax.mjs",
+    "test": "node --test",
+    "verify": "npm run check && npm test"
   }
 }

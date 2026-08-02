@@ -3,7 +3,7 @@
    Cards that open a modal render as <button>, the rest as <a>.
    ============================================================ */
 
-import { $, $$, t } from '../dom.js';
+import { $, $$, t, esc } from '../dom.js';
 import { CONTACT } from '../../data/portfolio-data.js';
 import { observeReveal } from '../ui/reveal.js';
 
@@ -13,18 +13,19 @@ export function renderContact() {
   wrap.innerHTML = CONTACT.map((c) => {
     if (c.openHire || c.openBooking) {
       const attr = c.openHire ? 'data-open-hire' : 'data-open-booking';
+      // c.icon is deliberate markup (an <img> or inline SVG) — it stays raw.
       return `
-    <button type="button" class="contact-card" ${attr} aria-label="${t(c.nameKey)} — ${c.value}">
+    <button type="button" class="contact-card" ${attr} aria-label="${esc(t(c.nameKey))} — ${esc(c.value)}">
       <div class="contact-icon">${c.icon}</div>
-      <div class="contact-name">${t(c.nameKey)}</div>
-      <div class="contact-value">${c.value}</div>
+      <div class="contact-name">${esc(t(c.nameKey))}</div>
+      <div class="contact-value">${esc(c.value)}</div>
     </button>`;
     }
     return `
-    <a class="contact-card" href="${c.href}" target="_blank" rel="noopener">
+    <a class="contact-card" href="${esc(c.href)}" target="_blank" rel="noopener">
       <div class="contact-icon">${c.icon}</div>
-      <div class="contact-name">${t(c.nameKey)}</div>
-      <div class="contact-value">${c.value}</div>
+      <div class="contact-name">${esc(t(c.nameKey))}</div>
+      <div class="contact-value">${esc(c.value)}</div>
     </a>`;
   }).join('');
   $$('.contact-card', wrap).forEach((el, i) => observeReveal(el, i * 70));

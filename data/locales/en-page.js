@@ -81,6 +81,7 @@ export const EN_PAGE = {
   "hire.errEmail": "Please enter a valid email address.",
   "hire.errVerifying": "Checking mail server…",
   "hire.errNoMx": "This domain does not accept email.",
+  "hire.privacyNote": "The email domain is checked against public DNS (Cloudflare) to catch typos. Nothing else is sent.",
   "hire.errTooShort": "Message must be at least 20 characters and 4 words.",
   "hire.errSend": "Failed to send. Please try again.",
   "hire.errCaptcha": "Please complete the captcha check.",

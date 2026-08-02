@@ -2,7 +2,7 @@
    RENDER TIMELINE
    ============================================================ */
 
-import { $, $$, t } from '../dom.js';
+import { $, $$, t, esc } from '../dom.js';
 import { locale } from '../locale.js';
 import { TIMELINE } from '../../data/portfolio-data.js';
 
@@ -12,18 +12,18 @@ function timelineItem(item) {
   const period = item.period[locale.lang] || item.period.en;
   const title = item.title[locale.lang] || item.title.en;
   const desc = item.desc[locale.lang] || item.desc.en;
-  const badge = item.current ? `<span class="timeline-badge">${t('timeline.current')}</span>` : '';
+  const badge = item.current ? `<span class="timeline-badge">${esc(t('timeline.current'))}</span>` : '';
   return `
     <div class="timeline-item">
       <span class="timeline-dot" aria-hidden="true"></span>
       <div class="timeline-card">
         <div class="timeline-head">
-          <span class="timeline-period">${period}</span>
+          <span class="timeline-period">${esc(period)}</span>
           ${badge}
         </div>
-        <h3 class="timeline-role">${title}</h3>
-        <div class="timeline-company">${item.company}</div>
-        <p class="timeline-desc">${desc}</p>
+        <h3 class="timeline-role">${esc(title)}</h3>
+        <div class="timeline-company">${esc(item.company)}</div>
+        <p class="timeline-desc">${esc(desc)}</p>
       </div>
     </div>`;
 }

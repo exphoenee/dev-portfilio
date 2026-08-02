@@ -2,7 +2,7 @@
    RENDER HERO TERMINAL (data-driven decorative lines)
    ============================================================ */
 
-import { $ } from '../dom.js';
+import { $, esc } from '../dom.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
 import { computeStats } from '../ui/stats.js';
 
@@ -12,7 +12,7 @@ export function renderTerminal() {
   const statsLine = $('#terminal-stats');
   // Keep the decorative `ls` compact: show a data-driven subset, '… +N' hints at the rest.
   // Wrap each name so hyphenated ids ("ba-team") never break mid-word.
-  const folders = PROJECTS.map((p) => `<span class="t-dir">${p.id}</span>`).slice(0, 9);
+  const folders = PROJECTS.map((p) => `<span class="t-dir">${esc(p.id)}</span>`).slice(0, 9);
   if (line1) {
     line1.innerHTML = folders.slice(0, 4).join('&nbsp;&nbsp;');
   }
