@@ -29,3 +29,18 @@ export function renderContact() {
   }).join('');
   $$('.contact-card', wrap).forEach((el, i) => observeReveal(el, i * 70));
 }
+
+/* Language switch: only the card name (and the aria-label built from it)
+   is translated — icon, value and href are language-independent. */
+export function updateContactText() {
+  const wrap = $('#contact-cards');
+  if (!wrap) return;
+  $$('.contact-card', wrap).forEach((card, i) => {
+    const c = CONTACT[i];
+    if (!c) return;
+    $('.contact-name', card).textContent = t(c.nameKey);
+    if (card.tagName === 'BUTTON') {
+      card.setAttribute('aria-label', `${t(c.nameKey)} — ${c.value}`);
+    }
+  });
+}

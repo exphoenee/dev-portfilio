@@ -5,6 +5,7 @@
 import { $, $$, t } from '../dom.js';
 import { locale } from '../locale.js';
 import { TIMELINE } from '../../data/portfolio-data.js';
+
 import { observeReveal } from '../ui/reveal.js';
 
 function timelineItem(item) {
@@ -31,6 +32,21 @@ export function renderTimeline() {
   const list = $('#timeline-list');
   if (!list) return;
   list.innerHTML = TIMELINE.map(timelineItem).join('');
-  // Reveal animation — re-wired on every render so cards also animate on language switch
   $$('.timeline-card', list).forEach((el, i) => observeReveal(el, i % 2 === 0 ? 0 : 120));
+}
+
+/* Language switch: same DOM, new text. The entries keep their order, so
+   index maps card to data. */
+export function updateTimelineText() {
+  const list = $('#timeline-list');
+  if (!list) return;
+  $$('.timeline-card', list).forEach((card, i) => {
+    const item = TIMELINE[i];
+    if (!item) return;
+    $('.timeline-period', card).textContent = item.period[locale.lang] || item.period.en;
+    $('.timeline-role', card).textContent = item.title[locale.lang] || item.title.en;
+    $('.timeline-desc', card).textContent = item.desc[locale.lang] || item.desc.en;
+    const badge = $('.timeline-badge', card);
+    if (badge) badge.textContent = t('timeline.current');
+  });
 }

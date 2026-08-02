@@ -12,7 +12,7 @@ import { initTheme, toggleTheme } from './ui/theme.js';
 import { setupReveal } from './ui/reveal.js';
 import { initStats } from './ui/stats.js';
 
-import { applyTranslations } from './render/translate.js';
+import { renderAll, applyTranslations } from './render/translate.js';
 import { initProjectCards } from './render/projects.js';
 
 import { initEscapeHandling } from './modals/modal.js';
@@ -75,7 +75,7 @@ function initModals() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
-  applyTranslations();
+  renderAll();
 
   initStats();
   setupReveal();

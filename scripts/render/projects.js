@@ -26,6 +26,7 @@ const TECH_ICONS = {
   Vite: 'vite.svg',
   Vitest: 'vitest.svg',
   Jest: 'jest.svg',
+  Mocha: 'mocha.svg',
   Webpack: 'webpack.svg',
   HTML: 'html.svg',
   CSS: 'css.svg',
@@ -34,6 +35,8 @@ const TECH_ICONS = {
   Express: 'express.svg',
   Swagger: 'swagger.svg',
   npm: 'npm.svg',
+  PNPM: 'pnpm.svg',
+  Redux: 'Redux.svg',
   PHP: 'php.svg',
   MySQL: 'mysql.svg',
   'TensorFlow.js': 'Tensorflow.svg'
@@ -45,14 +48,20 @@ const LINK_ICONS = {
   npm: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M1.76 1.76h20.48v20.48H1.76z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 6.24H5.52v11.52H12V9.6h2.88v8.16h2.88V6.24z"/></svg>'
 };
 
+function cardTitle(p) {
+  return (p.nameL10n && p.nameL10n[locale.lang]) || p.name;
+}
+
 function projectCard(p, index) {
   const d = p.desc[locale.lang];
-  const title = (p.nameL10n && p.nameL10n[locale.lang]) || p.name;
+  const title = cardTitle(p);
   const icons = CATEGORY_ICONS[p.category] || '📁';
+  // The label sits in its own span so a language switch can patch the text
+  // without touching the inline SVG next to it.
   const links = Object.entries(p.links).map(([type, url]) => {
     if (!url) return '';
-    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" href="${url}" target="_blank" rel="noopener" aria-label="${title} — ${t('link.' + type)}">
-      ${LINK_ICONS[type] || ''}${t('link.' + type)}
+    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" data-link-type="${type}" href="${url}" target="_blank" rel="noopener" aria-label="${title} — ${t('link.' + type)}">
+      ${LINK_ICONS[type] || ''}<span class="card-link-label">${t('link.' + type)}</span>
     </a>`;
   }).join('');
 
@@ -64,7 +73,7 @@ function projectCard(p, index) {
       <div class="card-media">
         <button type="button" class="card-media-btn" data-img-src="${p.image}" data-img-alt="${title}" aria-label="${title} — ${t('image.zoomAria')}">
           <img src="${smallImg}" alt="${title}" loading="lazy">
-          <span class="card-category">${icons} ${t('filters.' + p.category)}</span>
+          <span class="card-category">${icons} <span class="card-category-label">${t('filters.' + p.category)}</span></span>
           <span class="card-zoom" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
           </span>
@@ -93,6 +102,38 @@ export function renderProjects() {
     : PROJECTS.filter((p) => p.category === state.filter);
 
   grid.innerHTML = filtered.map(projectCard).join('');
+}
+
+/* Language switch: patch the text in place instead of rebuilding 21 cards.
+   Keeps focus, scroll position, the reveal state and the loaded <img> nodes. */
+export function updateProjectsText() {
+  const grid = $('#projects-grid');
+  if (!grid) return;
+  $$('.project-card', grid).forEach((card) => {
+    const p = PROJECTS.find((x) => x.id === card.dataset.id);
+    if (!p) return;
+    const title = cardTitle(p);
+    const activeTab = tabFor(p.id);
+
+    $('.card-title', card).textContent = title;
+    $('.card-category-label', card).textContent = t('filters.' + p.category);
+    $('.card-desc', card).textContent = p.desc[locale.lang][activeTab];
+
+    $$('.card-tab', card).forEach((tab) => {
+      tab.textContent = t('tab.' + tab.dataset.tab);
+    });
+
+    $$('.card-link', card).forEach((link) => {
+      const type = link.dataset.linkType;
+      $('.card-link-label', link).textContent = t('link.' + type);
+      link.setAttribute('aria-label', `${title} — ${t('link.' + type)}`);
+    });
+
+    const media = $('.card-media-btn', card);
+    media.dataset.imgAlt = title;
+    media.setAttribute('aria-label', `${title} — ${t('image.zoomAria')}`);
+    $('img', media).alt = title;
+  });
 }
 
 export function applyFilter(filter) {

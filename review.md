@@ -161,7 +161,10 @@ A `#0b0d1a` / `#f6f7fb` hex-pár **négy** helyen szerepel (a két `<meta name="
 
 ### 🟡 Közepes
 
-#### C1 — Teljes DOM-újraépítés minden nyelvváltásnál
+#### C1 — Teljes DOM-újraépítés minden nyelvváltásnál ✅ **elvégezve**
+
+> **Státusz:** a nyelvváltás már nem épít újra semmit — `renderAll()` (első festés) és `applyTranslations()` (nyelvváltás) szétvált; utóbbi a helyükön cseréli a szövegeket (`updateProjectsText` / `updateTimelineText` / `updateSkillsText` / `updateContactText`). Mérve: **5,98 ms → 0,68 ms** (8,8×). A kártya-DOM-csomópontok azonosak maradnak, így a fókusz, a scroll-pozíció, a reveal-állapot és a betöltött `<img>`-ek is.
+
 
 `applyTranslations()` ([main.js:890-894](scripts/main.js#L890-L894)) négy szekció teljes `innerHTML`-jét cseréli. Következmény: a fókusz elveszik, a kártyák újra animálódnak, 21 `<img>` újra a DOM-ba kerül (a böngésző cache-eli, de a layout újraszámol). A `state.tabs` túléli, mert a render onnan olvas — ez jól megoldott. Ekkora oldalon elviselhető, de egy célzott "csak a szövegcsomópontokat cseréld" megközelítés olcsóbb és fókuszbarát lenne.
 
