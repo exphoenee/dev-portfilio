@@ -1,5 +1,5 @@
 /* ============================================================
-   MODAL PRIMITIVES — open/close, backdrop + close-button wiring,
+   MODAL PRIMITIVES, open/close, backdrop + close-button wiring,
    a single Escape handler, and the focus contract every dialog
    with aria-modal="true" owes the keyboard:
 
@@ -27,7 +27,7 @@ const FOCUSABLE = [
   '[tabindex]:not([tabindex="-1"])'
 ].join(',');
 
-/* Visible only — the booking wizard keeps its inactive screens in the DOM
+/* Visible only, the booking wizard keeps its inactive screens in the DOM
    behind [hidden], and those must stay out of the tab order. */
 function focusable(dialog) {
   return $$(FOCUSABLE, dialog).filter((el) => el.offsetParent !== null || el === document.activeElement);

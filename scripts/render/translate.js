@@ -3,14 +3,14 @@
 
    Two distinct jobs that used to be one function:
 
-   renderAll()        — first paint: build every data-driven section.
-   applyTranslations() — language switch: swap the static labels and
+   renderAll()       , first paint: build every data-driven section.
+   applyTranslations(), language switch: swap the static labels and
                          patch the section text in place.
 
    The switch deliberately does NOT rebuild the sections. Replacing the
    innerHTML of four containers threw away 21 loaded <img> nodes, reset
    the reveal state (every card faded in again), moved focus to <body>
-   if it sat inside a card, and forced a full layout pass — all to
+   if it sat inside a card, and forced a full layout pass, all to
    change text the browser could keep in place.
    ============================================================ */
 

@@ -1,5 +1,5 @@
 /* ============================================================
-   HIRE MODAL — email form (ported from the CV repo's initHireModal)
+   HIRE MODAL, email form (ported from the CV repo's initHireModal)
    Formspree POST + Turnstile + MX-domain check + 24h cooldown
    ============================================================ */
 

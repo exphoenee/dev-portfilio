@@ -1,5 +1,5 @@
 /* ============================================================
-   SCROLL REVEAL — one shared observer, unobserves after firing.
+   SCROLL REVEAL, one shared observer, unobserves after firing.
    ============================================================ */
 
 import { $$ } from '../dom.js';

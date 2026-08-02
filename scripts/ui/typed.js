@@ -1,5 +1,5 @@
 /* ============================================================
-   TYPED EFFECT — cycles the hero roles from the active locale.
+   TYPED EFFECT, cycles the hero roles from the active locale.
    ============================================================ */
 
 import { $, t } from '../dom.js';

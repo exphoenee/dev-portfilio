@@ -1,5 +1,5 @@
 /* ============================================================
-   Developer Portfolio — Viktor Bozzay
+   Developer Portfolio, Viktor Bozzay
    Light / Dark themes · fully responsive · no frameworks
    ============================================================ */
 
@@ -109,8 +109,8 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(40px, -30px) scale(1.06); }
-  66% { transform: translate(-30px, 24px) scale(0.96); }
+  33% { transform: translate(50px, -40px) scale(1.26); }
+  66% { transform: translate(-90px, 64px) scale(0.76); }
 }
 
 /* ============================================================
@@ -172,6 +172,13 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { transform: scaleX(1); }
 
+/* Current section, set by the scrollspy. The underline is the same one the
+   hover state uses, just held open, so the two never fight over the element.
+   Weight stays put on purpose: bolding the active link would re-measure the
+   text and make the whole menu shift sideways as you scroll. */
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { transform: scaleX(1); }
+
 .nav-controls { display: flex; align-items: center; gap: 14px; }
 
 /* Language switcher */
@@ -186,7 +193,7 @@ a { color: inherit; text-decoration: none; }
 .lang-btn {
   border: none;
   background: transparent;
-  color: var(--text); /* buttons do not inherit color — without this, UA default (dark) text is invisible on dark theme */
+  color: var(--text); /* buttons do not inherit color, without this, UA default (dark) text is invisible on dark theme */
   font-size: 0.95rem;
   line-height: 1;
   padding: 6px 8px;
@@ -461,7 +468,7 @@ a { color: inherit; text-decoration: none; }
 .t-prompt { color: #22d3ee; font-weight: 600; }
 .t-cmd { color: #e5e7ff; }
 .t-out { color: #9aa1c0; }
-/* Folder names stay on one line — no break after the hyphen in e.g. "ba-team" */
+/* Folder names stay on one line, no break after the hyphen in e.g. "ba-team" */
 .t-dir { white-space: nowrap; }
 .t-out.success { color: #34d399; }
 .t-cursor { color: #22d3ee; animation: blink 1s step-end infinite; }
@@ -650,6 +657,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent);
   box-shadow: var(--shadow-sm);
 }
+/* Inset, so the ring stays inside the tablist pill instead of overlapping it. */
+.card-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
 .card-desc {
   color: var(--text-muted);
@@ -661,6 +670,9 @@ a { color: inherit; text-decoration: none; }
   scrollbar-width: thin;
   scrollbar-color: rgba(99, 102, 241, 0.45) transparent;
 }
+/* The panel is focusable (WAI Tabs: a panel with no focusable content takes
+   tabindex="0"), which also gives the keyboard a way to scroll it. */
+.card-desc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .card-desc::-webkit-scrollbar { width: 6px; }
 .card-desc::-webkit-scrollbar-track { background: transparent; }
 .card-desc::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.45); border-radius: 6px; }

@@ -1,5 +1,5 @@
 /* ============================================================
-   Developer Portfolio — Viktor Bozzay
+   Developer Portfolio, Viktor Bozzay
    Vanilla JS · no frameworks · ES Modules
    Entry point: wiring only. Everything it wires lives in
    ui/ (chrome), render/ (data-driven sections) and modals/.
@@ -11,6 +11,7 @@ import { locale } from './locale.js';
 import { initTheme, toggleTheme } from './ui/theme.js';
 import { setupReveal } from './ui/reveal.js';
 import { initStats } from './ui/stats.js';
+import { initScrollSpy } from './ui/scrollspy.js';
 
 import { renderAll, applyTranslations } from './render/translate.js';
 import { initProjectCards } from './render/projects.js';
@@ -85,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLangSwitcher();
   initProjectCards();
   initNavbar();
+  initScrollSpy();
   initBackToTop();
   initModals();
 });

@@ -1,5 +1,5 @@
 /* ============================================================
-   IMAGE MODAL — lightbox for the large/ version of a project image.
+   IMAGE MODAL, lightbox for the large/ version of a project image.
    ============================================================ */
 
 import { $ } from '../dom.js';

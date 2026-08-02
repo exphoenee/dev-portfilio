@@ -1,5 +1,5 @@
 /* ============================================================
-   Modals — hire (email form), booking wizard and image lightbox.
+   Modals, hire (email form), booking wizard and image lightbox.
    Split out of portfolio.css: ~360 lines that only matter once a
    dialog is opened. Loaded from index.html AFTER portfolio.css,
    because it relies on the custom properties defined there.

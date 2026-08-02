@@ -1,5 +1,5 @@
 # ============================================================
-# .gitignore — Developer Portfolio (static site)
+# .gitignore, Developer Portfolio (static site)
 # ============================================================
 
 # ---- Operating system ----
@@ -19,7 +19,7 @@ $RECYCLE.BIN/
 
 # ---- Node / npm (only if a build step is ever added) ----
 # Note: lock files (package-lock.json / yarn.lock / pnpm-lock.yaml)
-# are intentionally NOT ignored — commit them for reproducible installs.
+# are intentionally NOT ignored, commit them for reproducible installs.
 node_modules/
 npm-debug.log*
 yarn-error.log*
@@ -40,7 +40,7 @@ tmp/
 # ---- Original large uploads ----
 # The live site only ever ships the optimized versions; the
 # full-resolution originals stay on disk but out of git. They were
-# ~99 MB across the backup folders — every byte of that was also
+# ~99 MB across the backup folders, every byte of that was also
 # re-uploaded to the Pages artifact on each deploy.
 # The trailing /**/ form matters: a plain `backup/` prefix would miss
 # assets/images/projects/{large,og}/backup/.

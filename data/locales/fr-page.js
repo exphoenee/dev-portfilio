@@ -1,4 +1,4 @@
-/* Locale: fr — page labels (UI strings), mirrors CV locales/*-page.js */
+/* Locale: fr, page labels (UI strings), mirrors CV locales/*-page.js */
 export const FR_PAGE = {
   labels: {
   "logo": "&lt;VB/&gt;",
@@ -9,7 +9,7 @@ export const FR_PAGE = {
   "nav.contact": "Contact",
   "nav.cv": "CV",
   "hero.badge": "Disponible pour de nouvelles opportunités",
-  "hero.location": "📍 Pécs, Hongrie · HU — langue maternelle · DE — B2 · EN — B2",
+  "hero.location": "📍 Pécs, Hongrie · HU, langue maternelle · DE, B2 · EN, B2",
   "hero.story": "Frontend Tech Lead avec plus de 5 ans d’expérience frontend et full-stack, spécialisé en architecture frontend et en modernisation de grands systèmes legacy avec TypeScript, Svelte, React et Node.js. J’ai dirigé des réécritures et des migrations de systèmes d’entreprise vers des stacks modernes, introduit des flux de travail assistés par IA et des pipelines CI avec portes de qualité automatisées, et j’encadre des ingénieurs vers une refactorisation fondée sur les données et des fondations frontend durables.",
   "hero.greeting": "Salut, je suis",
   "hero.greetingEnd": "",
@@ -19,7 +19,7 @@ export const FR_PAGE = {
     "Créateur de bibliothèques et de jeux",
     "Passionné d’open source"
   ],
-  "hero.desc": "Je conçois et construis des expériences web interactives — bibliothèques pour développeurs, jeux navigateur, outils et sites de documentation, le tout avec un code propre et moderne.",
+  "hero.desc": "Je conçois et construis des expériences web interactives, bibliothèques pour développeurs, jeux navigateur, outils et sites de documentation, le tout avec un code propre et moderne.",
   "hero.ctaProjects": "Voir les projets",
   "hero.ctaContact": "Contactez-moi",
   "stats.projects": "Projets",
@@ -28,7 +28,7 @@ export const FR_PAGE = {
   "stats.demos": "Démos live",
   "projects.kicker": "Travaux sélectionnés",
   "projects.title": "Projets",
-  "projects.subtitle": "Solutions enterprise, bibliothèques, jeux, outils et APIs — cliquez sur les onglets pour découvrir ce que fait chacun et comment il est construit.",
+  "projects.subtitle": "Solutions enterprise, bibliothèques, jeux, outils et APIs, cliquez sur les onglets pour découvrir ce que fait chacun et comment il est construit.",
   "filters.all": "Tout",
   "filters.library": "Bibliothèques",
   "filters.game": "Jeux",
@@ -59,7 +59,7 @@ export const FR_PAGE = {
   "contact.linkedin": "LinkedIn",
   "contact.website": "CV",
   "footer.rights": "Tous droits réservés.",
-  "footer.built": "Conçu avec HTML, CSS & JavaScript — sans frameworks, rien que le web.",
+  "footer.built": "Conçu avec HTML, CSS & JavaScript, sans frameworks, rien que le web.",
   "timeline.kicker": "Parcours",
   "timeline.title": "Mon parcours",
   "timeline.subtitle": "De l’ingénierie mécanique à la direction d’équipes frontend.",
@@ -94,9 +94,9 @@ export const FR_PAGE = {
   "contact.booking": "Rendez-vous",
   "contact.bookingValue": "Choisir un créneau",
   "book.title": "Prendre rendez-vous",
-  "book.step1": "1 / 3 — Choisissez un jour",
-  "book.step2": "2 / 3 — Choisissez une heure",
-  "book.step3": "3 / 3 — Vos coordonnées",
+  "book.step1": "1 / 3, Choisissez un jour",
+  "book.step2": "2 / 3, Choisissez une heure",
+  "book.step3": "3 / 3, Vos coordonnées",
   "book.back": "Retour",
   "book.slot": "créneau libre",
   "book.slots": "créneaux libres",
@@ -126,12 +126,12 @@ export const FR_PAGE = {
   "book.errSlotUnavailable": "Ce créneau n'est plus disponible.",
   "book.errCaptcha": "Veuillez terminer la vérification captcha.",
   "name": "Viktor Bozzay",
-  "terminal.whoami": "Viktor Bozzay — Frontend Tech Lead",
-  "meta.title": "Viktor Bozzay — Frontend Tech Lead & Portfolio de développeur",
-  "meta.ogTitle": "Viktor Bozzay — Portfolio de développeur",
-  "meta.description": "Portfolio de Viktor Bozzay — Frontend Tech Lead. Bibliothèques, jeux, outils et API construits avec JavaScript, TypeScript et la plateforme web.",
+  "terminal.whoami": "Viktor Bozzay, Frontend Tech Lead",
+  "meta.title": "Viktor Bozzay, Frontend Tech Lead & Portfolio de développeur",
+  "meta.ogTitle": "Viktor Bozzay, Portfolio de développeur",
+  "meta.description": "Portfolio de Viktor Bozzay, Frontend Tech Lead. Bibliothèques, jeux, outils et API construits avec JavaScript, TypeScript et la plateforme web.",
   "meta.ogDescription": "Bibliothèques, jeux, outils et API construits avec un code propre et moderne.",
-  "meta.ogImageAlt": "Viktor Bozzay — Frontend Tech Lead",
-  "meta.siteName": "Viktor Bozzay — Portfolio de développeur"
+  "meta.ogImageAlt": "Viktor Bozzay, Frontend Tech Lead",
+  "meta.siteName": "Viktor Bozzay, Portfolio de développeur"
 }
 };

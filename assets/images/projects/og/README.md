@@ -1,6 +1,6 @@
 # OG Project Images
 
-Open Graph–sized images, exactly **1200 × 630 px (40:21)** — the standard og:image size. Scaled to 1200 px width (LANCZOS, JPEG quality 92) and cropped equally from the top and bottom to reach the exact ratio.
+Open Graph–sized images, exactly **1200 × 630 px (40:21)**, the standard og:image size. Scaled to 1200 px width (LANCZOS, JPEG quality 92) and cropped equally from the top and bottom to reach the exact ratio.
 
 | Image | Width | Height | Aspect ratio |
 |-------|------:|-------:|:-------------|

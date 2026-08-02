@@ -13,7 +13,14 @@
       "Bash(echo \"exit: $?\")",
       "Bash(node \"C:/Users/bozza/AppData/Local/Temp/claude/e--Projects-dev-portfilio/a4f32b49-2b12-456f-9c15-99a5d83d01d4/scratchpad/rep.mjs\")",
       "Bash(node -e ' *)",
-      "Bash(git count-objects *)"
+      "Bash(git count-objects *)",
+      "Bash(npx --yes serve . -l 4173)",
+      "Bash(curl -s -o /dev/null -w \"index.html %{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(curl -s -o /dev/null -w \"projects.js %{http_code}\\\\n\" http://localhost:4173/scripts/render/projects.js)",
+      "Bash(curl -s -o /dev/null -w \"portfolio.css %{http_code}\\\\n\" http://localhost:4173/styles/portfolio.css)",
+      "Bash(curl -s -o /dev/null -w \"index %{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(node tabcheck.mjs)",
+      "Bash(node spycheck.mjs)"
     ]
   }
 }

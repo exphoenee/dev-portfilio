@@ -19,7 +19,7 @@ export function renderSkills() {
   $$('.skill-group', wrap).forEach((el, i) => observeReveal(el, i % 2 === 0 ? 0 : 60));
 }
 
-/* Only the group headings are translated — the chip labels are product
+/* Only the group headings are translated, the chip labels are product
    names, identical in every language. */
 export function updateSkillsText() {
   const wrap = $('#skills-groups');

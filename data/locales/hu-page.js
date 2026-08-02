@@ -1,4 +1,4 @@
-/* Locale: hu — page labels (UI strings), mirrors CV locales/*-page.js */
+/* Locale: hu, page labels (UI strings), mirrors CV locales/*-page.js */
 export const HU_PAGE = {
   labels: {
   "logo": "&lt;VB/&gt;",
@@ -9,7 +9,7 @@ export const HU_PAGE = {
   "nav.contact": "Kapcsolat",
   "nav.cv": "CV",
   "hero.badge": "Elérhető új lehetőségekre",
-  "hero.location": "📍 Pécs, Magyarország · HU — anyanyelv · DE — B2 · EN — B2",
+  "hero.location": "📍 Pécs, Magyarország · HU, anyanyelv · DE, B2 · EN, B2",
   "hero.story": "Frontend Tech Lead, 5+ év frontend és full-stack tapasztalattal, frontend-architektúrára és nagyméretű legacy-rendszerek modernizálására specializálódva TypeScript, Svelte, React és Node.js technológiákkal. Vállalati rendszerek újraírását és modern stackekre migrálását vezettem, AI-támogatott munkafolyamatokat és automatikus minőségkapukkal ellátott CI-pipeline-okat vezettem be, és mérnököket mentorálok a bizonyítékvezérelt refaktorálás és a fenntartható frontend-alapok felé.",
   "hero.greeting": "Szia, én",
   "hero.greetingEnd": " vagyok",
@@ -19,7 +19,7 @@ export const HU_PAGE = {
     "Könyvtár- és játékfejlesztő",
     "Open Source rajongó"
   ],
-  "hero.desc": "Interaktív webes élményeket tervezek és építek — fejlesztői könyvtárakat, böngészős játékokat, eszközöket és dokumentációs oldalakat, mindet tiszta, modern kóddal.",
+  "hero.desc": "Interaktív webes élményeket tervezek és építek, fejlesztői könyvtárakat, böngészős játékokat, eszközöket és dokumentációs oldalakat, mindet tiszta, modern kóddal.",
   "hero.ctaProjects": "Projektek megtekintése",
   "hero.ctaContact": "Írj nekem",
   "stats.projects": "Projekt",
@@ -28,7 +28,7 @@ export const HU_PAGE = {
   "stats.demos": "Élő demo",
   "projects.kicker": "Válogatott munkák",
   "projects.title": "Projektek",
-  "projects.subtitle": "Enterprise megoldások, könyvtárak, játékok, eszközök és API-k — kattints a fülekre, hogy megtudd, melyik mit csinál és hogyan épül.",
+  "projects.subtitle": "Enterprise megoldások, könyvtárak, játékok, eszközök és API-k, kattints a fülekre, hogy megtudd, melyik mit csinál és hogyan épül.",
   "filters.all": "Mind",
   "filters.library": "Könyvtárak",
   "filters.game": "Játékok",
@@ -59,7 +59,7 @@ export const HU_PAGE = {
   "contact.linkedin": "LinkedIn",
   "contact.website": "Önéletrajz",
   "footer.rights": "Minden jog fenntartva.",
-  "footer.built": "HTML-lel, CSS-sel és JavaScripttel készült — keretrendszerek nélkül, csak a web.",
+  "footer.built": "HTML-lel, CSS-sel és JavaScripttel készült, keretrendszerek nélkül, csak a web.",
   "timeline.kicker": "Karrierút",
   "timeline.title": "Az utam",
   "timeline.subtitle": "A gépészettől a frontend-csapatok vezetéséig.",
@@ -94,9 +94,9 @@ export const HU_PAGE = {
   "contact.booking": "Időpontfoglalás",
   "contact.bookingValue": "Foglalj időpontot",
   "book.title": "Időpontfoglalás",
-  "book.step1": "1 / 3 — Válassz napot",
-  "book.step2": "2 / 3 — Válassz időpontot",
-  "book.step3": "3 / 3 — Adataid",
+  "book.step1": "1 / 3, Válassz napot",
+  "book.step2": "2 / 3, Válassz időpontot",
+  "book.step3": "3 / 3, Adataid",
   "book.back": "Vissza",
   "book.slot": "szabad időpont",
   "book.slots": "szabad időpont",
@@ -126,12 +126,12 @@ export const HU_PAGE = {
   "book.errSlotUnavailable": "Ez az időpont már nem elérhető.",
   "book.errCaptcha": "Kérlek fejezd be a captcha-ellenőrzést.",
   "name": "Bozzay Viktor",
-  "terminal.whoami": "Bozzay Viktor — Frontend Tech Lead",
-  "meta.title": "Bozzay Viktor — Frontend Tech Lead & Fejlesztői Portfólió",
-  "meta.ogTitle": "Bozzay Viktor — Fejlesztői Portfólió",
-  "meta.description": "Bozzay Viktor portfóliója — Frontend Tech Lead. Könyvtárak, játékok, eszközök és API-k JavaScripttel, TypeScripttel és a webes platformmal építve.",
-  "meta.ogDescription": "Könyvtárak, játékok, eszközök és API-k — tiszta, modern kóddal építve.",
-  "meta.ogImageAlt": "Bozzay Viktor — Frontend Tech Lead",
-  "meta.siteName": "Bozzay Viktor — Fejlesztői Portfólió"
+  "terminal.whoami": "Bozzay Viktor, Frontend Tech Lead",
+  "meta.title": "Bozzay Viktor, Frontend Tech Lead & Fejlesztői Portfólió",
+  "meta.ogTitle": "Bozzay Viktor, Fejlesztői Portfólió",
+  "meta.description": "Bozzay Viktor portfóliója, Frontend Tech Lead. Könyvtárak, játékok, eszközök és API-k JavaScripttel, TypeScripttel és a webes platformmal építve.",
+  "meta.ogDescription": "Könyvtárak, játékok, eszközök és API-k, tiszta, modern kóddal építve.",
+  "meta.ogImageAlt": "Bozzay Viktor, Frontend Tech Lead",
+  "meta.siteName": "Bozzay Viktor, Fejlesztői Portfólió"
 }
 };

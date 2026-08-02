@@ -1,5 +1,5 @@
 /* ============================================================
-   LOCALE MANAGER — mirrors the CV project's scripts/locale.js
+   LOCALE MANAGER, mirrors the CV project's scripts/locale.js
    Per-language UI labels live in data/locales/*-page.js; this module
    detects the language, persists it and exposes t().
    ============================================================ */

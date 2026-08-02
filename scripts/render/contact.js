@@ -18,9 +18,9 @@ export function renderContact() {
     const value = cardValue(c);
     if (c.openHire || c.openBooking) {
       const attr = c.openHire ? 'data-open-hire' : 'data-open-booking';
-      // c.icon is deliberate markup (an <img> or inline SVG) — it stays raw.
+      // c.icon is deliberate markup (an <img> or inline SVG), it stays raw.
       return `
-    <button type="button" class="contact-card" ${attr} aria-label="${esc(t(c.nameKey))} — ${esc(value)}">
+    <button type="button" class="contact-card" ${attr} aria-label="${esc(t(c.nameKey))}, ${esc(value)}">
       <div class="contact-icon">${c.icon}</div>
       <div class="contact-name">${esc(t(c.nameKey))}</div>
       <div class="contact-value">${esc(value)}</div>
@@ -49,7 +49,7 @@ export function updateContactText() {
     $('.contact-name', card).textContent = t(c.nameKey);
     if (c.valueKey) $('.contact-value', card).textContent = value;
     if (card.tagName === 'BUTTON') {
-      card.setAttribute('aria-label', `${t(c.nameKey)} — ${value}`);
+      card.setAttribute('aria-label', `${t(c.nameKey)}, ${value}`);
     }
   });
 }

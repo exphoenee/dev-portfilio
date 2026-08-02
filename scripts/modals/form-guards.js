@@ -1,5 +1,5 @@
 /* ============================================================
-   FORM GUARDS — the anti-spam / validation bits both forms share:
+   FORM GUARDS, the anti-spam / validation bits both forms share:
    email shape, MX-record domain check and the send cooldown.
    ============================================================ */
 

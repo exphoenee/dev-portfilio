@@ -1,11 +1,11 @@
 /* ============================================================
-   THEME — persistence and browser-chrome colour sync.
+   THEME, persistence and browser-chrome colour sync.
 
    The theme is resolved once, before first paint, by the inline
    bootstrap in index.html (that is what prevents the flash).
    This module does not repeat that decision: it reads the result.
 
-   Colours are not duplicated here either — the browser chrome
+   Colours are not duplicated here either, the browser chrome
    colour is simply the page background, so it is read from the
    --bg custom property of the active theme.
    ============================================================ */

@@ -1,5 +1,5 @@
 /* ============================================================
-   RENDER PROJECTS — cards, category filter and card interactions.
+   RENDER PROJECTS, cards, category filter and card interactions.
    The icon maps below are view-only decoration for the cards.
    ============================================================ */
 
@@ -17,7 +17,7 @@ const CATEGORY_ICONS = {
   website: '🌐'
 };
 
-/* Tech icon lookup — maps a label shown on cards to its file in assets/images/tech/ */
+/* Tech icon lookup, maps a label shown on cards to its file in assets/images/tech/ */
 const TECH_ICONS = {
   React: 'react.svg',
   TypeScript: 'typescript.svg',
@@ -68,7 +68,7 @@ function projectCard(p, index) {
   // without touching the inline SVG next to it.
   const links = Object.entries(p.links).map(([type, url]) => {
     if (!url) return '';
-    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" data-link-type="${type}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${esc(title)} — ${esc(t('link.' + type))}">
+    return `<a class="card-link ${type === 'demo' ? 'primary' : ''}" data-link-type="${type}" href="${esc(url)}" target="_blank" rel="noopener" aria-label="${esc(title)}, ${esc(t('link.' + type))}">
       ${LINK_ICONS[type] || ''}<span class="card-link-label">${esc(t('link.' + type))}</span>
     </a>`;
   }).join('');
@@ -79,7 +79,7 @@ function projectCard(p, index) {
   return `
     <article class="project-card" data-category="${p.category}" data-id="${p.id}" style="animation-delay:${index * 60}ms">
       <div class="card-media">
-        <button type="button" class="card-media-btn" data-img-src="${esc(p.image)}" data-img-alt="${esc(title)}" aria-label="${esc(title)} — ${esc(t('image.zoomAria'))}">
+        <button type="button" class="card-media-btn" data-img-src="${esc(p.image)}" data-img-alt="${esc(title)}" aria-label="${esc(title)}, ${esc(t('image.zoomAria'))}">
           <img src="${esc(smallImg)}" alt="${esc(title)}" loading="lazy">
           <span class="card-category">${icons} <span class="card-category-label">${esc(t('filters.' + p.category))}</span></span>
           <span class="card-zoom" aria-hidden="true">
@@ -89,13 +89,13 @@ function projectCard(p, index) {
       </div>
       <div class="card-body">
         <div class="card-head">
-          <h3 class="card-title">${esc(title)}</h3>
+          <h3 class="card-title" id="title-${p.id}">${esc(title)}</h3>
         </div>
-        <div class="card-tabs" role="tablist">
-          <button class="card-tab ${activeTab === 'functional' ? 'active' : ''}" data-tab="functional" role="tab" id="tab-func-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'functional'}">${esc(t('tab.functional'))}</button>
-          <button class="card-tab ${activeTab === 'technical' ? 'active' : ''}" data-tab="technical" role="tab" id="tab-tech-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'technical'}">${esc(t('tab.technical'))}</button>
+        <div class="card-tabs" role="tablist" aria-labelledby="title-${p.id}">
+          <button class="card-tab ${activeTab === 'functional' ? 'active' : ''}" data-tab="functional" type="button" role="tab" id="tab-functional-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'functional'}" tabindex="${activeTab === 'functional' ? 0 : -1}">${esc(t('tab.functional'))}</button>
+          <button class="card-tab ${activeTab === 'technical' ? 'active' : ''}" data-tab="technical" type="button" role="tab" id="tab-technical-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'technical'}" tabindex="${activeTab === 'technical' ? 0 : -1}">${esc(t('tab.technical'))}</button>
         </div>
-        <p class="card-desc" id="desc-${p.id}" role="tabpanel">${esc(d[activeTab])}</p>
+        <p class="card-desc" id="desc-${p.id}" role="tabpanel" aria-labelledby="tab-${activeTab}-${p.id}" tabindex="0">${esc(d[activeTab])}</p>
         <div class="card-tech">${p.tech.map((x) => `<span class="tech-tag">${TECH_ICONS[x] ? `<img src="assets/images/tech/${TECH_ICONS[x]}" alt="" loading="lazy">` : ''}${esc(x)}</span>`).join('')}</div>
         <div class="card-links">${links}</div>
       </div>
@@ -134,12 +134,12 @@ export function updateProjectsText() {
     $$('.card-link', card).forEach((link) => {
       const type = link.dataset.linkType;
       $('.card-link-label', link).textContent = t('link.' + type);
-      link.setAttribute('aria-label', `${title} — ${t('link.' + type)}`);
+      link.setAttribute('aria-label', `${title}, ${t('link.' + type)}`);
     });
 
     const media = $('.card-media-btn', card);
     media.dataset.imgAlt = title;
-    media.setAttribute('aria-label', `${title} — ${t('image.zoomAria')}`);
+    media.setAttribute('aria-label', `${title}, ${t('image.zoomAria')}`);
     $('img', media).alt = title;
   });
 }
@@ -154,6 +154,30 @@ export function applyFilter(filter) {
   renderProjects();
 }
 
+/* Select a tab within one card and swap the panel text. Shared by the
+   pointer and the keyboard path so both keep the ARIA state in sync. */
+function selectTab(tab) {
+  const card = tab.closest('.project-card');
+  const project = PROJECTS.find((p) => p.id === card.dataset.id);
+  if (!project) return;
+  state.tabs[project.id] = tab.dataset.tab;
+  $$('.card-tab', card).forEach((b) => {
+    const active = b === tab;
+    b.classList.toggle('active', active);
+    b.setAttribute('aria-selected', active);
+    // Roving tabindex: only the selected tab is in the page tab order, so a
+    // keyboard user passes 21 cards with 21 stops instead of 42, and moves
+    // between the two tabs with the arrow keys.
+    b.tabIndex = active ? 0 : -1;
+  });
+  const desc = $('.card-desc', card);
+  desc.setAttribute('aria-labelledby', tab.id);
+  desc.textContent = project.desc[locale.lang][tab.dataset.tab];
+  desc.classList.remove('fade-in');
+  void desc.offsetWidth; // restart animation
+  desc.classList.add('fade-in');
+}
+
 /* Card tabs + image lightbox, wired once via event delegation so
    re-rendered cards (filter, language switch) keep working. */
 export function initProjectCards() {
@@ -166,19 +190,26 @@ export function initProjectCards() {
       return;
     }
     const tab = e.target.closest('.card-tab');
+    if (tab) selectTab(tab);
+  });
+
+  /* WAI Tabs pattern: arrows wrap around, Home/End jump to the ends.
+     Automatic activation (focus selects), the panel is a single
+     paragraph already in the DOM, so there is nothing to defer. */
+  grid.addEventListener('keydown', (e) => {
+    const tab = e.target.closest('.card-tab');
     if (!tab) return;
-    const card = tab.closest('.project-card');
-    const project = PROJECTS.find((p) => p.id === card.dataset.id);
-    state.tabs[project.id] = tab.dataset.tab;
-    $$('.card-tab', card).forEach((b) => {
-      b.classList.toggle('active', b === tab);
-      b.setAttribute('aria-selected', b === tab);
-    });
-    const desc = $('.card-desc', card);
-    desc.textContent = project.desc[locale.lang][tab.dataset.tab];
-    desc.classList.remove('fade-in');
-    void desc.offsetWidth; // restart animation
-    desc.classList.add('fade-in');
+    const tabs = $$('.card-tab', tab.closest('.card-tabs'));
+    const i = tabs.indexOf(tab);
+    let next;
+    if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+    else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+    else if (e.key === 'Home') next = tabs[0];
+    else if (e.key === 'End') next = tabs[tabs.length - 1];
+    else return;
+    e.preventDefault();
+    next.focus();
+    selectTab(next);
   });
 
   $$('.filter-chip').forEach((chip) => {

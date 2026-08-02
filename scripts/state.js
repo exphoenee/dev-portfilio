@@ -1,5 +1,5 @@
 /* ============================================================
-   VIEW STATE — the little mutable state the render modules share.
+   VIEW STATE, the little mutable state the render modules share.
    The active language is NOT here: `locale` owns it (it detects,
    persists and falls back), so the render modules read locale.lang.
    ============================================================ */

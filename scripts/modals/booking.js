@@ -1,5 +1,5 @@
 /* ============================================================
-   BOOKING MODAL — appointment scheduling (ported from the CV repo)
+   BOOKING MODAL, appointment scheduling (ported from the CV repo)
    Google Apps Script backend + Turnstile + 3-step wizard.
    The GAS verifies the Turnstile token and rate-limits server-side;
    the localStorage cooldown below is convenience, not a control.
@@ -32,7 +32,7 @@ const ERROR_KEYS = {
   BOOKING_FAILED: 'book.failed',
 };
 
-/* Every screen inside the dialog — showing one hides the rest. */
+/* Every screen inside the dialog, showing one hides the rest. */
 const SCREENS = [
   'bk-loading',
   'bk-error',
@@ -124,7 +124,7 @@ function renderDates() {
     btn.setAttribute('role', 'listitem');
     const n = slots.length;
     const slotWord = t(n === 1 ? 'book.slot' : 'book.slots');
-    btn.setAttribute('aria-label', formatDay(date) + ', ' + formatDate(date) + ' — ' + n + ' ' + slotWord);
+    btn.setAttribute('aria-label', formatDay(date) + ', ' + formatDate(date) + ', ' + n + ' ' + slotWord);
     btn.innerHTML =
       '<span class="bk-date-day">' + formatDay(date) + '</span>' +
       '<span class="bk-date-date">' + formatDate(date) + '</span>' +

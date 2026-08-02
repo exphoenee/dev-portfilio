@@ -1,5 +1,5 @@
 /* ============================================================
-   STATS — every number is computed from the data, never hardcoded.
+   STATS, every number is computed from the data, never hardcoded.
    Consumed by the Projects section counters and the hero terminal.
    ============================================================ */
 

@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-i18n="meta.title">Viktor Bozzay — Frontend Tech Lead & Developer Portfolio</title>
-  <meta name="description" data-i18n="meta.description" content="Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.">
+  <title data-i18n="meta.title">Viktor Bozzay, Frontend Tech Lead & Developer Portfolio</title>
+  <meta name="description" data-i18n="meta.description" content="Portfolio of Viktor Bozzay, Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.">
   <link rel="canonical" href="https://exphoenee.github.io/dev-portfilio/">
 
-  <!-- ===== Per-language URLs (?lang=) — scripts/locale.js reads and writes this param ===== -->
+  <!-- ===== Per-language URLs (?lang=), scripts/locale.js reads and writes this param ===== -->
   <link rel="alternate" hreflang="en" href="https://exphoenee.github.io/dev-portfilio/?lang=en">
   <link rel="alternate" hreflang="de" href="https://exphoenee.github.io/dev-portfilio/?lang=de">
   <link rel="alternate" hreflang="hu" href="https://exphoenee.github.io/dev-portfilio/?lang=hu">
@@ -17,15 +17,15 @@
   <link rel="alternate" hreflang="x-default" href="https://exphoenee.github.io/dev-portfilio/">
 
   <!-- ===== Open Graph (Facebook, LinkedIn, WhatsApp…) ===== -->
-  <meta property="og:title" data-i18n="meta.ogTitle" content="Viktor Bozzay — Developer Portfolio">
+  <meta property="og:title" data-i18n="meta.ogTitle" content="Viktor Bozzay, Developer Portfolio">
   <meta property="og:description" data-i18n="meta.ogDescription" content="Libraries, games, tools and APIs built with clean, modern code.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://exphoenee.github.io/dev-portfilio/">
-  <meta property="og:site_name" data-i18n="meta.siteName" content="Viktor Bozzay — Developer Portfolio">
+  <meta property="og:site_name" data-i18n="meta.siteName" content="Viktor Bozzay, Developer Portfolio">
   <meta property="og:image" content="https://exphoenee.github.io/dev-portfilio/assets/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay — Frontend Tech Lead">
+  <meta property="og:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay, Frontend Tech Lead">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="de_DE">
   <meta property="og:locale:alternate" content="hu_HU">
@@ -35,10 +35,10 @@
 
   <!-- ===== Twitter / X Card ===== -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" data-i18n="meta.ogTitle" content="Viktor Bozzay — Developer Portfolio">
+  <meta name="twitter:title" data-i18n="meta.ogTitle" content="Viktor Bozzay, Developer Portfolio">
   <meta name="twitter:description" data-i18n="meta.ogDescription" content="Libraries, games, tools and APIs built with clean, modern code.">
   <meta name="twitter:image" content="https://exphoenee.github.io/dev-portfilio/assets/og.jpg">
-  <meta name="twitter:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay — Frontend Tech Lead">
+  <meta name="twitter:image:alt" data-i18n="meta.ogImageAlt" content="Viktor Bozzay, Frontend Tech Lead">
 
   <!-- ===== JSON-LD structured data (Google rich results) ===== -->
   <script type="application/ld+json">
@@ -53,7 +53,7 @@
         "image": "https://exphoenee.github.io/dev-portfilio/assets/og.jpg",
         "email": "mailto:bozzay.viktor@gmail.com",
         "jobTitle": "Frontend Tech Lead",
-        "description": "Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
+        "description": "Portfolio of Viktor Bozzay, Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Pécs",
@@ -73,8 +73,8 @@
         "@type": "WebSite",
         "@id": "https://exphoenee.github.io/dev-portfilio/#website",
         "url": "https://exphoenee.github.io/dev-portfilio/",
-        "name": "Viktor Bozzay — Developer Portfolio",
-        "description": "Portfolio of Viktor Bozzay — Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
+        "name": "Viktor Bozzay, Developer Portfolio",
+        "description": "Portfolio of Viktor Bozzay, Frontend Tech Lead. Libraries, games, tools and APIs built with JavaScript, TypeScript and the web platform.",
         "inLanguage": ["en", "de", "hu", "fr", "it", "es"],
         "publisher": {
           "@id": "https://exphoenee.github.io/dev-portfilio/#person"
@@ -86,14 +86,14 @@
 
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <!-- Browser chrome / address bar color. These two values are the only place
-       the theme colours are written outside the stylesheet — keep them equal to
+       the theme colours are written outside the stylesheet, keep them equal to
        --bg in the [data-theme] blocks of styles/portfolio.css. -->
   <meta name="theme-color" content="#0b0d1a" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script>
-    /* Theme bootstrap — resolves the theme before first paint to avoid a flash.
+    /* Theme bootstrap, resolves the theme before first paint to avoid a flash.
        This is the single place the theme is decided; scripts/ui/theme.js reads
        the result instead of deciding again.
        Wrapped in an IIFE so no globals leak (scripts/main.js is an ES module).
@@ -105,7 +105,7 @@
       }
       document.documentElement.dataset.theme = themePref;
       /* A stored preference can contradict the system one, so collapse the
-         media-scoped theme-color pair onto the resolved theme — taking the
+         media-scoped theme-color pair onto the resolved theme, taking the
          colour from the matching meta tag rather than repeating it here. */
       var metas = document.querySelectorAll('meta[name="theme-color"]');
       var match = document.querySelector('meta[name="theme-color"][media*="' + themePref + '"]');
@@ -138,8 +138,8 @@
       <nav class="nav-links" id="nav-links" aria-label="Main navigation">
         <a href="#home" data-i18n="nav.home">Home</a>
         <a href="#projects" data-i18n="nav.projects">Projects</a>
-        <a href="#timeline" data-i18n="nav.timeline">Timeline</a>
         <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#timeline" data-i18n="nav.timeline">Timeline</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
         <a class="nav-cv-link" href="https://viktor.bozzay.online" target="_blank" rel="noopener" data-i18n="nav.cv">CV</a>
       </nav>
@@ -176,8 +176,8 @@
           <span class="hero-badge"><span class="pulse-dot"></span><span data-i18n="hero.badge">Available for new opportunities</span></span>
           <h1 class="hero-title"><span data-i18n="hero.greeting">Hi, I'm</span> <span class="gradient-text" data-i18n="name">Viktor Bozzay</span><span data-i18n="hero.greetingEnd"></span></h1>
           <div class="hero-role"><span id="typed"></span><span class="type-cursor"></span></div>
-          <p class="hero-desc" data-i18n="hero.desc">I design and build interactive web experiences — developer libraries, browser games, tools and documentation sites, all crafted with clean, modern code.</p>
-          <p class="hero-meta" data-i18n="hero.location">📍 Pécs, Hungary · HU — native · DE — B2 · EN — B2</p>
+          <p class="hero-desc" data-i18n="hero.desc">I design and build interactive web experiences, developer libraries, browser games, tools and documentation sites, all crafted with clean, modern code.</p>
+          <p class="hero-meta" data-i18n="hero.location">📍 Pécs, Hungary · HU, native · DE, B2 · EN, B2</p>
           <p class="hero-story" data-i18n="hero.story">Frontend Tech Lead with 5+ years of frontend and full-stack experience, specializing in frontend architecture and large-scale legacy modernization with TypeScript, Svelte, React and Node.js. I've led enterprise rewrites and migrations to modern stacks, introduced AI-assisted workflows and CI pipelines with automated quality gates, and I mentor engineers toward evidence-driven refactoring and sustainable frontend foundations.</p>
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaProjects">View Projects</a>
@@ -190,11 +190,11 @@
           <div class="terminal">
             <div class="terminal-bar">
               <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-              <span class="terminal-title">portfolio — zsh</span>
+              <span class="terminal-title">portfolio, zsh</span>
             </div>
             <div class="terminal-body">
               <p><span class="t-prompt">➜</span> <span class="t-cmd">whoami</span></p>
-              <p class="t-out" data-i18n="terminal.whoami">Viktor Bozzay — Frontend Tech Lead</p>
+              <p class="t-out" data-i18n="terminal.whoami">Viktor Bozzay, Frontend Tech Lead</p>
               <p><span class="t-prompt">➜</span> <span class="t-cmd">ls ./projects</span></p>
               <p class="t-out" id="terminal-ls1"></p>
               <p class="t-out" id="terminal-ls2"></p>
@@ -212,7 +212,7 @@
       <div class="section-head">
         <span class="section-kicker" data-i18n="projects.kicker">Selected Work</span>
         <h2 class="section-title" data-i18n="projects.title">Projects</h2>
-        <p class="section-sub" data-i18n="projects.subtitle">Libraries, games, tools and APIs — click the tabs to explore what each one does and how it is built.</p>
+        <p class="section-sub" data-i18n="projects.subtitle">Libraries, games, tools and APIs, click the tabs to explore what each one does and how it is built.</p>
         <div class="stats-row">
           <div class="stat"><span class="stat-num" data-stat="projects">0</span><span class="stat-label" data-i18n="stats.projects">Projects</span></div>
           <div class="stat"><span class="stat-num" data-stat="languages">0</span><span class="stat-label" data-i18n="stats.languages">UI Languages</span></div>
@@ -233,6 +233,16 @@
       <div class="projects-grid" id="projects-grid"><!-- rendered by JS --></div>
     </section>
 
+    <!-- ===================== SKILLS ===================== -->
+    <section class="section skills" id="skills">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="skills.kicker">Toolbox</span>
+        <h2 class="section-title" data-i18n="skills.title">Skills & Technologies</h2>
+        <p class="section-sub" data-i18n="skills.subtitle">The tools I reach for when building for the web.</p>
+      </div>
+      <div class="skills-groups" id="skills-groups"><!-- rendered by JS from data/portfolio-data.js --></div>
+    </section>
+
     <!-- ===================== TIMELINE ===================== -->
     <section class="section timeline" id="timeline">
       <div class="section-head">
@@ -242,16 +252,6 @@
         <a class="btn btn-primary section-cta" href="https://viktor.bozzay.online" target="_blank" rel="noopener" data-i18n="timeline.cvBtn">View Full CV</a>
       </div>
       <div class="timeline-list" id="timeline-list"><!-- rendered by JS --></div>
-    </section>
-
-    <!-- ===================== SKILLS ===================== -->
-    <section class="section skills" id="skills">
-      <div class="section-head">
-        <span class="section-kicker" data-i18n="skills.kicker">Toolbox</span>
-        <h2 class="section-title" data-i18n="skills.title">Skills & Technologies</h2>
-        <p class="section-sub" data-i18n="skills.subtitle">The tools I reach for when building for the web.</p>
-      </div>
-      <div class="skills-groups" id="skills-groups"><!-- rendered by JS from data/portfolio-data.js --></div>
     </section>
 
     <!-- ===================== CONTACT ===================== -->
@@ -268,7 +268,7 @@
   <footer class="footer">
     <div class="footer-inner">
       <p>© <span id="year">2026</span> <span data-i18n="name">Viktor Bozzay</span> · <span data-i18n="footer.rights">All rights reserved.</span></p>
-      <p class="footer-built" data-i18n="footer.built">Built with HTML, CSS & JavaScript — no frameworks, just the web.</p>
+      <p class="footer-built" data-i18n="footer.built">Built with HTML, CSS & JavaScript, no frameworks, just the web.</p>
     </div>
   </footer>
 
@@ -365,7 +365,7 @@
 
       <!-- Step 1: choose a date -->
       <div class="bk-step" id="bk-step-date" role="region" aria-label="Choose a day" hidden>
-        <p class="bk-step-label" data-i18n="book.step1">1 / 3 — Choose a day</p>
+        <p class="bk-step-label" data-i18n="book.step1">1 / 3, Choose a day</p>
         <div class="bk-dates-grid" id="bk-dates" role="list" aria-label="Available dates"></div>
       </div>
 
@@ -375,7 +375,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           <span data-i18n="book.back">Back</span>
         </button>
-        <p class="bk-step-label" data-i18n="book.step2">2 / 3 — Choose a time</p>
+        <p class="bk-step-label" data-i18n="book.step2">2 / 3, Choose a time</p>
         <div class="bk-badge" id="bk-date-badge" aria-live="polite"></div>
         <div class="bk-slots-grid" id="bk-slots" role="list" aria-label="Available time slots"></div>
       </div>
@@ -386,7 +386,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
           <span data-i18n="book.back">Back</span>
         </button>
-        <p class="bk-step-label" data-i18n="book.step3">3 / 3 — Your details</p>
+        <p class="bk-step-label" data-i18n="book.step3">3 / 3, Your details</p>
         <div class="bk-badge" id="bk-slot-badge" aria-live="polite"></div>
         <form id="bk-form" novalidate aria-label="Meeting booking form">
           <input type="text" id="bk-hp" name="bk-hp" style="display:none" tabindex="-1" autocomplete="off">

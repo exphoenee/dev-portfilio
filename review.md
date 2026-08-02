@@ -1,4 +1,4 @@
-# Architektúrális review — dev-portfilio
+# Architektúrális review, dev-portfilio
 
 **Dátum:** 2026-08-01 · **Commit:** `d93bab8` (master) · **Terjedelem:** ~4 700 sor forrás (HTML/CSS/JS/adat)
 
@@ -8,7 +8,7 @@
 
 A projekt egy build-lépés nélküli, adat-vezérelt statikus portfólió. Az alaparchitektúra **jó**: tiszta réteghatár az adat, a lokalizáció és a nézet között, egyetlen igazságforrás a tartalomra, nulla runtime npm-függőség. Ezt a méretet (21 projekt, 6 nyelv) a választott felépítés kényelmesen elbírja, és a "no framework" döntés itt védhető, nem dogma.
 
-Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re van kötve, ami nem létezik (a site sosem frissül automatikusan), és ~95 MB elhagyható PNG backup került a verziókövetésbe, ami minden Pages-artifactbe bekerül. Ezeken túl a fő architektúrális adósság a `scripts/main.js` — 1 097 sor, öt különböző felelősséggel, ~150 sornyi szó szerinti duplikációval a két modal között.
+Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re van kötve, ami nem létezik (a site sosem frissül automatikusan), és ~95 MB elhagyható PNG backup került a verziókövetésbe, ami minden Pages-artifactbe bekerül. Ezeken túl a fő architektúrális adósság a `scripts/main.js`, 1 097 sor, öt különböző felelősséggel, ~150 sornyi szó szerinti duplikációval a két modal között.
 
 | Terület | Értékelés |
 |---|---|
@@ -18,7 +18,7 @@ Két probléma azonban **ma is élesben hat**: a deploy workflow olyan branch-re
 | Repo-higiénia, asset-súly | ✅ Rendezve a munkafában (lásd K2); a history még nehéz |
 | Kódszervezés (`main.js`) | ✅ Rendezve (lásd M1/M2) |
 | Állapotkezelés | ✅ Rendezve (lásd M3/M4) |
-| Akadálymentesség | ✅ Modal fókusz rendezve (C4); a tab pattern nyíl-navigációja nyitva |
+| Akadálymentesség | ✅ Rendezve (lásd C4): modal-fókusz és a teljes WAI Tabs pattern |
 | Tesztelés / minőségi kapuk | ✅ Szintaxis + 12 adat/asset teszt CI-ban (lint nyitva) |
 
 ---
@@ -40,14 +40,14 @@ graph TD
     A -.->|link| K["Google Fonts"]
 ```
 
-**Adatfolyam:** `DOMContentLoaded` → `applyTranslations()` → 5 render-függvény (`renderProjects`, `renderTimeline`, `renderSkills`, `renderContact`, `renderTerminal`) építi fel a DOM-ot template-stringekből. Nyelvváltás ugyanezt az utat futtatja újra. A statisztikák (`computeStats`) az adatból számolódnak, nincsenek beégetve — ez jó döntés.
+**Adatfolyam:** `DOMContentLoaded` → `applyTranslations()` → 5 render-függvény (`renderProjects`, `renderTimeline`, `renderSkills`, `renderContact`, `renderTerminal`) építi fel a DOM-ot template-stringekből. Nyelvváltás ugyanezt az utat futtatja újra. A statisztikák (`computeStats`) az adatból számolódnak, nincsenek beégetve, ez jó döntés.
 
 ### Erősségek
 
 - **Egy igazságforrás.** Minden tartalom a `data/portfolio-data.js`-ből jön; a HTML valóban vékony váz. Új projekt hozzáadása egyetlen tömb-elem.
-- **Lokalizáció-paritás.** Mind a 6 nyelvi fájl pontosan ugyanazt a 125 kulcsot tartalmazza — ellenőriztem, nulla eltérés. A `t()` EN-fallbackje ([locale.js:62](scripts/locale.js#L62)) plusz védőháló.
+- **Lokalizáció-paritás.** Mind a 6 nyelvi fájl pontosan ugyanazt a 125 kulcsot tartalmazza, ellenőriztem, nulla eltérés. A `t()` EN-fallbackje ([locale.js:62](scripts/locale.js#L62)) plusz védőháló.
 - **FOUC-mentes téma.** A pre-paint inline IIFE ([index.html:88-99](index.html#L88-L99)) helyes minta villanás elkerülésére.
-- **Statikus SEO/megosztás-réteg.** Canonical, OG, Twitter card, JSON-LD `@graph` (Person + WebSite) — a link-preview akkor is működik, ha a scraper nem futtat JS-t.
+- **Statikus SEO/megosztás-réteg.** Canonical, OG, Twitter card, JSON-LD `@graph` (Person + WebSite), a link-preview akkor is működik, ha a scraper nem futtat JS-t.
 - **Átgondolt anti-spam.** Honeypot + minimum kitöltési idő + Turnstile + localStorage cooldown + MX-ellenőrzés. Rétegzett, nem egyetlen pontra épít.
 - **Teljesítmény-alapok.** `loading="lazy"`, passzív scroll listener, `IntersectionObserver` + `unobserve` a reveal után, külön `small/` thumbnail és `large/` lightbox-változat.
 - **`prefers-reduced-motion`** támogatva ([portfolio.css:1356](styles/portfolio.css#L1356)).
@@ -58,18 +58,18 @@ graph TD
 
 ### 🔴 Kritikus
 
-#### K1 — A deploy workflow soha nem fut le ✅ **elvégezve**
+#### K1, A deploy workflow soha nem fut le ✅ **elvégezve**
 
 > **Státusz:** a workflow a `master` branchre van kötve, a README lépései és a fejléc-komment is ezt írja. A branch marad `master`.
 
 
-[.github/workflows/deploy.yml:13](.github/workflows/deploy.yml#L13) a `main` branchre van kötve, a repo default branche viszont `master` (`origin/HEAD -> origin/master`). Automatikus deploy nincs; a site csak kézi `workflow_dispatch`-csel frissül — és a README lépésről lépésre `main`-t ír, tehát a dokumentáció is a nem létező állapotot írja le.
+[.github/workflows/deploy.yml:13](.github/workflows/deploy.yml#L13) a `main` branchre van kötve, a repo default branche viszont `master` (`origin/HEAD -> origin/master`). Automatikus deploy nincs; a site csak kézi `workflow_dispatch`-csel frissül, és a README lépésről lépésre `main`-t ír, tehát a dokumentáció is a nem létező állapotot írja le.
 
-**Javítás:** vagy `branches: [master]`, vagy a branch átnevezése `main`-re (`git branch -m master main` + push + a GitHub default branch átállítása) — utóbbi konzisztensebb a README-vel.
+**Javítás:** vagy `branches: [master]`, vagy a branch átnevezése `main`-re (`git branch -m master main` + push + a GitHub default branch átállítása), utóbbi konzisztensebb a README-vel.
 
-#### K2 — ~95 MB backup PNG a verziókövetésben ✅ **elvégezve** (a history kivételével)
+#### K2, ~95 MB backup PNG a verziókövetésben ✅ **elvégezve** (a history kivételével)
 
-> **Státusz:** 42 fájl kikerült a követésből (a lemezen maradtak), a `.gitignore` mostantól `assets/images/**/backup/`-ot zár ki. A követett tartalom **~120 MB → 21 MB**, ennyi megy a Pages artifactbe is. A `.git` mérete változatlan: a blobok a history-ban maradtak — ezt csak `git filter-repo` + force-push hozná vissza, ami minden klónt érvénytelenít, ezért külön döntés.
+> **Státusz:** 42 fájl kikerült a követésből (a lemezen maradtak), a `.gitignore` mostantól `assets/images/**/backup/`-ot zár ki. A követett tartalom **~120 MB → 21 MB**, ennyi megy a Pages artifactbe is. A `.git` mérete változatlan: a blobok a history-ban maradtak, ezt csak `git filter-repo` + force-push hozná vissza, ami minden klónt érvénytelenít, ezért külön döntés.
 
 
 | Könyvtár | Méret | Verziókövetve |
@@ -79,7 +79,7 @@ graph TD
 | `assets/images/backup/` | 4,9 MB | `.gitignore`-ban, de tracked fájlokkal |
 | **`.git` összesen** | **119 MB** | |
 
-A `.gitignore` csak az `assets/images/backup/` útvonalat zárja ki — a `projects/*/backup/` mappákat nem. A README ezzel szemben azt állítja, hogy a backup mappa git-ignored. Egyes fájlok 5–7,5 MB-osak (`arrganizer_og.png` 7,5 MB), miközben a használt JPEG-változatuk ~650 KB.
+A `.gitignore` csak az `assets/images/backup/` útvonalat zárja ki, a `projects/*/backup/` mappákat nem. A README ezzel szemben azt állítja, hogy a backup mappa git-ignored. Egyes fájlok 5–7,5 MB-osak (`arrganizer_og.png` 7,5 MB), miközben a használt JPEG-változatuk ~650 KB.
 
 Ez nem csak repo-súly: a workflow `path: .`-t tölt fel artifactként ([deploy.yml:48](.github/workflows/deploy.yml#L48)), tehát a 95 MB backup **minden egyes deployban** felmegy a Pages-re.
 
@@ -94,14 +94,14 @@ A history-ból való eltávolítás (`git filter-repo`) opcionális, de a `.git`
 
 ### 🟠 Magas
 
-#### M1 — `scripts/main.js`: 1 097 sor, öt felelősség ✅ **elvégezve**
+#### M1, `scripts/main.js`: 1 097 sor, öt felelősség ✅ **elvégezve**
 
-> **Státusz:** a szétbontás megtörtént — `main.js` 92 sor (init + wiring), a többi 16 modulban. Az M2 duplikációja is feloldódott a közös `modals/modal.js`, `modals/turnstile.js` és `modals/form-guards.js` modulokban. Az A6 (hiányzó null-check) és A7 (TDZ-kockázat) mellékhatásként megszűnt. A leírás alább az eredeti állapotot dokumentálja.
+> **Státusz:** a szétbontás megtörtént, `main.js` 92 sor (init + wiring), a többi 16 modulban. Az M2 duplikációja is feloldódott a közös `modals/modal.js`, `modals/turnstile.js` és `modals/form-guards.js` modulokban. Az A6 (hiányzó null-check) és A7 (TDZ-kockázat) mellékhatásként megszűnt. A leírás alább az eredeti állapotot dokumentálja.
 
 
 Egyetlen modul tartalmazza: kategória/ikon metaadatokat, téma-kezelést, a typed-effektet, öt render-függvényt, a hire modal teljes logikáját, a booking modal teljes logikáját (3 lépéses wizard, dátum/slot renderelés, Intl formázás), a lightboxot, az i18n-alkalmazást és a teljes init-wiringot.
 
-A projekt már használ ES modulokat (`config.js`, `locale.js`) — a minta megvan, a `main.js`-t egyszerűen nem bontották fel. Javasolt tagolás:
+A projekt már használ ES modulokat (`config.js`, `locale.js`), a minta megvan, a `main.js`-t egyszerűen nem bontották fel. Javasolt tagolás:
 
 ```
 scripts/
@@ -125,7 +125,7 @@ scripts/
 
 Nem sürgős hibajavítás, de minden további funkció ára ebben a fájlban nő.
 
-#### M2 — ~150 sor duplikáció a két modal között ✅ **elvégezve** (az M1 bontás részeként)
+#### M2, ~150 sor duplikáció a két modal között ✅ **elvégezve** (az M1 bontás részeként)
 
 
 | Duplikált egység | Hire | Booking |
@@ -137,47 +137,47 @@ Nem sürgős hibajavítás, de minden további funkció ára ebben a fájlban n�
 
 Az email-blur handler gyakorlatilag karakterre azonos, csak a szelektorok különböznek. Kiemelendő factory-k: `createTurnstile(containerSel, submitSel)`, `createCooldown(key, ms)`, `attachEmailDomainCheck(inputSel, errSel)`, `createModal({ id, onOpen, onClose })`.
 
-#### M3 — Kettős igazságforrás a nyelvre ✅ **elvégezve**
+#### M3, Kettős igazságforrás a nyelvre ✅ **elvégezve**
 
 > **Státusz:** a `state.lang` megszűnt, minden render-modul a `locale.lang`-ot olvassa; a nyelvváltó csak `locale.setLang()`-ot hív.
 
 
 `state.lang` ([main.js:73-78](scripts/main.js#L73-L78)) és `locale.lang` külön él, kézzel szinkronizálva ([main.js:968-969](scripts/main.js#L968-L969)). A render-függvények a `state.lang`-ot olvassák, a `t()` a `locale`-ét. Ha bárhol csak az egyik frissül, a felirat és a projektleírások különböző nyelven jelennek meg.
 
-**Javítás:** `state.lang` törlése, mindenhol `locale.lang` — a `LocaleManager` már perzisztál és a `documentElement.dataset.lang`-ot is állítja.
+**Javítás:** `state.lang` törlése, mindenhol `locale.lang`, a `LocaleManager` már perzisztál és a `documentElement.dataset.lang`-ot is állítja.
 
-#### M4 — A téma-logika három helyen él ✅ **elvégezve**
+#### M4, A téma-logika három helyen él ✅ **elvégezve**
 
-> **Státusz:** a döntés egy helyen maradt (az `index.html` pre-paint bootstrapje); az `initTheme()` már csak beolvassa az eredményt. A hex-értékek eltűntek a JS-ből: a `theme-color` meta futásidőben a `--bg` custom property-ből frissül, a bootstrap pedig a media-scoped meta tagek közül veszi a feloldott témáét. Így a színek két helyen élnek — a stíluslap `[data-theme]` blokkjaiban és a két meta tagben —, egymást tükrözve.
+> **Státusz:** a döntés egy helyen maradt (az `index.html` pre-paint bootstrapje); az `initTheme()` már csak beolvassa az eredményt. A hex-értékek eltűntek a JS-ből: a `theme-color` meta futásidőben a `--bg` custom property-ből frissül, a bootstrap pedig a media-scoped meta tagek közül veszi a feloldott témáét. Így a színek két helyen élnek, a stíluslap `[data-theme]` blokkjaiban és a két meta tagben —, egymást tükrözve.
 
 
 - inline IIFE ([index.html:88-99](index.html#L88-L99)),
-- `detectTheme()` ([main.js:91-95](scripts/main.js#L91-L95)) — ugyanaz a döntés újra, közvetlenül azután, hogy az inline script már eldöntötte,
+- `detectTheme()` ([main.js:91-95](scripts/main.js#L91-L95)), ugyanaz a döntés újra, közvetlenül azután, hogy az inline script már eldöntötte,
 - `applyTheme()` ([main.js:100-106](scripts/main.js#L100-L106)).
 
-A `#0b0d1a` / `#f6f7fb` hex-pár **négy** helyen szerepel (a két `<meta name="theme-color">` sorral együtt). Egy színérték módosítása ma négy szerkesztés. A `THEME_KEY` duplikációját a kód kommentben jelzi is ([index.html:87](index.html#L87)) — ez helyes, de a megoldás inkább az lenne, hogy az inline script csak a `data-theme` attribútumot állítja, a `theme-color` szinkront pedig a modul végzi egyetlen konstansból.
+A `#0b0d1a` / `#f6f7fb` hex-pár **négy** helyen szerepel (a két `<meta name="theme-color">` sorral együtt). Egy színérték módosítása ma négy szerkesztés. A `THEME_KEY` duplikációját a kód kommentben jelzi is ([index.html:87](index.html#L87)), ez helyes, de a megoldás inkább az lenne, hogy az inline script csak a `data-theme` attribútumot állítja, a `theme-color` szinkront pedig a modul végzi egyetlen konstansból.
 
 ---
 
 ### 🟡 Közepes
 
-#### C1 — Teljes DOM-újraépítés minden nyelvváltásnál ✅ **elvégezve**
+#### C1, Teljes DOM-újraépítés minden nyelvváltásnál ✅ **elvégezve**
 
-> **Státusz:** a nyelvváltás már nem épít újra semmit — `renderAll()` (első festés) és `applyTranslations()` (nyelvváltás) szétvált; utóbbi a helyükön cseréli a szövegeket (`updateProjectsText` / `updateTimelineText` / `updateSkillsText` / `updateContactText`). Mérve: **5,98 ms → 0,68 ms** (8,8×). A kártya-DOM-csomópontok azonosak maradnak, így a fókusz, a scroll-pozíció, a reveal-állapot és a betöltött `<img>`-ek is.
-
-
-`applyTranslations()` ([main.js:890-894](scripts/main.js#L890-L894)) négy szekció teljes `innerHTML`-jét cseréli. Következmény: a fókusz elveszik, a kártyák újra animálódnak, 21 `<img>` újra a DOM-ba kerül (a böngésző cache-eli, de a layout újraszámol). A `state.tabs` túléli, mert a render onnan olvas — ez jól megoldott. Ekkora oldalon elviselhető, de egy célzott "csak a szövegcsomópontokat cseréld" megközelítés olcsóbb és fókuszbarát lenne.
-
-#### C2 — `innerHTML` vs `textContent` inkonzisztencia a leírásoknál ✅ **elvégezve**
-
-> **Státusz:** `esc()` került a `dom.js`-be, és minden adat-eredetű szöveg (és attribútumérték) escape-elve megy a sablonokba — a markup-út és a `textContent`-út mostantól azonos eredményt ad. Szándékos markup marad nyersen: `CONTACT[].icon`, `LINK_ICONS`, és a `[data-i18n]` (a `logo` címke `&lt;VB/&gt;`-t tartalmaz).
+> **Státusz:** a nyelvváltás már nem épít újra semmit, `renderAll()` (első festés) és `applyTranslations()` (nyelvváltás) szétvált; utóbbi a helyükön cseréli a szövegeket (`updateProjectsText` / `updateTimelineText` / `updateSkillsText` / `updateContactText`). Mérve: **5,98 ms → 0,68 ms** (8,8×). A kártya-DOM-csomópontok azonosak maradnak, így a fókusz, a scroll-pozíció, a reveal-állapot és a betöltött `<img>`-ek is.
 
 
-A kártya-sablon HTML-ként rendereli a leírást ([main.js:203](scripts/main.js#L203)), a tabváltás viszont `textContent`-tel írja felül ([main.js:996](scripts/main.js#L996)). Ma egyik leírás sem tartalmaz `<` vagy `&` karaktert (ellenőriztem: 0 találat), tehát a hiba lappang — de az első `&` a szövegben eltérő megjelenítést fog adni az első renderelés és a tabváltás után. Válassz egy szemantikát; javaslat: escape-elés a sablonban, `textContent` mindenütt.
+`applyTranslations()` ([main.js:890-894](scripts/main.js#L890-L894)) négy szekció teljes `innerHTML`-jét cseréli. Következmény: a fókusz elveszik, a kártyák újra animálódnak, 21 `<img>` újra a DOM-ba kerül (a böngésző cache-eli, de a layout újraszámol). A `state.tabs` túléli, mert a render onnan olvas, ez jól megoldott. Ekkora oldalon elviselhető, de egy célzott "csak a szövegcsomópontokat cseréld" megközelítés olcsóbb és fókuszbarát lenne.
 
-#### C3 — A tartalom csak kliensoldalon létezik ✅ **részben elvégezve**
+#### C2, `innerHTML` vs `textContent` inkonzisztencia a leírásoknál ✅ **elvégezve**
 
-> **Státusz:** a nyelv bekerült az URL-be. `?lang=xx` felülírja a tárolt preferenciát, a váltás `replaceState`-tel visszaírja, és 7 `hreflang` link (6 nyelv + `x-default`) került az `index.html`-be. Ami **nyitva marad**: a tartalom továbbra is kliensoldalon renderelődik — ehhez előrenderelés (build-lépés) kellene, ami a projekt „no build tool” elvébe ütközik. Külön döntés.
+> **Státusz:** `esc()` került a `dom.js`-be, és minden adat-eredetű szöveg (és attribútumérték) escape-elve megy a sablonokba, a markup-út és a `textContent`-út mostantól azonos eredményt ad. Szándékos markup marad nyersen: `CONTACT[].icon`, `LINK_ICONS`, és a `[data-i18n]` (a `logo` címke `&lt;VB/&gt;`-t tartalmaz).
+
+
+A kártya-sablon HTML-ként rendereli a leírást ([main.js:203](scripts/main.js#L203)), a tabváltás viszont `textContent`-tel írja felül ([main.js:996](scripts/main.js#L996)). Ma egyik leírás sem tartalmaz `<` vagy `&` karaktert (ellenőriztem: 0 találat), tehát a hiba lappang, de az első `&` a szövegben eltérő megjelenítést fog adni az első renderelés és a tabváltás után. Válassz egy szemantikát; javaslat: escape-elés a sablonban, `textContent` mindenütt.
+
+#### C3, A tartalom csak kliensoldalon létezik ✅ **részben elvégezve**
+
+> **Státusz:** a nyelv bekerült az URL-be. `?lang=xx` felülírja a tárolt preferenciát, a váltás `replaceState`-tel visszaírja, és 7 `hreflang` link (6 nyelv + `x-default`) került az `index.html`-be. Ami **nyitva marad**: a tartalom továbbra is kliensoldalon renderelődik, ehhez előrenderelés (build-lépés) kellene, ami a projekt „no build tool” elvébe ütközik. Külön döntés.
 
 
 Az `index.html`-ben egyetlen projektleírás sincs. Az OG/JSON-LD statikus, tehát a link-preview rendben van, de:
@@ -188,36 +188,40 @@ Az `index.html`-ben egyetlen projektleírás sincs. Az OG/JSON-LD statikus, teh�
 
 Minimum-lépés: a nyelv olvasása/írása URL-paraméterből a `localStorage` mellett, plusz `hreflang` linkek.
 
-#### C4 — Modal-fókusz: nincs csapda, inkonzisztens visszaadás ✅ **elvégezve**
+#### C4, Modal-fókusz: nincs csapda, inkonzisztens visszaadás ✅ **elvégezve**
 
-> **Státusz:** a `modals/modal.js` mostantól mindhárom dialógusra egységesen biztosítja: nyitáskor a fókusz bemegy, a Tab körbejár a dialóguson belül (a `[hidden]` képernyők kimaradnak), záráskor a fókusz visszamegy a nyitó elemre. A kártya-tabok nyíl-navigációja továbbra is hiányzik.
+> **Státusz:** a `modals/modal.js` mostantól mindhárom dialógusra egységesen biztosítja: nyitáskor a fókusz bemegy, a Tab körbejár a dialóguson belül (a `[hidden]` képernyők kimaradnak), záráskor a fókusz visszamegy a nyitó elemre.
+>
+> **A kártya-tabok is rendezve:** a `render/projects.js` a teljes WAI Tabs patternt viszi. Roving `tabindex` (csak a kiválasztott tab van a tab-sorrendben, így 21 kártya 42 helyett 21 tab-stop), `ArrowLeft`/`ArrowRight` körbejáró léptetéssel, `Home`/`End`, a tablistnek `aria-labelledby` a kártya címére, a panelnek `aria-labelledby` az aktív tabra és `tabindex="0"` (nincs benne fókuszálható elem, viszont görgethető). A pointer- és a billentyűzet-út közös `selectTab()`-ot hív, így nem tudnak szétcsúszni. A `:focus-visible` gyűrű a meglévő `.card-media-btn` mintát követi.
 
 
-Az image modal elmenti a triggert és visszaadja neki a fókuszt ([main.js:846](scripts/main.js#L846), [main.js:863](scripts/main.js#L863)) — helyesen. A hire és booking modal nem: bezárás után a fókusz a `<body>`-ra esik. Egyik modal sem csapdázza a Tabot, tehát billentyűzettel ki lehet lépni a háttérbe egy `aria-modal="true"` dialógusból.
+Az image modal elmenti a triggert és visszaadja neki a fókuszt ([main.js:846](scripts/main.js#L846), [main.js:863](scripts/main.js#L863)), helyesen. A hire és booking modal nem: bezárás után a fókusz a `<body>`-ra esik. Egyik modal sem csapdázza a Tabot, tehát billentyűzettel ki lehet lépni a háttérbe egy `aria-modal="true"` dialógusból.
 
 A kártya-tabok is részlegesek: mindkét gomb ugyanarra az `aria-controls`-ra mutat, a panelnek nincs `aria-labelledby`, és nincs nyíl-billentyűs navigáció (a WAI Tabs pattern elvárja).
 
-#### C5 — Nincs teszt, nincs lint; a minőségi kapu duplikált ✅ **elvégezve** (lint kivételével)
+> A közös `aria-controls` végül maradt: egyetlen megosztott panel van, ezért helyes, ha mindkét tab arra mutat. A hiányzó fele a panel `aria-labelledby`-ja volt, ami tabváltáskor most az aktív tabra áll át.
 
-> **Státusz:** `tests/data.test.mjs` — 12 teszt `node:test`-tel, nullá függőséggel: locale-kulcsparitás, üres címkék, egyedi projekt-id-k, minden leírás minden nyelven, képek három méretben, ikonfájlok létezése. `npm test` / `npm run verify`, és a workflow is futtatja. **ESLint és Playwright kimaradt** — devDependency-t igényelnének, ami elvenné a projekt függőségmentességét; külön döntés.
+#### C5, Nincs teszt, nincs lint; a minőségi kapu duplikált ✅ **elvégezve** (lint kivételével)
+
+> **Státusz:** `tests/data.test.mjs`, 12 teszt `node:test`-tel, nullá függőséggel: locale-kulcsparitás, üres címkék, egyedi projekt-id-k, minden leírás minden nyelven, képek három méretben, ikonfájlok létezése. `npm test` / `npm run verify`, és a workflow is futtatja. **ESLint és Playwright kimaradt**, devDependency-t igényelnének, ami elvenné a projekt függőségmentességét; külön döntés.
 
 
-Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer, két különböző módon** volt leírva: a `package.json` felsorolta a fájlokat egyenként, a `deploy.yml` glob-olt. Új nyelvi fájl esetén a workflow észrevette, a `npm run check` nem — biztos drift.
+Az egyetlen ellenőrzés a `node --check` (szintaxis). Ez ráadásul **kétszer, két különböző módon** volt leírva: a `package.json` felsorolta a fájlokat egyenként, a `deploy.yml` glob-olt. Új nyelvi fájl esetén a workflow észrevette, a `npm run check` nem, biztos drift.
 
-> **Részben javítva:** a drift megszűnt — `tools/check-syntax.mjs` bejárja a `scripts/` és `data/` fát, a `npm run check` és a workflow is ezt hívja. Lint és tesztek továbbra sincsenek.
+> **Részben javítva:** a drift megszűnt, `tools/check-syntax.mjs` bejárja a `scripts/` és `data/` fát, a `npm run check` és a workflow is ezt hívja. Lint és tesztek továbbra sincsenek.
 
 **Hátralévő:** ESLint + Prettier, egy locale-paritás teszt (a 6 fájl kulcshalmaza egyezik-e), egy asset-létezés teszt (minden `image`/`icon` útvonal létezik-e), és egy Playwright smoke-teszt (betöltés, nyelvváltás, szűrő, modal nyitás).
 
-#### C6 — Runtime-függőségek fallback nélkül; adatvédelmi megjegyzés ✅ **részben elvégezve**
+#### C6, Runtime-függőségek fallback nélkül; adatvédelmi megjegyzés ✅ **részben elvégezve**
 
 > **Státusz:** a DoH-ellenőrzésről mostantól tájékoztatás van mindkét e-mail mező alatt, 6 nyelven (`hire.privacyNote`), `aria-describedby`-jal bekötve. A GAS szerveroldali szerepét a `config.js` komment rögzíti. A Google Fonts render-blokkolása és a többi külső szolgáltatás fallbackje nyitva marad.
 
 
 Öt külső szolgáltatás fut a kliensben: Google Fonts (render-blokkoló `<link>`, [index.html:101](index.html#L101)), Cloudflare Turnstile, Formspree, Google Apps Script, valamint a `1.1.1.1` DoH.
 
-A DoH-hívás ([main.js:395-412](scripts/main.js#L395-L412)) **minden látogató beírt e-mail-domainjét elküldi a Cloudflare-nek**, mielőtt bármit elküldene a form. Technikailag jól van megírva (session-cache, hiba esetén megengedő), és a `CHECK_EMAIL_DOMAIN` flaggel kikapcsolható — de erről nincs tájékoztatás a felületen. Egy rövid mondat a form alatt (vagy a flag kikapcsolása) rendezi.
+A DoH-hívás ([main.js:395-412](scripts/main.js#L395-L412)) **minden látogató beírt e-mail-domainjét elküldi a Cloudflare-nek**, mielőtt bármit elküldene a form. Technikailag jól van megírva (session-cache, hiba esetén megengedő), és a `CHECK_EMAIL_DOMAIN` flaggel kikapcsolható, de erről nincs tájékoztatás a felületen. Egy rövid mondat a form alatt (vagy a flag kikapcsolása) rendezi.
 
-A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoint; a védelem teljes egészében a GAS oldalán van. Ez rendben van, ha a szerveroldal tényleg verifikálja a Turnstile-tokent és rate-limitel — érdemes ezt a README-ben rögzíteni, hogy a kliensoldali cooldown ne tűnjön biztonsági kontrollnak (nem az, `localStorage`-ból törölhető).
+A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoint; a védelem teljes egészében a GAS oldalán van. Ez rendben van, ha a szerveroldal tényleg verifikálja a Turnstile-tokent és rate-limitel, érdemes ezt a README-ben rögzíteni, hogy a kliensoldali cooldown ne tűnjön biztonsági kontrollnak (nem az, `localStorage`-ból törölhető).
 
 ---
 
@@ -226,13 +230,13 @@ A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoi
 | # | Megállapítás | Hely |
 |---|---|---|
 | A1 | ~~**README-drift:** `data.js`, `locales/*.js`, `style.css` néven hivatkozik a `data/portfolio-data.js`, `data/locales/*-page.js`, `styles/portfolio.css` fájlokra~~ **javítva** | README.md |
-| A2 | ~~A README szerint a `backup/` git-ignored — 40 backup fájl viszont verziókövetett~~ **javítva** (a K2-vel együtt igazzá vált) | README.md, .gitignore |
+| A2 | ~~A README szerint a `backup/` git-ignored, 40 backup fájl viszont verziókövetett~~ **javítva** (a K2-vel együtt igazzá vált) | README.md, .gitignore |
 | A3 | ~~A README hero képe `assets/images/projects/cv.jpg`-re mutat, ami nem létezik → törött kép a GitHub-on~~ **javítva** (`projects/large/cv.jpg`) | README.md:7 |
 | A4 | ~~Árva fájlok: `github.jpg` a repo gyökerében (verziókövetett, sehol nem hivatkozott), `assets/og.png` (5,8 MB, csak az `og.jpg` van használva)~~ **javítva** (kikerültek a követésből) | repo root, assets/ |
 | A5 | ~~`export var` a `config.js`-ben~~ **javítva** (`const`) | [config.js:5-16](scripts/config.js#L5-L16) |
 | A6 | `renderProjects` nem null-ellenőrzi a gridet, a többi render igen | [main.js:211](scripts/main.js#L211) vs. 243, 258, 278 |
 | A7 | `revealObserver` a használati helyei **alatt** van deklarálva; ma működik (csak `DOMContentLoaded` után hívódik), de modul-szintű hívásnál TDZ-hiba | [main.js:918](scripts/main.js#L918) |
-| A8 | ~~A CSS 1 362 sor egy fájlban — jól szekcionálva, 256 custom property; ha tovább nő, a modal-blokk (943–1296, ~350 sor) külön fájlba kívánkozik~~ **elvégezve**: `styles/modals.css` (368 sor) kivált, `portfolio.css` 1 017 sor | styles/ |
+| A8 | ~~A CSS 1 362 sor egy fájlban, jól szekcionálva, 256 custom property; ha tovább nő, a modal-blokk (943–1296, ~350 sor) külön fájlba kívánkozik~~ **elvégezve**: `styles/modals.css` (368 sor) kivált, `portfolio.css` 1 017 sor | styles/ |
 
 ---
 
@@ -248,7 +252,7 @@ A `BOOKING_SCRIPT_URL` ([config.js:15](scripts/config.js#L15)) nyílt GET-endpoi
 5. `check` script glob-osítása, a workflow hívja azt *(C5)*
 6. `state.lang` megszüntetése, `locale.lang` mindenütt *(M3)*
 7. A téma-színek egyetlen forrásba; az inline script minimalizálása *(M4)*
-8. Fókusz-csapda + fókusz-visszaadás mindhárom modalban *(C4)*
+8. Fókusz-csapda + fókusz-visszaadás mindhárom modalban, plusz a kártya-tabok WAI Tabs patternje *(C4)*
 9. `textContent`/`innerHTML` szemantika egységesítése a leírásoknál *(C2)*
 
 **Közép táv (1–2 nap):**

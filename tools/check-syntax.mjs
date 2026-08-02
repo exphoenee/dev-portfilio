@@ -1,5 +1,5 @@
 /* ============================================================
-   Syntax gate — parses every JS source with `node --check`.
+   Syntax gate, parses every JS source with `node --check`.
    Everything is data-driven and there is no build step, so a syntax
    error in any module breaks the whole page at runtime. Walks the
    tree instead of listing files, so new modules are covered

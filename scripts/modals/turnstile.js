@@ -1,5 +1,5 @@
 /* ============================================================
-   CLOUDFLARE TURNSTILE — one factory per form.
+   CLOUDFLARE TURNSTILE, one factory per form.
    The widget owns its token and keeps its submit button in sync.
    ============================================================ */
 
@@ -33,7 +33,7 @@ export function createTurnstile({ containerSel, submitSel }) {
     if (!container) return;
     const btn = submitBtn();
     if (btn) btn.classList.add('is-loading');
-    // The API script is loaded async — retry until turnstile.render exists.
+    // The API script is loaded async, retry until turnstile.render exists.
     if (!window.turnstile || !window.turnstile.render) {
       setTimeout(ensure, 300);
       return;
@@ -52,7 +52,7 @@ export function createTurnstile({ containerSel, submitSel }) {
         console.error(
           `[turnstile] ${containerSel} failed (${code}) on ${location.hostname}` +
           (String(code) === '110200'
-            ? ` — add "${location.hostname}" to the sitekey's hostnames in the Cloudflare dashboard.`
+            ? `, add "${location.hostname}" to the sitekey's hostnames in the Cloudflare dashboard.`
             : '')
         );
       },

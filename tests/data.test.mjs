@@ -1,7 +1,7 @@
 /* ============================================================
    Data + asset integrity tests.
 
-   Uses node:test and node:assert only — the project ships zero runtime
+   Uses node:test and node:assert only, the project ships zero runtime
    and zero build dependencies, and the test layer keeps that property.
    Run with `npm test`.
    ============================================================ */

@@ -1,5 +1,5 @@
 /* ============================================================
-   CONFIG — shared constants (mirrors the CV project's scripts/config.js)
+   CONFIG, shared constants (mirrors the CV project's scripts/config.js)
    ============================================================ */
 
 export const THEME_KEY = 'portfolio-theme';
