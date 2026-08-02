@@ -10,7 +10,9 @@
       "Bash(cat assets/images/tech/LabVIEW.svg; echo; echo \"=== CV repo tech icons ===\"; ls /e/Projects/CV/ 2>/dev/null | head; find \"/e/Projects/CV\" \"/e/Projects/BV-CV\" -iname \"*labview*\" -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" 2>/dev/null)",
       "Read(//e/Projects/CV//**)",
       "Read(//e/Projects/CV/**)",
-      "Bash(echo \"exit: $?\")"
+      "Bash(echo \"exit: $?\")",
+      "Bash(node \"C:/Users/bozza/AppData/Local/Temp/claude/e--Projects-dev-portfilio/a4f32b49-2b12-456f-9c15-99a5d83d01d4/scratchpad/rep.mjs\")",
+      "Bash(node -e ' *)"
     ]
   }
 }

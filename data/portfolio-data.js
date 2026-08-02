@@ -77,7 +77,7 @@ export const PROJECTS = [
     name: 'BA Team',
     category: 'app',
     image: 'assets/images/projects/large/bateam.jpg',
-    tech: ['AI Agents', 'Markdown', 'GitHub Pages', 'Docs'],
+    tech: ['AI Agents', 'Python'],
     links: { repo: 'https://github.com/exphoenee/ba-team-dev', demo: 'https://exphoenee.github.io/ba-team-docs/' },
     desc: {
       en: { functional: 'A structured development workspace for the BA Tool AI product: implementation plans, developer docs, test reports and a public documentation site — all in one organized repository.', technical: 'Markdown-to-HTML documentation pipeline published on GitHub Pages, custom AI skills and rules for development agents, and a strict repository convention system.' },
@@ -190,7 +190,7 @@ export const PROJECTS = [
     name: 'FundMyPitch',
     category: 'app',
     image: 'assets/images/projects/large/fundmypitch.jpg',
-    tech: ['Web Platform', 'Fintech', 'Responsive'],
+    tech: ['Responsive'],
     links: { demo: 'https://www.fundmypitch.com' },
     desc: {
       en: { functional: 'A funding platform that connects startups and SMEs with investors — companies present their pitch, gain visibility and raise capital in a structured, transparent process.', technical: 'A modern web platform for the fintech ecosystem with company profiles, pitch presentations and investor matchmaking, built for the UK SME funding market.' },
@@ -206,7 +206,7 @@ export const PROJECTS = [
     name: 'Page on Mobile',
     category: 'library',
     image: 'assets/images/projects/large/pageonmobile.jpg',
-    tech: ['TypeScript', 'Canvas 2D', 'ESM'],
+    tech: ['TypeScript', 'Canvas', 'ESM'],
     links: { repo: 'https://github.com/exphoenee/pageonmobile', demo: 'https://exphoenee.github.io/pageonmobile/', npm: 'https://www.npmjs.com/package/pageonmobile' },
     desc: {
       en: { functional: 'A dependency-free widget that renders website screenshots into device mockups — desktop, notebook, tablet, phone — on a canvas, with an auto-scroll preview animation.', technical: 'TypeScript ESM package with zero runtime dependencies, Canvas 2D rendering, WebP device frames, ~7 kB JS payload and full type declarations.' },
@@ -251,7 +251,7 @@ export const PROJECTS = [
   },
   {
     id: 'rps-ts',
-    name: 'Rock Paper Scissors — TypeScript',
+    name: 'Rock Paper Scissors',
     category: 'game',
     image: 'assets/images/projects/large/rockpaperscissors-ts.jpg',
     tech: ['TypeScript', 'Vite', 'Vitest', 'DOMelemJS'],
@@ -270,7 +270,7 @@ export const PROJECTS = [
     name: 'RomanNumbersJS',
     category: 'library',
     image: 'assets/images/projects/large/romannumbersjs.jpg',
-    tech: ['TypeScript', 'npm', 'Jest', 'Terser'],
+    tech: ['TypeScript', 'npm', 'Jest'],
     links: { repo: 'https://github.com/exphoenee/RomanNumbersJS', demo: 'https://exphoenee.github.io/RomanNumbersJS/', npm: 'https://www.npmjs.com/package/romannumbersjs' },
     desc: {
       en: { functional: 'A tiny npm package that converts Arabic numbers to Roman numerals and back, with full documentation and a live demo page.', technical: 'TypeScript source with dual CJS/ESM builds, Jest test coverage, Terser minification and a generated docs site on GitHub Pages.' },
@@ -503,6 +503,7 @@ export const SKILLS = [
     titleKey: 'skills.testing',
     chips: [
       { label: 'Jest', icon: 'assets/images/tech/jest.svg' },
+      { label: 'Mocha', icon: 'assets/images/tech/mocha.svg' },
       { label: 'Playwright', icon: 'assets/images/tech/playwright.svg' },
       { label: 'Vitest', icon: 'assets/images/tech/vitest.svg' }
     ]

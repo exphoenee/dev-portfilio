@@ -10,11 +10,11 @@ export const FR_PAGE = {
   "nav.cv": "CV",
   "hero.badge": "Disponible pour de nouvelles opportunités",
   "hero.location": "📍 Pécs, Hongrie · HU — langue maternelle · DE — B2 · EN — B2",
-  "hero.story": "Frontend Tech Lead avec plus de 5 ans d’expérience en développement frontend et full-stack, spécialisé en architecture frontend, conception système et modernisation de grands systèmes legacy avec TypeScript, Svelte, React et Node.js. J’ai dirigé des réécritures complètes et des migrations de systèmes d’entreprise vers des stacks modernes, améliorant la maintenabilité et l’évolutivité des plateformes cœur. J’ai introduit des flux de travail de développement assistés par IA et construit des pipelines CI avec des portes de qualité automatisées, augmentant considérablement la vitesse de livraison, la cohérence technique et la fiabilité des versions. J’encadre et je mentore des ingénieurs, en mettant l’accent sur la refactorisation fondée sur les données, les normes de qualité CI et des fondations frontend durables au niveau système.",
+  "hero.story": "Frontend Tech Lead avec plus de 5 ans d’expérience frontend et full-stack, spécialisé en architecture frontend et en modernisation de grands systèmes legacy avec TypeScript, Svelte, React et Node.js. J’ai dirigé des réécritures et des migrations de systèmes d’entreprise vers des stacks modernes, introduit des flux de travail assistés par IA et des pipelines CI avec portes de qualité automatisées, et j’encadre des ingénieurs vers une refactorisation fondée sur les données et des fondations frontend durables.",
   "hero.greeting": "Salut, je suis",
   "hero.greetingEnd": "",
   "roles": [
-    "Frontend Tech Lead",
+    "Frontend Developer & Tech Lead",
     "Développeur JavaScript & TypeScript",
     "Créateur de bibliothèques et de jeux",
     "Passionné d’open source"

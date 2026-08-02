@@ -10,11 +10,11 @@ export const HU_PAGE = {
   "nav.cv": "CV",
   "hero.badge": "Elérhető új lehetőségekre",
   "hero.location": "📍 Pécs, Magyarország · HU — anyanyelv · DE — B2 · EN — B2",
-  "hero.story": "Frontend Tech Lead, 5+ év frontend és full-stack tapasztalattal, specializációval a frontend-architektúrára, rendszertervezésre és nagyméretű legacy-rendszerek modernizálására TypeScript, Svelte, React és Node.js technológiákkal. Vállalati rendszerek teljes újraírását és modern stackekre való migrálását vezettem, javítva a fő platformok karbantarthatóságát és skálázhatóságát. AI-támogatott fejlesztési munkafolyamatokat vezettem be, és automatikus minőségkapukkal ellátott CI-pipeline-okat építettem, jelentősen növelve a szállítási sebességet, a mérnöki konzisztenciát és a release-megbízhatóságot. Mérnököket vezetek és mentorálok, a bizonyítékvezérelt refaktorálásra, a CI-minőségi sztenderdekre és a fenntartható, rendszerszintű frontend-alapokra összpontosítva.",
+  "hero.story": "Frontend Tech Lead, 5+ év frontend és full-stack tapasztalattal, frontend-architektúrára és nagyméretű legacy-rendszerek modernizálására specializálódva TypeScript, Svelte, React és Node.js technológiákkal. Vállalati rendszerek újraírását és modern stackekre migrálását vezettem, AI-támogatott munkafolyamatokat és automatikus minőségkapukkal ellátott CI-pipeline-okat vezettem be, és mérnököket mentorálok a bizonyítékvezérelt refaktorálás és a fenntartható frontend-alapok felé.",
   "hero.greeting": "Szia, én",
   "hero.greetingEnd": " vagyok",
   "roles": [
-    "Frontend Tech Lead",
+    "Frontend Developer & Tech Lead",
     "JavaScript & TypeScript fejlesztő",
     "Könyvtár- és játékfejlesztő",
     "Open Source rajongó"

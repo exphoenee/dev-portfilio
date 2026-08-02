@@ -42,7 +42,20 @@ export function createTurnstile({ containerSel, submitSel }) {
       sitekey: TURNSTILE_SITEKEY,
       callback: (tk) => { token = tk; syncSubmit(); },
       'expired-callback': () => { token = ''; syncSubmit(); },
-      'error-callback': () => { token = ''; syncSubmit(); },
+      // Without the code a rejected widget is indistinguishable from an
+      // unsolved one: the submit button just stays disabled forever.
+      // 110200 = this hostname is not on the sitekey's allowed list.
+      'error-callback': (code) => {
+        token = '';
+        syncSubmit();
+        clearLoading();
+        console.error(
+          `[turnstile] ${containerSel} failed (${code}) on ${location.hostname}` +
+          (String(code) === '110200'
+            ? ` — add "${location.hostname}" to the sitekey's hostnames in the Cloudflare dashboard.`
+            : '')
+        );
+      },
     });
     setTimeout(clearLoading, 400);
   }

@@ -10,7 +10,7 @@ export const DE_PAGE = {
   "nav.cv": "CV",
   "hero.badge": "Verfügbar für neue Projekte",
   "hero.location": "📍 Pécs, Ungarn · HU — Muttersprache · DE — B2 · EN — B2",
-  "hero.story": "Frontend Tech Lead mit über 5 Jahren Erfahrung in Frontend- und Full-Stack-Entwicklung, spezialisiert auf Frontend-Architektur, Systemdesign und die Modernisierung großer Legacy-Systeme mit TypeScript, Svelte, React und Node.js. Ich habe komplette Neuimplementierungen und Migrationen von Unternehmenssystemen auf moderne Stacks geleitet und dabei Wartbarkeit und Skalierbarkeit der Kernplattformen verbessert. Ich habe KI-gestützte Entwicklungs-Workflows eingeführt und CI-Pipelines mit automatisierten Qualitätsgates aufgebaut, was Liefergeschwindigkeit, technische Konsistenz und Release-Zuverlässigkeit deutlich erhöht hat. Ich führe und betreue Ingenieure mit Fokus auf evidenzbasierte Refaktorierung, CI-Qualitätsstandards und nachhaltige Frontend-Grundlagen auf Systemebene.",
+  "hero.story": "Frontend Tech Lead mit über 5 Jahren Frontend- und Full-Stack-Erfahrung, spezialisiert auf Frontend-Architektur und die Modernisierung großer Legacy-Systeme mit TypeScript, Svelte, React und Node.js. Ich habe Neuimplementierungen und Migrationen von Unternehmenssystemen auf moderne Stacks geleitet, KI-gestützte Workflows und CI-Pipelines mit automatisierten Qualitätsgates eingeführt und betreue Entwickler mit Fokus auf evidenzbasierte Refaktorierung und nachhaltige Frontend-Grundlagen.",
   "hero.greeting": "Hallo, ich bin",
   "hero.greetingEnd": "",
   "roles": [
