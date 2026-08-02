@@ -372,12 +372,12 @@ export const TIMELINE = [
     company: 'Deutsche Telekom IT Solutions HU',
     current: false,
     desc: {
-      en: 'Software development in a large enterprise environment.',
-      de: 'Softwareentwicklung in einem großen Unternehmensumfeld.',
-      hu: 'Szoftverfejlesztés nagyvállalati környezetben.',
-      fr: 'Développement logiciel dans un environnement de grande entreprise.',
-      it: 'Sviluppo software in un ambiente aziendale di grandi dimensioni.',
-      es: 'Desarrollo de software en un entorno empresarial de gran escala.'
+      en: 'Software development in an enterprise, multicultural Scrum and Agile environment.',
+      de: 'Softwareentwicklung in einem großen, multikulturellen Scrum- und Agile-Umfeld.',
+      hu: 'Szoftverfejlesztés nagyvállalati, multikultúrális scrum és agile környezetben.',
+      fr: 'Développement logiciel dans un environnement de grande entreprise multiculturel, avec des méthodes Scrum et Agile.',
+      it: 'Sviluppo software in un ambiente aziendale di grandi dimensioni e multiculturale, con metodologie Scrum e Agile.',
+      es: 'Desarrollo de software en un entorno empresarial de gran escala y multicultural, con metodologías Scrum y Agile.'
     }
   },
   {
@@ -442,12 +442,12 @@ export const TIMELINE = [
     company: 'Hauni Hungary',
     current: false,
     desc: {
-      en: 'Mechanical engineering, measurement, data acquisition, automation and LabVIEW application development.',
-      de: 'Maschinenbau, Messtechnik, Datenerfassung, Automatisierung und Entwicklung von LabVIEW-Anwendungen.',
-      hu: 'Gépészmérnöki munka, mérés, adatgyűjtés, automatizálás és LabVIEW-alkalmazások fejlesztése.',
-      fr: 'Ingénierie mécanique, mesure, acquisition de données, automatisation et développement d’applications LabVIEW.',
-      it: 'Ingegneria meccanica, misurazione, acquisizione dati, automazione e sviluppo di applicazioni LabVIEW.',
-      es: 'Ingeniería mecánica, medición, adquisición de datos, automatización y desarrollo de aplicaciones LabVIEW.'
+      en: 'Mechanical engineering work, measurement, data acquisition, diagnostics, automation, machine vision, robot integration and LabVIEW application development.',
+      de: 'Maschinenbau, Messtechnik, Datenerfassung, Diagnostik, Automatisierung, maschinelles Sehen, Roboterintegration und Entwicklung von LabVIEW-Anwendungen.',
+      hu: 'Gépészmérnöki munka, mérés, adatgyűjtés, diagnosztika, automatizálás, gépi látás, robot integráció és LabVIEW-alkalmazások fejlesztése.',
+      fr: 'Travaux d’ingénierie mécanique, mesure, acquisition de données, diagnostic, automatisation, vision industrielle, intégration robotique et développement d’applications LabVIEW.',
+      it: 'Lavoro di ingegneria meccanica, misurazione, acquisizione dati, diagnostica, automazione, visione artificiale, integrazione robotica e sviluppo di applicazioni LabVIEW.',
+      es: 'Trabajo de ingeniería mecánica, medición, adquisición de datos, diagnóstico, automatización, visión artificial, integración robótica y desarrollo de aplicaciones LabVIEW.'
     }
   }
 ];

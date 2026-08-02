@@ -6,6 +6,7 @@
 import { $, $$, t, esc } from '../dom.js';
 import { CONTACT } from '../../data/portfolio-data.js';
 import { revealIn } from '../ui/reveal.js';
+import { wireImageLoaders } from '../ui/image-loader.js';
 
 /* Most values are identifiers (an address, a handle) and stay as they are;
    a card carrying prose declares valueKey and gets translated instead. */
@@ -36,6 +37,7 @@ export function renderContact() {
     </a>`;
   }).join('');
   revealIn(wrap);
+  wireImageLoaders(wrap);
 }
 
 /* Language switch: the card name, plus the value of any card that declared a

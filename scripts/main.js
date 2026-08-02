@@ -12,6 +12,7 @@ import { initTheme, toggleTheme } from './ui/theme.js';
 import { revealIn } from './ui/reveal.js';
 import { initStats } from './ui/stats.js';
 import { initScrollSpy } from './ui/scrollspy.js';
+import { installImageLoaders } from './ui/image-loader.js';
 
 import { renderAll, applyTranslations } from './render/translate.js';
 import { initProjectCards } from './render/projects.js';
@@ -75,6 +76,7 @@ function initModals() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  installImageLoaders();
   initTheme();
   renderAll();
 

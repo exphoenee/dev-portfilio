@@ -9,6 +9,7 @@ import { state, tabFor } from '../state.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
 import { openImageModal } from '../modals/image.js';
 import { revealIn } from '../ui/reveal.js';
+import { wireImageLoaders } from '../ui/image-loader.js';
 
 const CATEGORY_ICONS = {
   library: '📦',
@@ -116,6 +117,10 @@ export function renderProjects() {
 
   grid.innerHTML = filtered.map(projectCard).join('');
   revealIn(grid);
+  // New <img> nodes each render (filter change), so the loaders are wired
+  // here; the load/error listeners installed by installImageLoaders settle
+  // them. Language switches patch text in place and need no rewiring.
+  wireImageLoaders(grid);
 }
 
 /* Language switch: patch the text in place instead of rebuilding 21 cards.

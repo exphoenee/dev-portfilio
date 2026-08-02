@@ -198,7 +198,14 @@ body.modal-open {
    Image modal (lightbox, ported from the CV repo modal pattern)
    ============================================================ */
 .image-dialog { width: min(1200px, 100%); padding: 18px; }
-.image-preview { margin: 0; }
+.image-preview {
+  margin: 0;
+  position: relative;
+}
+/* Until the large image arrives the figure is 0 tall; this keeps the
+   robot loader visible instead of squeezing it to nothing, and
+   disappears again once the image has loaded. */
+.image-preview:has(img.is-loading) { min-height: 240px; }
 .image-preview img {
   display: block;
   width: 100%;
@@ -211,6 +218,11 @@ body.modal-open {
 }
 .image-preview img.is-loading,
 .image-preview img.is-error { opacity: 0; }
+/* The lightbox drives its loader off the existing is-loading state set
+   by scripts/modals/image.js; the base .img-loader rules come from
+   portfolio.css, here it is hidden until the image actually loads. */
+.image-preview .img-loader { display: none; }
+.image-preview img.is-loading ~ .img-loader { display: grid; }
 .image-preview figcaption {
   margin-top: 12px;
   text-align: center;

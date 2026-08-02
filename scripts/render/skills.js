@@ -5,6 +5,7 @@
 import { $, $$, t, esc } from '../dom.js';
 import { SKILLS } from '../../data/portfolio-data.js';
 import { revealIn } from '../ui/reveal.js';
+import { wireImageLoaders } from '../ui/image-loader.js';
 
 export function renderSkills() {
   const wrap = $('#skills-groups');
@@ -17,6 +18,7 @@ export function renderSkills() {
       </div>
     </div>`).join('');
   revealIn(wrap);
+  wireImageLoaders(wrap);
 }
 
 /* Only the group headings are translated, the chip labels are product
