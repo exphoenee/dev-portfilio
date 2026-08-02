@@ -521,10 +521,10 @@ export const SKILLS = [
   {
     titleKey: 'skills.ai',
     chips: [
-      { label: 'Antigravity', icon: 'assets/images/tech/antigravity.png' },
+      // { label: 'Antigravity', icon: 'assets/images/tech/antigravity.png' },
       { label: 'Claude Code', icon: 'assets/images/tech/claude.svg' },
       { label: 'Codex', icon: 'assets/images/tech/codex.svg' },
-      { label: 'Cursor', icon: 'assets/images/tech/cursor.svg' },
+      // { label: 'Cursor', icon: 'assets/images/tech/cursor.svg' },
       { label: 'Freebuff', icon: 'assets/images/tech/freebuff.png' },
       { label: 'KiloCode', icon: 'assets/images/tech/kilocode.png' },
       { label: 'Ollama', icon: 'assets/images/tech/ollama.svg' },
