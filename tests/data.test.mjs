@@ -16,6 +16,7 @@ import { PROJECTS, TIMELINE, SKILLS, CONTACT } from '../data/portfolio-data.js';
 import { FORBIDDEN_WORDS } from '../data/forbidden-words.js';
 import { findForbiddenWord } from '../scripts/modals/form-guards.js';
 import { AVAILABLE_LANGS } from '../scripts/locale.js';
+import { TECH_ICONS, techIconSrc } from '../scripts/tech-icons.js';
 
 import { EN_PAGE } from '../data/locales/en-page.js';
 import { DE_PAGE } from '../data/locales/de-page.js';
@@ -101,11 +102,11 @@ test('every timeline entry is translated into every language', () => {
   }
 });
 
-test('skill group titles resolve to a locale key, and chip icons exist', () => {
+test('skill group titles resolve to a locale key, and chips keep icons out of data', () => {
   for (const group of SKILLS) {
     assert.ok(EN_PAGE.labels[group.titleKey], `no label for ${group.titleKey}`);
     for (const chip of group.chips) {
-      if (chip.icon) assert.ok(assetExists(chip.icon), `missing ${chip.icon}`);
+      assert.equal(chip.icon, undefined, `${chip.label} should resolve icons through TECH_ICONS`);
     }
   }
 });
@@ -164,13 +165,15 @@ test('forbidden-word matcher ignores innocent words (no false positives)', () =>
 
 /* ---------- assets referenced from markup ---------- */
 
-test('tech icon files are all referenced, and referenced files all exist', async () => {
-  const source = await import('node:fs/promises').then((fs) =>
-    fs.readFile(join(ROOT, 'scripts/render/projects.js'), 'utf8'));
-  const mapped = [...source.matchAll(/:\s*'([\w.-]+\.(?:svg|png))'/g)].map((m) => m[1]);
+test('tech icon files are all referenced, and referenced files all exist', () => {
+  const mapped = Object.values(TECH_ICONS);
   assert.ok(mapped.length > 0, 'TECH_ICONS looks empty');
   for (const file of mapped) {
     assert.ok(assetExists(join('assets/images/tech', file)), `TECH_ICONS points at missing ${file}`);
+  }
+  for (const label of [...PROJECTS.flatMap((p) => p.tech), ...SKILLS.flatMap((group) => group.chips.map((chip) => chip.label))]) {
+    const icon = techIconSrc(label);
+    if (icon) assert.ok(assetExists(icon), `${label} resolves to missing ${icon}`);
   }
 });
 

@@ -158,7 +158,7 @@ export const PROJECTS = [
     name: 'FACTS',
     category: 'app',
     image: 'assets/images/projects/large/facts.jpg',
-    tech: ['React', 'TypeScript', 'Monorepo', 'Vitest', 'PNPM'],
+    tech: ['React', 'TypeScript', 'Monorepo', 'Vitest', 'PNPM', 'Specification sdriven development'],
     links: { demo: 'https://www.factslogin.com' },
     desc: {
       en: { functional: 'The secure login portal of FACTS, a compliance platform for the renewable fuels industry that tracks every feedstock transaction from collection to refinery with full traceability and chain-of-custody control.', technical: 'A production web portal with enterprise authentication options (including Microsoft login), role-based secure access and confidential, audit-ready record keeping for EPA-compliant feedstock tracking.' },
@@ -174,7 +174,7 @@ export const PROJECTS = [
     name: 'FACTS Driver App',
     category: 'app',
     image: 'assets/images/projects/large/driver.jpg',
-    tech: ['React', 'TypeScript', 'HERE Maps', 'Monorepo', 'Vitest', 'PNPM'],
+    tech: ['React', 'TypeScript', 'HERE Maps', 'Monorepo', 'Vitest', 'PNPM', 'Specification driven development'],
     links: { demo: 'https://routes.factslogin.com' },
     desc: {
       en: { functional: 'A driver application for the FACTS logistics platform that organises and tracks biodiesel feedstock (used cooking oil) collections and monitors CO₂ emissions, route management and daily driver operations on a modern, data-driven frontend.', technical: 'Because of the second sibling application, the codebase was migrated into a monorepo and the shared logic moved into a single package; to support the developers I also built a CLI that speeds up and assists their work.' },
@@ -190,7 +190,7 @@ export const PROJECTS = [
     name: 'FundMyPitch',
     category: 'app',
     image: 'assets/images/projects/large/fundmypitch.jpg',
-    tech: ['Responsive'],
+    tech: ['React', 'NextJS', 'TypeScript'],
     links: { demo: 'https://www.fundmypitch.com' },
     desc: {
       en: { functional: 'A funding platform that connects startups and SMEs with investors, companies present their pitch, gain visibility and raise capital in a structured, transparent process.', technical: 'A modern web platform for the fintech ecosystem with company profiles, pitch presentations and investor matchmaking, built for the UK SME funding market.' },
@@ -295,6 +295,22 @@ export const PROJECTS = [
       fr: { functional: 'Le client web du système de scoring automatique de fléchettes Scolia : X01, Cricket, Around the Clock et d\u2019autres modes de jeu, un lobby en ligne, des tournois, des adversaires bots et des statistiques détaillées, sur n\u2019importe quel appareil.', technical: 'Une interface temps réel basée sur navigateur qui se connecte au matériel Scolia, affiche les scores et lance des parties sur smartphones, tablettes, PC et TV connectées avec un suivi des lancers au millimètre près.' },
       it: { functional: 'Il client web del sistema di punteggio automatico per freccette Scolia: X01, Cricket, Around the Clock e altre modalità di gioco, lobby online, tornei, avversari bot e statistiche dettagliate, su qualsiasi dispositivo.', technical: 'Un\u2019interfaccia in tempo reale basata su browser che si collega all\u2019hardware Scolia, mostra i punteggi e gestisce le partite su smartphone, tablet, PC e smart TV con rilevamento dei lanci millimetrico.' },
       es: { functional: 'El cliente web del sistema de puntuación automática de dardos Scolia: X01, Cricket, Around the Clock y más modos de juego, lobby en línea, torneos, oponentes bot y estadísticas detalladas, en cualquier dispositivo.', technical: 'Una interfaz en tiempo real basada en navegador que se conecta al hardware de Scolia, muestra las puntuaciones y ejecuta partidas en smartphones, tablets, PC y smart TVs con seguimiento de lanzamientos de precisión milimétrica.' }
+    }
+  },
+  {
+    id: 'safesy-erp',
+    name: 'Safesy ERP',
+    category: 'app',
+    image: 'assets/images/projects/large/safesy.jpg',
+    tech: ['SvelteKit', 'TypeScript', 'Vitest', 'Storybook', 'Component driven development'],
+    links: {},
+    desc: {
+      en: { functional: 'An enterprise resource planning platform where I contributed to reusable UI foundations, feature implementation and a consistent application experience for complex business workflows.', technical: 'Built with SvelteKit and TypeScript. I designed and implemented a reusable UI component library, built interactive Storybook documentation and established component-driven patterns that improved maintainability across the application.' },
+      de: { functional: 'Eine Enterprise-Resource-Planning-Plattform, bei der ich an wiederverwendbaren UI-Grundlagen, Feature-Implementierung und einer konsistenten Anwendungserfahrung für komplexe Geschäftsprozesse mitgewirkt habe.', technical: 'Gebaut mit SvelteKit und TypeScript. Ich entwarf und implementierte eine wiederverwendbare UI-Komponentenbibliothek, erstellte interaktive Storybook-Dokumentation und etablierte komponentengetriebene Muster, die die Wartbarkeit der Anwendung verbesserten.' },
+      hu: { functional: 'Vállalati erőforrás-tervező platform, amelyben újrafelhasználható UI-alapokon, feature-fejlesztésen és komplex üzleti folyamatokhoz illeszkedő, egységes alkalmazásélményen dolgoztam.', technical: 'SvelteKit és TypeScript alapokra épült. Újrafelhasználható UI komponenskönyvtárat terveztem és implementáltam, interaktív Storybook dokumentációt készítettem, és komponensvezérelt mintákat vezettem be a jobb karbantarthatóság érdekében.' },
+      fr: { functional: 'Une plateforme ERP d’entreprise à laquelle j’ai contribué en créant des fondations UI réutilisables, en implémentant des fonctionnalités et en renforçant une expérience applicative cohérente pour des workflows métier complexes.', technical: 'Construite avec SvelteKit et TypeScript. J’ai conçu et implémenté une bibliothèque de composants UI réutilisables, créé une documentation Storybook interactive et établi des patterns orientés composants pour améliorer la maintenabilité de l’application.' },
+      it: { functional: 'Una piattaforma ERP aziendale a cui ho contribuito creando basi UI riutilizzabili, implementando funzionalità e rendendo coerente l’esperienza applicativa per workflow aziendali complessi.', technical: 'Realizzata con SvelteKit e TypeScript. Ho progettato e implementato una libreria di componenti UI riutilizzabili, creato documentazione Storybook interattiva e introdotto pattern component-driven per migliorare la manutenibilità dell’applicazione.' },
+      es: { functional: 'Una plataforma ERP empresarial en la que contribuí a bases de UI reutilizables, implementación de funcionalidades y una experiencia de aplicación coherente para flujos de negocio complejos.', technical: 'Construida con SvelteKit y TypeScript. Diseñé e implementé una biblioteca reutilizable de componentes UI, creé documentación interactiva en Storybook y establecí patrones component-driven que mejoraron la mantenibilidad de la aplicación.' }
     }
   },
   {
@@ -455,91 +471,91 @@ export const TIMELINE = [
 /* ------------------------------------------------------------
    SKILLS, grouped technologies, synced from the CV repo's
    cv/cv-data.js `skillGroups` (primary, backend, testing,
-   tooling, ai) + spoken languages (icons from assets/images/tech)
+   tooling, ai) + spoken languages
    ------------------------------------------------------------ */
 export const SKILLS = [
   {
     titleKey: 'skills.primary',
     chips: [
-      { label: 'CSS', icon: 'assets/images/tech/css.svg' },
-      { label: 'HTML', icon: 'assets/images/tech/html.svg' },
-      { label: 'JavaScript', icon: 'assets/images/tech/javascript.svg' },
-      { label: 'KRL', icon: 'assets/images/tech/kuka.png' },
-      { label: 'LabVIEW', icon: 'assets/images/tech/labview.png' },
-      { label: 'PHP', icon: 'assets/images/tech/php.svg' },
-      { label: 'Python', icon: 'assets/images/tech/python.svg' },
-      { label: 'SCSS', icon: 'assets/images/tech/scss.svg' },
-      { label: 'TPL', icon: 'assets/images/tech/fanuc.png' },
-      { label: 'TypeScript', icon: 'assets/images/tech/typescript.svg' }
+      { label: 'CSS' },
+      { label: 'HTML' },
+      { label: 'JavaScript' },
+      { label: 'KRL' },
+      { label: 'LabVIEW' },
+      { label: 'PHP' },
+      { label: 'Python' },
+      { label: 'SCSS' },
+      { label: 'TPL' },
+      { label: 'TypeScript' }
     ]
   },
   {
     titleKey: 'skills.frontend',
     chips: [
-      { label: 'Bootstrap', icon: 'assets/images/tech/bootstrap.svg' },
-      { label: 'Next.js', icon: 'assets/images/tech/nextjs.svg' },
-      { label: 'React', icon: 'assets/images/tech/react.svg' },
-      { label: 'Redux', icon: 'assets/images/tech/Redux.svg' },
-      { label: 'styled-components', icon: 'assets/images/tech/styled_components.svg' },
-      { label: 'Svelte', icon: 'assets/images/tech/svelte.svg' },
-      { label: 'Zustand', icon: 'assets/images/tech/zustand.png' }
+      { label: 'Bootstrap' },
+      { label: 'Next.js' },
+      { label: 'React' },
+      { label: 'Redux' },
+      { label: 'styled-components' },
+      { label: 'Svelte' },
+      { label: 'Zustand' }
     ]
   },
   {
     titleKey: 'skills.backend',
     chips: [
-      { label: 'Express.js', icon: 'assets/images/tech/express.svg' },
-      { label: 'Firebase', icon: 'assets/images/tech/firebase.svg' },
-      { label: 'MongoDB', icon: 'assets/images/tech/mongodb.svg' },
-      { label: 'MySQL', icon: 'assets/images/tech/mysql.svg' },
-      { label: 'NestJS', icon: 'assets/images/tech/NestJS.svg' },
-      { label: 'Node.js', icon: 'assets/images/tech/nodejs.svg' },
-      { label: 'REST API', icon: 'assets/images/tech/rest-api.svg' },
-      { label: 'Swagger', icon: 'assets/images/tech/swagger.svg' },
-      { label: 'WebSocket', icon: 'assets/images/tech/websocket.svg' }
+      { label: 'Express.js' },
+      { label: 'Firebase' },
+      { label: 'MongoDB' },
+      { label: 'MySQL' },
+      { label: 'NestJS' },
+      { label: 'Node.js' },
+      { label: 'REST API' },
+      { label: 'Swagger' },
+      { label: 'WebSocket' }
     ]
   },
   {
     titleKey: 'skills.testing',
     chips: [
-      { label: 'Jest', icon: 'assets/images/tech/jest.svg' },
-      { label: 'Mocha', icon: 'assets/images/tech/mocha.svg' },
-      { label: 'Playwright', icon: 'assets/images/tech/playwright.svg' },
-      { label: 'Vitest', icon: 'assets/images/tech/vitest.svg' }
+      { label: 'Jest' },
+      { label: 'Mocha' },
+      { label: 'Playwright' },
+      { label: 'Vitest' }
     ]
   },
   {
     titleKey: 'skills.tooling',
     chips: [
       { label: 'CI/CD' },
-      { label: 'npm', icon: 'assets/images/tech/npm.svg' },
-      { label: 'PNPM', icon: 'assets/images/tech/pnpm.svg' },
-      { label: 'Vite', icon: 'assets/images/tech/vite.svg' },
-      { label: 'Webpack', icon: 'assets/images/tech/webpack.svg' }
+      { label: 'npm' },
+      { label: 'PNPM' },
+      { label: 'Vite' },
+      { label: 'Webpack' }
     ]
   },
   {
     titleKey: 'skills.ai',
     chips: [
-      // { label: 'Antigravity', icon: 'assets/images/tech/antigravity.png' },
-      { label: 'Claude Code', icon: 'assets/images/tech/claude.svg' },
-      { label: 'Codex', icon: 'assets/images/tech/codex.svg' },
-      // { label: 'Cursor', icon: 'assets/images/tech/cursor.svg' },
-      { label: 'Freebuff', icon: 'assets/images/tech/freebuff.png' },
-      { label: 'KiloCode', icon: 'assets/images/tech/kilocode.png' },
-      { label: 'Ollama', icon: 'assets/images/tech/ollama.svg' },
-      { label: 'OpenCode', icon: 'assets/images/tech/opencode.svg' },
-      { label: 'Suno', icon: 'assets/images/tech/suno.svg' }
+      // { label: 'Antigravity' },
+      { label: 'Claude Code' },
+      { label: 'Codex' },
+      // { label: 'Cursor' },
+      { label: 'Freebuff' },
+      { label: 'KiloCode' },
+      { label: 'Ollama' },
+      { label: 'OpenCode' },
+      { label: 'Suno' }
     ]
   },
   {
     titleKey: 'skills.robotics',
     chips: [
-      { label: 'FANUC', icon: 'assets/images/tech/fanuc.png' },
-      { label: 'KUKA', icon: 'assets/images/tech/kuka.png' },
-      { label: 'Machine Vision', icon: 'assets/images/tech/machine_vision.svg' },
-      { label: 'OnRobot', icon: 'assets/images/tech/OnRobot.svg' },
-      { label: 'Universal Robot', icon: 'assets/images/tech/universal-robot.png' }
+      { label: 'FANUC' },
+      { label: 'KUKA' },
+      { label: 'Machine Vision' },
+      { label: 'OnRobot' },
+      { label: 'Universal Robot' }
     ]
   },
   {
@@ -566,5 +582,5 @@ export const CONTACT = [
 ];
 
 /* ------------------------------------------------------------
-   SKILLS, grouped technologies (icons from assets/images/tech)
+   SKILLS, grouped technologies
    ------------------------------------------------------------ */

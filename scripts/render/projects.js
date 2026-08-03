@@ -7,6 +7,7 @@ import { $, $$, t, esc } from '../dom.js';
 import { locale } from '../locale.js';
 import { state, tabFor } from '../state.js';
 import { PROJECTS } from '../../data/portfolio-data.js';
+import { techIconSrc } from '../tech-icons.js';
 import { openImageModal } from '../modals/image.js';
 import { revealIn } from '../ui/reveal.js';
 import { wireImageLoaders } from '../ui/image-loader.js';
@@ -19,39 +20,6 @@ const CATEGORY_ICONS = {
   website: '🌐'
 };
 
-/* Tech icon lookup, maps a label shown on cards to its file in assets/images/tech/ */
-const TECH_ICONS = {
-  React: 'react.svg',
-  TypeScript: 'typescript.svg',
-  'Vanilla JS': 'js.svg',
-  'VS Code': 'vscode.svg',
-  Vite: 'vite.svg',
-  Vitest: 'vitest.svg',
-  Jest: 'jest.svg',
-  Mocha: 'mocha.svg',
-  Webpack: 'webpack.svg',
-  HTML: 'html.svg',
-  CSS: 'css.svg',
-  JavaScript: 'javascript.svg',
-  'Node.js': 'nodejs.svg',
-  Express: 'express.svg',
-  Swagger: 'swagger.svg',
-  npm: 'npm.svg',
-  PNPM: 'pnpm.svg',
-  Redux: 'Redux.svg',
-  PHP: 'php.svg',
-  MySQL: 'mysql.svg',
-  'TensorFlow.js': 'Tensorflow.svg',
-  AOS: 'AOS.png',
-  Bootstrap: 'bootstrap.svg',
-  Chai: 'chai.png',
-  Formspree: 'formspree.webp',
-  'HERE Maps': 'heremap.png',
-  'Gemini AI': 'gemini.png',
-  i18next: 'i18next.avif',
-  'GitHub Pages': 'github.svg'
-};
-
 const LINK_ICONS = {
   repo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>',
   demo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
@@ -60,6 +28,11 @@ const LINK_ICONS = {
 
 function cardTitle(p) {
   return (p.nameL10n && p.nameL10n[locale.lang]) || p.name;
+}
+
+function techTag(label) {
+  const icon = techIconSrc(label);
+  return `<span class="tech-tag">${icon ? `<img src="${esc(icon)}" alt="" loading="lazy">` : ''}${esc(label)}</span>`;
 }
 
 function projectCard(p, index) {
@@ -102,7 +75,7 @@ function projectCard(p, index) {
           <button class="card-tab ${activeTab === 'technical' ? 'active' : ''}" data-tab="technical" type="button" role="tab" id="tab-technical-${p.id}" aria-controls="desc-${p.id}" aria-selected="${activeTab === 'technical'}" tabindex="${activeTab === 'technical' ? 0 : -1}">${esc(t('tab.technical'))}</button>
         </div>
         <p class="card-desc" id="desc-${p.id}" role="tabpanel" aria-labelledby="tab-${activeTab}-${p.id}" tabindex="0">${esc(d[activeTab])}</p>
-        <div class="card-tech">${p.tech.map((x) => `<span class="tech-tag">${TECH_ICONS[x] ? `<img src="assets/images/tech/${TECH_ICONS[x]}" alt="" loading="lazy">` : ''}${esc(x)}</span>`).join('')}</div>
+        <div class="card-tech">${p.tech.map(techTag).join('')}</div>
         <div class="card-links">${links}</div>
       </div>
     </article>`;

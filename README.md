@@ -95,7 +95,7 @@ The repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) t
 ## ✏️ Customizing
 
 - **Projects**, edit the `PROJECTS` array in `data/portfolio-data.js` (name, category, image, tech, links and descriptions in all 6 languages).
-- **Skills**, the `SKILLS` array in `data/portfolio-data.js` is synced from the CV repo's `cv/cv-data.js` `skillGroups` (primary, frontend, backend, testing, tooling, ai, robotics) + spoken languages; chips carry optional icons from `assets/images/tech`.
+- **Skills**, the `SKILLS` array in `data/portfolio-data.js` is synced from the CV repo's `cv/cv-data.js` `skillGroups` (primary, frontend, backend, testing, tooling, ai, robotics) + spoken languages; chip icons resolve through `scripts/tech-icons.js`.
 - **Contact cards**, edit the `CONTACT` array in `data/portfolio-data.js`; each card's `icon` can be an emoji, an inline SVG or an `<img>` pointing to a custom image in `assets/images/`.
 - **Career timeline**, edit the `TIMELINE` array in `data/portfolio-data.js`.
 - **UI labels** (nav, hero, buttons, footer…), edit the matching key in each `data/locales/*-page.js` file.
