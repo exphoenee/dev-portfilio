@@ -158,7 +158,7 @@ export const PROJECTS = [
     name: 'FACTS',
     category: 'app',
     image: 'assets/images/projects/large/facts.jpg',
-    tech: ['React', 'TypeScript', 'Monorepo', 'Vitest', 'PNPM', 'Specification sdriven development'],
+    tech: ['React', 'TypeScript', 'Monorepo', 'Vitest', 'PNPM', 'Specification driven development'],
     links: { demo: 'https://www.factslogin.com' },
     desc: {
       en: { functional: 'The secure login portal of FACTS, a compliance platform for the renewable fuels industry that tracks every feedstock transaction from collection to refinery with full traceability and chain-of-custody control.', technical: 'A production web portal with enterprise authentication options (including Microsoft login), role-based secure access and confidential, audit-ready record keeping for EPA-compliant feedstock tracking.' },
@@ -190,15 +190,15 @@ export const PROJECTS = [
     name: 'FundMyPitch',
     category: 'app',
     image: 'assets/images/projects/large/fundmypitch.jpg',
-    tech: ['React', 'NextJS', 'TypeScript'],
+    tech: ['React', 'NextJS', 'TypeScript', 'Laravel', 'PHP'],
     links: { demo: 'https://www.fundmypitch.com' },
     desc: {
-      en: { functional: 'A funding platform that connects startups and SMEs with investors, companies present their pitch, gain visibility and raise capital in a structured, transparent process.', technical: 'A modern web platform for the fintech ecosystem with company profiles, pitch presentations and investor matchmaking, built for the UK SME funding market.' },
-      de: { functional: 'Eine Finanzierungsplattform, die Startups und KMU mit Investoren verbindet, Unternehmen präsentieren ihren Pitch, gewinnen Sichtbarkeit und sammeln Kapital in einem strukturierten, transparenten Prozess.', technical: 'Eine moderne Webplattform für das Fintech-Ökosystem mit Unternehmensprofilen, Pitch-Präsentationen und Investoren-Matchmaking, gebaut für den britischen KMU-Finanzierungsmarkt.' },
-      hu: { functional: 'Finanszírozási platform, amely induló vállalkozásokat és KKV-kat köt össze befektetőkkel, a cégek bemutatják pitchüket, láthatóságot szereznek és tőkét gyűjtenek strukturált, átlátható folyamatban.', technical: 'Modern webes platform a fintech-ökoszisztémához céges profilokkal, pitch-bemutatókkal és befektető-megfeleltetéssel, a brit KKV-finanszírozási piacra építve.' },
-      fr: { functional: 'Une plateforme de financement qui met en relation startups et PME avec des investisseurs, les entreprises présentent leur pitch, gagnent en visibilité et lèvent des fonds dans un processus structuré et transparent.', technical: 'Une plateforme web moderne pour l\u2019écosystème fintech avec profils d\u2019entreprises, présentations de pitch et mise en relation avec des investisseurs, conçue pour le marché britannique du financement des PME.' },
-      it: { functional: 'Una piattaforma di finanziamento che collega startup e PMI con gli investitori, le aziende presentano il loro pitch, guadagnano visibilità e raccolgono capitale in un processo strutturato e trasparente.', technical: 'Una piattaforma web moderna per l\u2019ecosistema fintech con profili aziendali, presentazioni di pitch e matchmaking con gli investitori, costruita per il mercato britannico dei finanziamenti alle PMI.' },
-      es: { functional: 'Una plataforma de financiación que conecta startups y pymes con inversores, las empresas presentan su pitch, ganan visibilidad y recaudan capital en un proceso estructurado y transparente.', technical: 'Una plataforma web moderna para el ecosistema fintech con perfiles de empresa, presentaciones de pitch y emparejamiento con inversores, construida para el mercado británico de financiación de pymes.' }
+      en: { functional: 'A funding platform that connects startups and SMEs with investors, companies present their pitch, gain visibility and raise capital in a structured, transparent process.', technical: 'Built with Next.js and TypeScript on the frontend and a Laravel (PHP) backend, using modern web technologies with a real-time video chat integration for pitch meetings.' },
+      de: { functional: 'Eine Finanzierungsplattform, die Startups und KMU mit Investoren verbindet, Unternehmen präsentieren ihren Pitch, gewinnen Sichtbarkeit und sammeln Kapital in einem strukturierten, transparenten Prozess.', technical: 'Gebaut mit Next.js und TypeScript im Frontend und einem Laravel- (PHP-)Backend, mit modernen Webtechnologien und Echtzeit-Videochat-Integration für Pitch-Meetings.' },
+      hu: { functional: 'Finanszírozási platform, amely induló vállalkozásokat és KKV-kat köt össze befektetőkkel, a cégek bemutatják pitchüket, láthatóságot szereznek és tőkét gyűjtenek strukturált, átlátható folyamatban.', technical: 'Next.js és TypeScript frontenddel és Laravel (PHP) backenddel épült, modern webes technológiákkal, valós idejű videóhívás-integrációval a pitch-megbeszélésekhez.' },
+      fr: { functional: 'Une plateforme de financement qui met en relation startups et PME avec des investisseurs, les entreprises présentent leur pitch, gagnent en visibilité et lèvent des fonds dans un processus structuré et transparent.', technical: 'Construite avec Next.js et TypeScript côté frontend et un backend Laravel (PHP), avec des technologies web modernes et une intégration de visioconférence en temps réel pour les réunions de pitch.' },
+      it: { functional: 'Una piattaforma di finanziamento che collega startup e PMI con gli investitori, le aziende presentano il loro pitch, guadagnano visibilità e raccolgono capitale in un processo strutturato e trasparente.', technical: 'Costruita con Next.js e TypeScript sul frontend e un backend Laravel (PHP), con tecnologie web moderne e integrazione di videochiamata in tempo reale per gli incontri di pitch.' },
+      es: { functional: 'Una plataforma de financiación que conecta startups y pymes con inversores, las empresas presentan su pitch, ganan visibilidad y recaudan capital en un proceso estructurado y transparente.', technical: 'Construida con Next.js y TypeScript en el frontend y un backend Laravel (PHP), con tecnologías web modernas e integración de videollamada en tiempo real para las reuniones de pitch.' }
     }
   },
   {
@@ -286,7 +286,7 @@ export const PROJECTS = [
     name: 'Scolia Darts',
     category: 'game',
     image: 'assets/images/projects/large/scolia.jpg',
-    tech: ['JavaScript', 'Redux', 'Jest', 'i18next', 'Real-time'],
+    tech: ['JavaScript', 'Redux', 'Jest', 'i18next', 'WebSocket'],
     links: { demo: 'https://game.scoliadarts.com' },
     desc: {
       en: { functional: 'The web client of the Scolia automatic darts scoring system: X01, Cricket, Around the Clock and more game modes, an online lobby, tournaments, bot opponents and detailed statistics, on any device.', technical: 'A browser-based real-time interface that connects to Scolia hardware, displaying scores and running games on smartphones, tablets, PCs and smart TVs with millimeter-accurate throw tracking.' },
